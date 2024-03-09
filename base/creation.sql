@@ -31,3 +31,18 @@ CREATE TABLE role_permissions(
    FOREIGN KEY(permission) REFERENCES Permission(id),
    FOREIGN KEY(role) REFERENCES role(id)
 );
+
+CREATE TABLE collaborator(
+   id SERIAL,
+   first_name VARCHAR(250) ,
+   name VARCHAR(250)  NOT NULL,
+   date_of_birth DATE NOT NULL,
+   username VARCHAR(150)  NOT NULL,
+   password VARCHAR(253)  NOT NULL,
+   role INTEGER,
+   speciality INTEGER,
+   PRIMARY KEY(id),
+   UNIQUE(username,password),
+   FOREIGN KEY(role) REFERENCES role(id),
+   FOREIGN KEY(speciality) REFERENCES specialitiy(id)
+);
