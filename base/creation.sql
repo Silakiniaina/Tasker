@@ -15,3 +15,11 @@ CREATE TABLE Permission(
    PRIMARY KEY(id),
    UNIQUE(description)
 );
+
+CREATE TABLE role(
+   id SERIAL,
+   libelle VARCHAR(50)  NOT NULL,
+   description VARCHAR(50) ,
+   PRIMARY KEY(id),
+   UNIQUE(libelle)
+);
