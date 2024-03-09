@@ -1,7 +1,99 @@
+/* Colors */
+/* Text */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.container__login {
+  box-shadow: 2px 4px 10px black;
+  border-radius: 10px;
+  padding: 20px;
+}
+.container__login--head {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  padding: 5px;
+}
+.container__login--head-logo {
+  text-align: center;
+  font-weight: bolder;
+  color: rgb(26, 47, 63);
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+.container__login--head-label h2 {
+  line-height: 1.1;
+  color: rgb(79, 107, 127);
+}
+.container__login--head-label p {
+  color: rgb(92, 118, 137);
+}
+.container__login--content {
+  padding: 20px 10px 20px 5px;
+  color: rgb(79, 107, 127);
+}
+.container__login--content-input {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+}
+.container__login--content-input label {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-family: sans-serif;
+  font-weight: bolder;
+  line-height: 2.5;
+}
+.container__login--content-input input {
+  width: 100%;
+  height: 45px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid rgb(217, 222, 227);
+  font-size: 14px;
+  color: rgb(92, 118, 137);
+}
+.container__login--content-input input:active {
+  border: 1px solid rgb(0, 179, 214);
+}
+.container__login--content-btn {
+  height: 45px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+}
+.container__login--content-btn button {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(41, 70, 248);
+  color: rgb(233, 234, 252);
+  font-size: 14px;
+}
+.container__login--content-links {
+  text-align: center;
+  padding: 10px;
+  line-height: 2;
+  font-family: sans-serif;
+  font-size: 14px;
+}
+.container__login--content-links a {
+  text-decoration: none;
+  color: rgb(41, 70, 248);
 }
 
 /*# sourceMappingURL=auth.css.map */
