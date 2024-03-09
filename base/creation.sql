@@ -23,3 +23,11 @@ CREATE TABLE role(
    PRIMARY KEY(id),
    UNIQUE(libelle)
 );
+
+CREATE TABLE role_permissions(
+   permission VARCHAR(50) ,
+   role INTEGER,
+   PRIMARY KEY(permission, role),
+   FOREIGN KEY(permission) REFERENCES Permission(id),
+   FOREIGN KEY(role) REFERENCES role(id)
+);
