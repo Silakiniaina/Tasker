@@ -7,3 +7,11 @@ CREATE TABLE specialitiy(
    PRIMARY KEY(id),
    UNIQUE(libelle)
 );
+
+CREATE TABLE Permission(
+   id VARCHAR(50) ,
+   libelle VARCHAR(250)  NOT NULL,
+   description VARCHAR(50)  NOT NULL,
+   PRIMARY KEY(id),
+   UNIQUE(description)
+);
