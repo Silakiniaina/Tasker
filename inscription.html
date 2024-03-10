@@ -19,8 +19,30 @@
         </div>
         <div class="container__auth--content">
             <div class="container__auth--content-input">
+                <label for="input_first_name">first name</label>
+                <input type="text"placeholder="Enter your first name"id="input_first_name"required>
+            </div>
+            <div class="container__auth--content-input">
+                <label for="input_name">name</label>
+                <input type="text"placeholder="Enter your name"id="input_name"required>
+            </div>
+            <div class="container__auth--content-input">
+                <label for="input_name">date of birth</label>
+                <input type="date"placeholder="Enter your name"id="input_name"required>
+            </div>
+            <div class="container__auth--content-input">
                 <label for="input_username">Username</label>
                 <input type="text"placeholder="Enter your username"id="input_username"required>
+            </div>
+            <div class="container__auth--content-input">
+                <label for="input_speciality">Speciality</label>
+                <select name="speciality" id="input_speciality">
+                    <option value="#">None</option>
+                    <option value="#">Front-end</option>
+                    <option value="#">Backend</option>
+                    <option value="#">DBA</option>
+                    <option value="#">Network Admin</option>
+                </select>
             </div>
             <div class="container__auth--content-input">
                 <label for="input_password">Password</label>
@@ -30,8 +52,7 @@
                 <button type="submit">Sign In</button>
             </div>
             <div class="container__auth--content-links">
-                <p>New on our plateform ? Please <a href="inscription.html">Sign Up</a></p>
-                <a href="#">Forgot your password ?</a>
+                <p>Already have an account ? <a href="index.html">Sign In</a></p>
             </div>
         </div>
     </div>
