@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "auth": "sass --watch assets/sass/auth.scss assets/css/auth.css",
-    "navbar": "sass --watch assets/sass/navbar.scss assets/css/navbar.css"
+    "navbar": "sass --watch assets/sass/navbar.scss assets/css/navbar.css",
+    "main": "sass --watch assets/sass/main.scss assets/css/main.css"
   },
   "keywords": [],
   "author": "",

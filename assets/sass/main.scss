@@ -1,0 +1,119 @@
+@use "abstract/variables" as *;
+@use "abstract/mixins" as *;
+
+.main{
+    margin-left: 20%;
+    padding: 2%;
+    width: 100%;
+    height: 100vh;
+    box-shadow: 1px 1px 3px $disabled-text;
+    &__title{
+        text-align: center;
+        text-transform: uppercase;
+        font-family: sans-serif;
+        padding: 5px;
+        font-size: 30px;
+        font-weight: bolder;
+        color: $secondary;
+        margin-bottom: 1%;
+    }
+    &__content{
+        height: 95%;
+        padding: inherit;
+        box-shadow: 1px 1px 3px $disabled-text;
+        overflow: scroll;
+        .container{
+            @include flex(center,column,left);
+            &__head{
+                @include flex(left,row,space-between);
+                width: 100%;
+                height: 50px;
+                padding-left: 20px;
+                padding-right: 20px;
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                margin-bottom: 2%;
+                &--title{
+                    @include flex(center,row,left);
+                    font-size: 20px;
+                    &-disable{
+                        color: $disabled-text;
+                        font-weight: 100;
+                    }
+                    &-active{
+                        color: $success;
+                    }
+                }
+                &--btn{
+                    @include flex(left,row,center);
+                    width: 30%;
+                    padding: 2px;
+                    a{
+                        width: 100%;
+                        height: 100%;
+                        @include flex(center,row,center);
+                        text-decoration: none;
+                        button{
+                            @include flex(center,row,center);
+                            width: 100%;
+                            height: 100%;
+                            gap: 4px;
+                            border: none;
+                            background-color: $sheduled;
+                            color: white;
+                            border-radius: 5px;
+                            font-size: 14px;
+                            line-height: 0.1;
+                            span{
+                                font-size: 35px;
+                            }
+                        }
+                        button:hover{
+                            background-color: $dark;
+                            color: $white;
+                            cursor: pointer;
+                            transition: .5s ease-in;
+                        }
+                    }
+                }
+            }
+            &__content{
+                width: 100%;
+                padding: 5px;
+                table{
+                    width: 100%;
+                    height: 100%;
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    background-color: $white;
+                    box-shadow: 1px 1px 2px $dark;
+                    th{
+                        text-transform: uppercase;
+                        color: $disabled-text;
+                        font-size: 12px;
+                    }
+                    th,td{
+                        font-size: 14px;
+                        height: 38px;
+                        border-bottom: 1px solid $dark;
+                        text-align: center;
+                        .actions{
+                            @include flex(center,row,center);
+                            gap: 30%;
+                            font-size: 22px;
+                            .edit{
+                                color: $primary;
+                            }
+                            .delete{
+                                color: $danger;
+                            }
+                            .edit:hover,.delete:hover{
+                                color:$dark;
+                                transition: .5s ease-in;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

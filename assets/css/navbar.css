@@ -20,8 +20,8 @@ body {
   justify-content: left;
   width: 20%;
   height: 100vh;
-  box-shadow: 1px 2px 5px black;
   position: fixed;
+  overflow-y: scroll;
 }
 .sidebar__brand--logo {
   display: flex;
@@ -30,7 +30,8 @@ body {
   justify-content: center;
   gap: 10px;
   padding: 10px;
-  margin-bottom: 9%;
+  margin-bottom: 8%;
+  flex-wrap: wrap;
 }
 .sidebar__brand--logo i {
   font-size: 45px;
