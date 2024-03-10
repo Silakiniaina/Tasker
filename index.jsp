@@ -40,7 +40,7 @@
                 <input type="hidden"name="mode"value="auth">
             </form>
             <div class="container__auth--content-links">
-                <p>New on our plateform ? Please <a href="inscription.html">Sign Up</a></p>
+                <p>New on our plateform ? Please <a href="InsertCollaborator">Sign Up</a></p>
                 <a href="#">Forgot your password ?</a>
             </div>
         </div>
