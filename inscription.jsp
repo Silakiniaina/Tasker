@@ -32,19 +32,19 @@
             <form action="AllCollaborator"method="POST">
                 <div class="container__auth--content-input">
                     <label for="input_first_name">first name</label>
-                    <input type="text"placeholder="Enter your first name"id="input_first_name"required>
+                    <input type="text"name="first_name"placeholder="Enter your first name"id="input_first_name"required>
                 </div>
                 <div class="container__auth--content-input">
                     <label for="input_name">name</label>
-                    <input type="text"placeholder="Enter your name"id="input_name"required>
+                    <input type="text"name="name"placeholder="Enter your name"id="input_name"required>
                 </div>
                 <div class="container__auth--content-input">
                     <label for="input_name">date of birth</label>
-                    <input type="date"placeholder="Enter your name"id="input_name"required>
+                    <input type="date"name="date_of_birht"placeholder="Enter your name"id="input_name"required>
                 </div>
                 <div class="container__auth--content-input">
                     <label for="input_username">Username</label>
-                    <input type="text"placeholder="Enter your username"id="input_username"required>
+                    <input type="text"name="username"placeholder="Enter your username"id="input_username"required>
                 </div>
                 <div class="container__auth--content-input">
                     <label for="input_speciality">Speciality</label>
@@ -57,7 +57,7 @@
                 </div>
                 <div class="container__auth--content-input">
                     <label for="input_password">Password</label>
-                    <input type="password"placeholder="**********"id="input_password"required>
+                    <input type="password"name="password"placeholder="**********"id="input_password"required>
                 </div>
                 <div class="container__auth--content-btn">
                     <button type="submit">Sign Up</button>
