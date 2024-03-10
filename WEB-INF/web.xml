@@ -18,4 +18,12 @@
         <servlet-name>InsertCollaborator</servlet-name>
         <url-pattern>/InsertCollaborator</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>AllCollaborator</servlet-name>
+        <servlet-class>controller.AllCollaborator</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AllCollaborator</servlet-name>
+        <url-pattern>/AllCollaborator</url-pattern>
+    </servlet-mapping>
 </web-app>
