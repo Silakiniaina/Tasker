@@ -10,4 +10,15 @@
     <session-config>
         <session-timeout> 30 </session-timeout>
     </session-config>
+    <servlet>
+        <servlet-name>InsertCollaborator</servlet-name>
+        <servlet-class>controller.InsertCollaborator</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InsertCollaborator</servlet-name>
+        <url-pattern>/InsertCollaborator</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout> 30 </session-timeout>
+    </session-config>
 </web-app>
