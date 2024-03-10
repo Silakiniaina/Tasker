@@ -19,7 +19,7 @@
             <div class="error">
                 <% 
                     String error = "";
-                    if(request.getAttribute("error") != null)error = request.getAttribute("error");
+                    if(request.getAttribute("error") != null)error = (String)request.getAttribute("error");
                 %>
                 <p><%= error %></p>
             </div>
