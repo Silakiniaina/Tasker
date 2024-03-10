@@ -40,7 +40,7 @@
                 </div>
                 <div class="container__auth--content-input">
                     <label for="input_name">date of birth</label>
-                    <input type="date"name="date_of_birht"placeholder="Enter your name"id="input_name"required>
+                    <input type="date"name="date_of_birth"placeholder="Enter your name"id="input_name"required>
                 </div>
                 <div class="container__auth--content-input">
                     <label for="input_username">Username</label>
@@ -49,7 +49,7 @@
                 <div class="container__auth--content-input">
                     <label for="input_speciality">Speciality</label>
                     <select name="speciality" id="input_speciality">
-                        <option value="#">None</option>
+                        <option value="0">None</option>
                         <% for(HashMap<String,String> map : listSpeciality){ %>
                             <option value="<%= map.get("id") %>"><%= map.get("libelle") %></option>
                         <% } %>
@@ -59,6 +59,7 @@
                     <label for="input_password">Password</label>
                     <input type="password"name="password"placeholder="**********"id="input_password"required>
                 </div>
+                <input type="hidden"value="i"name="mode">
                 <div class="container__auth--content-btn">
                     <button type="submit">Sign Up</button>
                 </div>
