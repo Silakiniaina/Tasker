@@ -1,4 +1,7 @@
 <%@include file="debutLayout.jsp" %>
+<%
+    Vector<Collaborator> listCollaborator = (Vector<Collaborator>)request.getAttribute("listCollaborator");
+%>
     <main class="main">
         <div class="main__title">Collaborator</div>
         <div class="main__content">
@@ -9,7 +12,7 @@
                         <h3 class="container__head--title-active">All collaborators</h3>
                     </div>
                     <div class="container__head--btn">
-                        <a href="#">
+                        <a href="InsertCollaborator">
                             <button><span>+</span> insert Collaborator</button>
                         </a>
                     </div>
@@ -29,25 +32,27 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <% for(Collaborator c : listCollaborator){ %>
                             <tr>
-                                <td>1</td>
-                                <td>Sanda</td>
-                                <td>Silakiniaina</td>
-                                <td>2005-07-12</td>
-                                <td>Sanda</td>
-                                <td>Stagiaire</td>
-                                <td>Backend</td>
+                                <td><%= c.getId() %></td>
+                                <td><%= c.getName() %></td>
+                                <td><%= c.getFirst_name() %></td>
+                                <td><%= c.getDate_of_birth().toString() %></td>
+                                <td><%= c.getUsername() %></td>
+                                <td><%= c.getRole() %></td>
+                                <td><%= c.getSpeciality() %></td>
                                 <td>
                                     <div class="actions">
-                                        <a href="#" class="edit">
+                                        <a href="InsertCollaborator?mode=u&&id=<%= c.getId() %>" class="edit">
                                             <i class="fa fa-bell"></i>    
                                         </a>
-                                        <a href="#" class="delete">
+                                        <a href="AllCollaborator?mode=d&&id=<%= c.getId() %>" class="delete">
                                             <i class="fa fa-bell"></i>    
                                         </a>
                                     </div>
                                 </td>
                             </tr>
+                        <% } %>
                         </tbody>
                         <tfoot></tfoot>
                     </table>

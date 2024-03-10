@@ -1,6 +1,9 @@
 <%@page import="java.util.*" %>
+<%@page import="java.time.*" %>
+<%@page import="models.Collaborator" %>
 <%
     Vector<HashMap<String,String>> listSpeciality = (Vector<HashMap<String,String>>)request.getAttribute("listSpeciality");
+    Collaborator c = (Collaborator)request.getAttribute("collaborator");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,27 +35,55 @@
             <form action="AllCollaborator"method="POST">
                 <div class="container__auth--content-input">
                     <label for="input_first_name">first name</label>
-                    <input type="text"name="first_name"placeholder="Enter your first name"id="input_first_name"required>
+                    <%
+                        String first_name = "";
+                        if(c != null)first_name = c.getFirst_name();
+                    %>
+                    <input type="text"name="first_name"value="<%= first_name %>"placeholder="Enter your first name"id="input_first_name"required>
                 </div>
                 <div class="container__auth--content-input">
                     <label for="input_name">name</label>
-                    <input type="text"name="name"placeholder="Enter your name"id="input_name"required>
+                    <%
+                        String name = "";
+                        if(c != null)name = c.getName();
+                    %>
+                    <input type="text"name="name"value="<%= name %>"placeholder="Enter your name"id="input_name"required>
                 </div>
                 <div class="container__auth--content-input">
                     <label for="input_name">date of birth</label>
-                    <input type="date"name="date_of_birth"placeholder="Enter your name"id="input_name"required>
+                    <%
+                        String dt = LocalDate.now().toString();
+                        if(c != null)dt = c.getDate_of_birth().toString();
+                    %>
+                    <input type="date"name="date_of_birth"value="<%= dt %>"placeholder="Enter your name"id="input_name"required>
                 </div>
                 <div class="container__auth--content-input">
                     <label for="input_username">Username</label>
-                    <input type="text"name="username"placeholder="Enter your username"id="input_username"required>
+                    <%
+                        String username = "";
+                        if(c != null)username = c.getUsername();
+                    %>
+                    <input type="text"name="username"value="<%= username %>"placeholder="Enter your username"id="input_username"required>
                 </div>
                 <div class="container__auth--content-input">
                     <label for="input_speciality">Speciality</label>
                     <select name="speciality" id="input_speciality">
                         <option value="0">None</option>
-                        <% for(HashMap<String,String> map : listSpeciality){ %>
-                            <option value="<%= map.get("id") %>"><%= map.get("libelle") %></option>
-                        <% } %>
+                        <%  for(HashMap<String,String> map : listSpeciality){ %>
+                        <%
+                                int id = Integer.parseInt(map.get("id"));
+                                if(c != null && id == c.getSpeciality()){ 
+                        %>
+                                    <option value="<%= map.get("id") %>"selected><%= map.get("libelle") %></option>
+                        <% 
+                                }else{ 
+                        %>
+                                    <option value="<%= map.get("id") %>"><%= map.get("libelle") %></option>
+                        <%
+                                }
+                            } 
+
+                        %>
                     </select>
                 </div>
                 <div class="container__auth--content-input">
@@ -61,11 +92,18 @@
                 </div>
                 <input type="hidden"value="i"name="mode">
                 <div class="container__auth--content-btn">
-                    <button type="submit">Sign Up</button>
+                    <% 
+                        String label = "Insert";
+                        if(c != null)label="Update";
+                    %>
+                    <button type="submit"><%= label %></button>
                 </div>
-                <div class="container__auth--content-links">
-                    <p>Already have an account ? <a href="index.jsp">Sign In</a></p>
-                </div>
+                <input type="hidden" value="u"name="mode">
+                <%
+                    int id = -1;
+                    if(c != null)id = c.getId();
+                %>
+                <input type="hidden" value="<%= id %>"name="id">
             </form>
         </div>
     </div>

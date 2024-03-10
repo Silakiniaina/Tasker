@@ -1,3 +1,6 @@
+<%@page import="java.util.*" %>
+<%@page import="models.Collaborator" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
