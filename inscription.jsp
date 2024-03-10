@@ -17,8 +17,15 @@
                 <h1>TASKER</h1>
             </div>
             <div class="container__auth--head-label">
-                <h2>Welcome to Tasker !</h2>
-                <p>Please sign-in to your account and start the adventure</p>
+                <h2>Adventure starts here!</h2>
+                <p>Make your project management easy and fun !</p>
+            </div>
+            <div class="error">
+                <% 
+                    String error = "";
+                    if(request.getAttribute("error") != null)error = (String)request.getAttribute("error");
+                %>
+                <p><%= error %></p>
             </div>
         </div>
         <div class="container__auth--content">
@@ -43,7 +50,7 @@
                     <label for="input_speciality">Speciality</label>
                     <select name="speciality" id="input_speciality">
                         <option value="#">None</option>
-                        <% for(HashMap<String,String>> map : listSpeciality){ %>
+                        <% for(HashMap<String,String> map : listSpeciality){ %>
                             <option value="<%= map.get("id") %>"><%= map.get("libelle") %></option>
                         <% } %>
                     </select>
