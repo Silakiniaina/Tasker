@@ -1,6 +1,6 @@
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
-CREATE TABLE specialitiy(
+CREATE TABLE speciality(
    id SERIAL,
    libelle VARCHAR(150)  NOT NULL,
    description VARCHAR(250),
@@ -44,5 +44,5 @@ CREATE TABLE collaborator(
    PRIMARY KEY(id),
    UNIQUE(username,password),
    FOREIGN KEY(role) REFERENCES role(id),
-   FOREIGN KEY(speciality) REFERENCES specialitiy(id)
+   FOREIGN KEY(speciality) REFERENCES speciality(id)
 );
