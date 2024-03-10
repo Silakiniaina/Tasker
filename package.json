@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "auth": "sass --watch assets/sass/auth.scss assets/css/auth.css"
+    "auth": "sass --watch assets/sass/auth.scss assets/css/auth.css",
+    "navbar": "sass --watch assets/sass/navbar.scss assets/css/navbar.css"
   },
   "keywords": [],
   "author": "",

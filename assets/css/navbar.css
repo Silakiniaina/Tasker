@@ -1,0 +1,123 @@
+/* Colors */
+/* Text */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  justify-content: left;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  width: 20%;
+  height: 100vh;
+  box-shadow: 1px 2px 5px black;
+  position: fixed;
+}
+.sidebar__brand--logo {
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  margin-bottom: 9%;
+}
+.sidebar__brand--logo i {
+  font-size: 45px;
+  color: rgb(41, 70, 248);
+}
+.sidebar__brand--logo h2 {
+  font-size: 28px;
+  text-transform: uppercase;
+  font-family: sans-serif;
+  line-height: 1.7;
+  color: rgb(75, 85, 95);
+  font-weight: bolder;
+}
+.sidebar__active--project {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  gap: 10px;
+  padding: 15px 15px;
+  font-family: sans-serif;
+}
+.sidebar__active--project h2 {
+  font-size: 30px;
+  line-height: 1.2;
+  color: rgb(41, 201, 66);
+}
+.sidebar__active--project-description {
+  line-height: 1;
+}
+.sidebar__active--project-description p {
+  font-size: 15px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bolder;
+  color: rgb(75, 85, 95);
+}
+.sidebar__active--project-description small {
+  color: rgb(92, 118, 137);
+  font-size: 11px;
+}
+.sidebar__separator {
+  color: rgb(92, 118, 137);
+  font-family: sans-serif;
+  text-transform: uppercase;
+  font-size: 10px;
+  padding: 5px;
+}
+.sidebar__menu {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  height: 100%;
+  font-family: sans-serif;
+  padding: 4px;
+}
+.sidebar__menu a {
+  text-decoration: none;
+  color: rgb(92, 118, 137);
+}
+.sidebar__menu a li {
+  background-color: #fefefe;
+  height: 44px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  gap: 10%;
+  padding: 5px 5px 5px 20px;
+  border-radius: 4px;
+  margin-bottom: 3px;
+  border: none;
+}
+.sidebar__menu a li i {
+  font-size: 22px;
+}
+.sidebar__menu a li h3 {
+  font-size: 14px;
+  font-weight: 500;
+}
+.sidebar__menu li:hover {
+  background-color: #eeeeee;
+}
+.sidebar__menu a:active li, .sidebar__menu a:focus li {
+  background-color: #dddddd;
+  color: rgb(41, 70, 248);
+}
+
+/*# sourceMappingURL=navbar.css.map */

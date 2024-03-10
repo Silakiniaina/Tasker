@@ -5,7 +5,7 @@
 }
 
 body{
-    @include flex(center,row);
+    @include flex(center,row,center);
     width: 100%;
     height: 100vh;
 }
@@ -38,7 +38,7 @@ body{
         padding: 20px 10px 20px 5px;
         color: $active-tab-text;
         &-input{
-            @include flex(left,column);
+            @include flex(left,column,center);
             label{
                 text-transform: uppercase;
                 font-size: 11px;
@@ -64,7 +64,7 @@ body{
         }
         &-btn{
             height: 45px;
-            @include flex(center,row);
+            @include flex(center,row,center);
             margin-top:15px;
             button{
                 width: 100%;

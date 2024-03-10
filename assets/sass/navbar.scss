@@ -1,0 +1,106 @@
+@use "abstract/mixins" as * ;
+@use "abstract/variables" as * ;
+
+*{
+    @include root;
+}
+
+body{
+    @include flex(left,row,left);
+}
+
+.sidebar{
+    @include flex(left,column,left);
+    width: 20%;
+    height: 100vh;
+    box-shadow: 1px 2px 5px black;
+    position: fixed;
+    &__brand--logo{
+        @include flex(left,row,center);
+        gap: 10px;
+        padding: 10px;
+        margin-bottom: 9%;
+        i{
+            font-size: 45px;
+            color: $primary;
+        }
+        h2{
+            font-size: 28px;
+            text-transform: uppercase;
+            font-family: sans-serif;
+            line-height: 1.7;
+            color: $secondary;
+            font-weight: bolder;
+        }
+    }
+    &__active--project{
+        @include flex(center,row,left);
+        gap: 10px;
+        padding: 15px 15px;
+        font-family: sans-serif;
+        h2{
+            font-size: 30px;
+            line-height: 1.2;
+            color: $success;
+        }
+        &-description{
+            line-height: 1;
+            p{
+                font-size: 15px;
+                text-decoration: none;
+                text-transform: uppercase;
+                font-weight: bolder;
+                color: $secondary;
+            }
+            small{
+                color: $disabled-text;
+                font-size: 11px;
+            }
+        }
+    }
+    &__separator{
+        color: $disabled-text;
+        font-family: sans-serif;
+        text-transform: uppercase;
+        font-size: 10px;
+        padding: 5px;
+    }
+    &__menu{
+        @include flex(left,column,left);
+        height: 100%;
+        font-family: sans-serif;
+        padding: 4px;
+        a{
+            text-decoration: none;
+            color: $disabled-text;
+            li{
+                background-color: $white;
+                height: 44px;
+                @include flex(center,row,left);
+                gap: 10%;
+                padding: 5px 5px 5px 20px;
+                border-radius: 4px;
+                margin-bottom: 3px;
+                border: none;
+
+                i{
+                    font-size: 22px;
+                }
+                h3{
+                    font-size: 14px;
+                    font-weight: 500;
+                }
+            }
+           
+        }
+        li:hover{
+            background-color: #eeeeee;
+        }
+        a:active,a:focus{
+            li{
+                background-color:#dddddd;
+                color: $primary;
+            }
+        }
+    }
+}

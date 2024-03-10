@@ -4,9 +4,9 @@
     padding: 0;
 }
 
-@mixin flex($alignment,$direction){
+@mixin flex($alignment,$direction,$jc){
     display: flex;
     flex-direction: #{$direction};
     align-items: #{$alignment};
-    justify-content: center;
+    justify-content: #{$jc};
 }
