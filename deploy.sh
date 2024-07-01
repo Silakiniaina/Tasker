@@ -20,7 +20,7 @@ lib_dir="lib"
 assets_dir="assets"
 config_dir="conf"
 
-target_name="Abeona"
+target_name="Tasker"
 
 #ito no ovaina atao chemin  makany amin'ny webapps ao amin'ny pc anareo 
 target_dir="/opt/apache-tomcat-10.1.23/webapps/"
