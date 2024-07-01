@@ -1,0 +1,12 @@
+node_modules/
+bin/
+lib/
+
+
+
+
+*.class
+*.jar
+
+package-lock.json
+package.json
