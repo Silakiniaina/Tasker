@@ -11,6 +11,7 @@ public class Collaborator {
     String id;
     String name;
     String email;
+    protected String password;
     String idGender;
     String idRole;
     Timestamp insertDate;
@@ -46,11 +47,40 @@ public class Collaborator {
                 result.setId(rs.getString(1));
             }
         }catch(Exception e){
+            throw e;
+        }finally{
             if(rs != null)rs.close();
             if(prstm != null) prstm.close();
             if(c != null)c.close();
         }
         return result;
+    }
+
+    /**
+     * A function to insert the instance of Collaborator in the database.
+     * @throws Exception if the operation doesn't pass as expected.
+     */
+    public void insert()throws Exception{
+        Connection c = null; 
+        PreparedStatement prstm = null; 
+        try{
+            c = Database.getConnection();
+            c.setAutoCommit(false);
+            prstm = c.prepareStatement("INSERT INTO collaborator(name,email,password,id_gender,id_role) VALUES(?,?,?,?,?)");
+            prstm.setString(1, this.getName());
+            prstm.setString(2, this.getEmail());
+            prstm.setString(3, this.getPassword());
+            prstm.setString(4, this.getIdGender());
+            prstm.setString(5, this.getIdRole());
+            prstm.executeUpdate();
+            c.commit();
+        }catch(Exception e){
+            c.rollback();
+            throw e;
+        }finally{
+            if(prstm != null)prstm.close();
+            if(c != null)c.close();
+        }
     }
     
     /* Getters */
@@ -68,6 +98,9 @@ public class Collaborator {
     }
     public String getIdRole() {
         return idRole;
+    }
+    protected String getPassword(){
+        return this.password;
     }
     public Timestamp getInsertDate() {
         return insertDate;
@@ -92,14 +125,17 @@ public class Collaborator {
     public void setInsertDate(Timestamp insertDate) {
         this.insertDate = insertDate;
     } 
+    public void setPassword(String pwd){
+        this.password = pwd;
+    }
 
     /* Test */
     public static void main(String[] args) {
         try{
-            Collaborator c = Collaborator.login("sandasilakiniaina4@gmail.com", "1235");
+            Collaborator c = Collaborator.login("sanda@test.com", "123465");
             if(c != null){
                 System.out.println("Connected");
-            }else {
+            }else{
                 System.out.println("Not connected");
             }
         }catch(Exception e){
