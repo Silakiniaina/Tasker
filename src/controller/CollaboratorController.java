@@ -52,9 +52,12 @@ public class CollaboratorController extends HttpServlet{
             c.setPassword(Database.toSHA256(password));
             if(mode.equals("i")){
                 c.insert();
-                response.sendRedirect("collaborator?mode=r");
+                //response.sendRedirect("collaborator?mode=r");
             }else if(mode.equals("u")){
-
+                String id = request.getParameter("id");
+                Collaborator old = Collaborator.getById(id);
+                old.update(c);
+                out.println("Update done");
             }
         } catch (Exception e) {
             out.println(e.getMessage());

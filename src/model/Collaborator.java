@@ -58,6 +58,36 @@ public class Collaborator {
         return result;
     }
 
+    /**
+     * A function to get an instance of Collaborator by his id in the database
+     * @param id
+     * @return An instance of Collaborator corresponding to the id taken as parameter in the table collaborator else null
+     * @throws Exception if the operation doesn't pass as expected
+     */
+    public static Collaborator getById(String id)throws Exception{
+        Collaborator result = null;
+        Connection c = null; 
+        PreparedStatement prstm = null; 
+        ResultSet rs = null; 
+        try {
+            c = Database.getConnection();
+            prstm = c.prepareStatement("SELECT * FROM collaborator WHERE id_collaborator = ?");
+            prstm.setString(1, id);
+            rs = prstm.executeQuery();
+            while(rs.next()){
+                result = new Collaborator(rs.getString(2), rs.getString(3), rs.getString(6), rs.getString(7),rs.getDate(5));
+                result.setId(rs.getString(1));
+            }
+        } catch (Exception e) {
+            throw e;
+        }finally{
+            if(rs != null)rs.close();
+            if(prstm != null)prstm.close();
+            if(c != null)c.close();
+        }
+        return result;
+    }
+
 
     /**
      * A function for the login of a Collaborator.
