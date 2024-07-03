@@ -53,7 +53,7 @@ public class CollaboratorController extends HttpServlet{
             String gender = request.getParameter("gender");
             String role = request.getParameter("role");
             Collaborator c = new Collaborator(name, email, gender, role, date_of_birth);
-            c.setPassword(Database.toSHA256(password));
+            c.setPassword(password);
             if(mode.equals("i")){
                 c.insert();
                 //response.sendRedirect("collaborator?mode=r");

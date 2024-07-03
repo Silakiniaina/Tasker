@@ -23,7 +23,7 @@ public class Collaborator {
     Date birthDate;
 
     /* Constructor */
-    public Collaborator(String name, String email, String idG, String idR,Date birDate){
+    public Collaborator(String name, String email, String idG, String idR,Date birDate)throws Exception{
         this.setName(name);
         this.setEmail(email);
         this.setIdGender(idG);
@@ -238,10 +238,12 @@ public class Collaborator {
     public void setId(String id) {
         this.id = id;
     }
-    public void setName(String name) {
+    public void setName(String name) throws Exception{
+        if(name == null || name.trim().equals(""))throw new Exception("The name cannot be empty");
         this.name = name;
     }
-    public void setEmail(String email) {
+    public void setEmail(String email)throws Exception{
+        if(email == null || email.trim().equals(""))throw new Exception("The email cannot be empty");
         this.email = email;
     }
     public void setIdGender(String idGender) {
@@ -253,10 +255,12 @@ public class Collaborator {
     public void setInsertDate(Timestamp insertDate) {
         this.insertDate = insertDate;
     } 
-    public void setPassword(String pwd){
-        this.password = pwd;
+    public void setPassword(String pwd)throws Exception{
+        if(pwd == null || pwd.trim().equals(""))throw new Exception("The password cannot be empty");
+        this.password = Database.toSHA256(pwd);
     }
-    public void setBirthDate(Date d){
+    public void setBirthDate(Date d) throws Exception{
+        if(d == null)throw new Exception("The birth date cannot be empty");
         this.birthDate = d;
     }
 
