@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Template</title>
+    <link rel="stylesheet" href="../../assets/css/font.css">
+    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../assets/css/sidebar.css" rel="stylesheet">
+    <link href="../../assets/css/collaborator.css" rel="stylesheet">
+</head>
+
+<body class="row">
+    <div class="container row">
+        <aside class="col-md-2 p1````">
+            <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 100%;">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32">
+                        <use xlink:href="#bootstrap" />
+                    </svg>
+                    <span class="fs-4">Tasker</span>
+                </a>
+                <hr>
+                <ul class="list-onglet nav nav-pills flex-column mb-auto" style="gap:6px;">
+                    <li class="nav-item">
+                        <a href="#" class="onglet nav-link active" aria-current="page">
+                            <svg class="bi me-2" width="16" height="16">
+                                <use xlink:href="#geo-fill" />
+                            </svg>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="onglet nav-link text-white">
+                            <svg class="bi me-2" width="16" height="16">
+                                <use xlink:href="#collection" />
+                            </svg>
+                            Project
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="onglet nav-link text-white">
+                            <svg class="bi me-2" width="16" height="16">
+                                <use xlink:href="#speedometer" />
+                            </svg>
+                            Tasks
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="onglet nav-link text-white">
+                            <svg class="bi me-2" width="16" height="16">
+                                <use xlink:href="#grid" />
+                            </svg>
+                            Meetings
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="onglet nav-link text-white">
+                            <svg class="bi me-2" width="16" height="16">
+                                <use xlink:href="#grid" />
+                            </svg>
+                            Collaborators
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="onglet nav-link text-white">
+                            <svg class="bi me-2" width="16" height="16">
+                                <use xlink:href="#chat-quote-fill" />
+                            </svg>
+                            Comments
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="onglet nav-link text-white">
+                            <svg class="bi me-2" width="16" height="16">
+                                <use xlink:href="#tools" />
+                            </svg>
+                            Reports
+                        </a>
+                    </li>
+                    <li class="nav-item last_onglet">
+                        <a href="#" class="onglet nav-link text-white">
+                            <svg class="bi me-2" width="16" height="16">
+                                <use xlink:href="#" />
+                            </svg>
+                            Notifications
+                        </a>
+                    </li>
+                </ul>
+                <hr>
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                        id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="#" alt="" width="32" height="32" class="rounded-circle me-2">
+                        <strong>mdo</strong>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                        <li><a class="dropdown-item" href="#">New project...</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+        <main class="col-md-10" style="background-color: red;">
+            <h1 class="title">Collaborators</h1>
+            <div class="numbers row d-flex align-item-center g-3 justify-content-flex-start">
+                <h2>Numbers</h2>
+                <div class="numbers__item col-md-4">
+                    <span class="icon"></span>
+                    <div class="numbers__item-content">
+                        <h3 class="title">Total collaborators</h3>
+                        <p class="item-value">123</p>
+                    </div>
+                </div>
+                <div class="numbers__item col-md-4">
+                    <span class="icon"></span>
+                    <div class="numbers__item-content">
+                        <h3 class="title">This months</h3>
+                        <p class="item-value">23</p>
+                    </div>
+                </div>
+                <div class="numbers__item col-md-4">
+                    <span class="icon"></span>
+                    <div class="numbers__item-content">
+                        <h3 class="title">Today</h3>
+                        <p class="item-value">1</p>
+                    </div>
+                </div>
+            </div>
+            <div class="filter row">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Launch demo modal
+                </button>
+
+                <!-- Modal -->
+                <div class="row modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="col-md-2"></div>
+                    <div class="modal-dialog modal-content col-md-8">
+                        <form class="insert-collaborator">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="validationDefault01" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="validationDefault01" value="Mark"
+                                        required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="validationDefault02" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="validationDefault02" value="Otto"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="validationDefaultUsername" class="form-label">Date of birth</label>
+                                <input type="date" class="form-control" id="validationDefault02" required>
+                            </div>
+                            <div class="row">
+                                <label for="validationDefaultUsername" class="form-label">Gender</label>
+                                <div class="input-group">
+                                    <select class="form-select" aria-label="Default select example" required>
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="validationDefaultUsername" class="form-label">Role</label>
+                                <div class="input-group">
+                                    <select class="form-select" aria-label="Default select example" required>
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="validationDefaultUsername" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="validationDefault02" required>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary" type="submit">Submit form</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </div>
+            <div class="list row">
+                <div class="list_container col-md-12">
+
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/sidebars.js"></script>
+</body>
+
+</html>

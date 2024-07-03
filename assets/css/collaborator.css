@@ -1,0 +1,16 @@
+.insert-collaborator{
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 80%;
+    padding: 20px;
+    gap: 20px;
+    font-family: 'poppins-regular';
+}
+
+.insert-collaborator input, .insert-collaborator select {
+    height: 50px;
+    width: 95%;
+}
