@@ -1,9 +1,11 @@
 package model;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 import shared.Database;
 
@@ -15,13 +17,15 @@ public class Collaborator {
     String idGender;
     String idRole;
     Timestamp insertDate;
+    Date birthDate;
 
     /* Constructor */
-    public Collaborator(String name, String email, String idG, String idR){
+    public Collaborator(String name, String email, String idG, String idR,Date birDate){
         this.setName(name);
         this.setEmail(email);
         this.setIdGender(idG);
         this.setIdRole(idR);
+        this.setBirthDate(birDate);
     }
 
     /**
@@ -43,7 +47,7 @@ public class Collaborator {
             prstm.setString(2, Database.toSHA256(pwd));
             rs = prstm.executeQuery();
             if(rs.next()){
-                result = new Collaborator(rs.getString(2), rs.getString(3), rs.getString(6), rs.getString(7));
+                result = new Collaborator(rs.getString(2), rs.getString(3), rs.getString(6), rs.getString(7),rs.getDate(5));
                 result.setId(rs.getString(1));
             }
         }catch(Exception e){
@@ -66,12 +70,13 @@ public class Collaborator {
         try{
             c = Database.getConnection();
             c.setAutoCommit(false);
-            prstm = c.prepareStatement("INSERT INTO collaborator(name,email,password,id_gender,id_role) VALUES(?,?,?,?,?)");
+            prstm = c.prepareStatement("INSERT INTO collaborator(name,email,password,id_gender,id_role,date_of_birth) VALUES(?,?,?,?,?,?)");
             prstm.setString(1, this.getName());
             prstm.setString(2, this.getEmail());
             prstm.setString(3, this.getPassword());
             prstm.setString(4, this.getIdGender());
             prstm.setString(5, this.getIdRole());
+            prstm.setDate(6,this.getBirthDate());
             prstm.executeUpdate();
             c.commit();
         }catch(Exception e){
@@ -105,6 +110,9 @@ public class Collaborator {
     public Timestamp getInsertDate() {
         return insertDate;
     }
+    public Date getBirthDate(){
+        return this.birthDate;
+    }
     
     /* Setters */
     public void setId(String id) {
@@ -128,16 +136,16 @@ public class Collaborator {
     public void setPassword(String pwd){
         this.password = pwd;
     }
+    public void setBirthDate(Date d){
+        this.birthDate = d;
+    }
 
     /* Test */
     public static void main(String[] args) {
         try{
-            Collaborator c = Collaborator.login("sanda@test.com", "123465");
-            if(c != null){
-                System.out.println("Connected");
-            }else{
-                System.out.println("Not connected");
-            }
+            Collaborator c = new Collaborator("Sanda", "sanda@test.com", "GEN1", "ROL1", Date.valueOf(LocalDate.parse("2005-07-12")));
+            c.setPassword(Database.toSHA256("12345"));
+            c.insert();
         }catch(Exception e){
             e.printStackTrace();
         }
