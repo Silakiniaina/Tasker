@@ -23,16 +23,20 @@ public class CollaboratorController extends HttpServlet{
         PrintWriter out = response.getWriter();
         RequestDispatcher disp =  request.getRequestDispatcher("/WEB-INF/views/collaborator/collaborator.jsp");
         try {
-            if(mode.equals("r")){
-                ArrayList<Collaborator> liste = Collaborator.getAll();
-                request.setAttribute("listeCollaborator", liste);
-                out.println(new Gson().toJson(liste));
+            String id = request.getParameter("id");
+            if(mode.equals("u")){
+                Collaborator updated = Collaborator.getById(id);
+                request.setAttribute("updated", updated);
             }else if(mode.equals("d")){
-
+                Collaborator toDelete = Collaborator.getById(id);
+                toDelete.delete();
+                out.println("Delete done");
             }
+            // ArrayList<Collaborator> liste = Collaborator.getAll();
+            // request.setAttribute("listeCollaborator", liste);
             //disp.forward(request, response);
         } catch (Exception e) {
-            // TODO: handle exception
+            out.println(e.getMessage());
         }
     }
 

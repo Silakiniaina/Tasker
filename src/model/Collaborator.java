@@ -184,6 +184,29 @@ public class Collaborator {
             if(c != null)c.close();
         }
     }
+
+    /**
+     * A function to delete the instance of Collaborator in the database
+     * @throws Exception if the operation doesn't pass as expected
+     */
+    public void delete()throws Exception{
+        Connection c = null; 
+        PreparedStatement prstm = null; 
+        try{
+            c = Database.getConnection();
+            c.setAutoCommit(false);
+            prstm = c.prepareStatement("DELETE FROM collaborator WHERE id_collaborator = ?");
+            prstm.setString(1, this.getId());
+            prstm.executeUpdate();
+            c.commit();
+        }catch(Exception e){
+            c.rollback();
+            throw e;
+        }finally{
+            if(prstm != null)prstm.close();
+            if(c != null)c.close();
+        }
+    }
     
     /* Getters */
     public String getId() {
