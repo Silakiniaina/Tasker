@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import shared.Database;
 
@@ -27,6 +28,36 @@ public class Collaborator {
         this.setIdRole(idR);
         this.setBirthDate(birDate);
     }
+
+    /**
+     * A function to get all the collaborator in the database
+     * @return an arrayList of Collaborator if there is collaborator in the database else return an empty arrayList
+     * @throws Exception
+     */
+    public static ArrayList<Collaborator> getAll()throws Exception{
+        ArrayList<Collaborator> result = new ArrayList<Collaborator>();
+        Connection c = null; 
+        PreparedStatement prstm = null; 
+        ResultSet rs = null; 
+        try {
+            c = Database.getConnection();
+            prstm = c.prepareStatement("SELECT * FROM collaborator");
+            rs = prstm.executeQuery();
+            while(rs.next()){
+                Collaborator col = new Collaborator(rs.getString(2), rs.getString(3), rs.getString(6), rs.getString(7),rs.getDate(5));
+                col.setId(rs.getString(1));
+                result.add(col);
+            }
+        } catch (Exception e) {
+            throw e;
+        }finally{
+            if(rs != null)rs.close();
+            if(prstm != null)prstm.close();
+            if(c != null)c.close();
+        }
+        return result;
+    }
+
 
     /**
      * A function for the login of a Collaborator.

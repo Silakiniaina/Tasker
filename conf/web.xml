@@ -8,4 +8,13 @@
         <servlet-name>login</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>collaborator</servlet-name>
+        <servlet-class>controller.CollaboratorController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>collaborator</servlet-name>
+        <url-pattern>/collaborator</url-pattern>
+    </servlet-mapping>
 </web-app>
