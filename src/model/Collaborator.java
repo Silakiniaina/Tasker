@@ -8,6 +8,8 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import com.google.gson.Gson;
+
 import shared.Database;
 
 public class Collaborator {
@@ -46,6 +48,7 @@ public class Collaborator {
             while(rs.next()){
                 Collaborator col = new Collaborator(rs.getString(2), rs.getString(3), rs.getString(6), rs.getString(7),rs.getDate(5));
                 col.setId(rs.getString(1));
+                col.setPassword(rs.getString(4));
                 result.add(col);
             }
         } catch (Exception e) {
@@ -77,6 +80,7 @@ public class Collaborator {
             while(rs.next()){
                 result = new Collaborator(rs.getString(2), rs.getString(3), rs.getString(6), rs.getString(7),rs.getDate(5));
                 result.setId(rs.getString(1));
+                result.setPassword(rs.getString(4));
             }
         } catch (Exception e) {
             throw e;
@@ -86,6 +90,37 @@ public class Collaborator {
             if(c != null)c.close();
         }
         return result;
+    }
+
+    /**
+     * Update the information of the instance calling the function to be like the parameter
+     * @param col
+     * @throws Exception if the operation doesn't pass as expected
+     */
+    public void update(Collaborator col)throws Exception{
+        Connection c = null; 
+        PreparedStatement prstm = null; 
+        try{
+            c = Database.getConnection();
+            c.setAutoCommit(false);
+            prstm = c.prepareStatement("UPDATE collaborator SET name = ? , email = ? , password = ? , id_gender = ? , id_role = ? , date_of_birth = ? WHERE id_collaborator = ?");
+            prstm.setString(1, col.getName());
+            prstm.setString(2, col.getEmail());
+            prstm.setString(3, col.getPassword());
+            prstm.setString(4, col.getIdGender());
+            prstm.setString(5, col.getIdRole());
+            prstm.setDate(6,col.getBirthDate());
+            prstm.setString(7,this.getId());
+            System.out.println(prstm.toString());
+            prstm.executeUpdate();
+            c.commit();
+        }catch(Exception e){
+            c.rollback();
+            throw e;
+        }finally{
+            if(prstm != null)prstm.close();
+            if(c != null)c.close();
+        }
     }
 
 
@@ -110,6 +145,7 @@ public class Collaborator {
             if(rs.next()){
                 result = new Collaborator(rs.getString(2), rs.getString(3), rs.getString(6), rs.getString(7),rs.getDate(5));
                 result.setId(rs.getString(1));
+                result.setPassword(rs.getString(4));
             }
         }catch(Exception e){
             throw e;
@@ -204,9 +240,10 @@ public class Collaborator {
     /* Test */
     public static void main(String[] args) {
         try{
-            Collaborator c = new Collaborator("Sanda", "sanda@test.com", "GEN1", "ROL1", Date.valueOf(LocalDate.parse("2005-07-12")));
-            c.setPassword(Database.toSHA256("12345"));
-            c.insert();
+            Collaborator c = Collaborator.getById("COL3");
+            Collaborator c1 = Collaborator.getById("COL4");
+            c.update(c1);
+            System.out.println(new Gson().toJson(c));
         }catch(Exception e){
             e.printStackTrace();
         }
