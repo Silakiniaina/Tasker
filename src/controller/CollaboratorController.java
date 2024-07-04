@@ -22,6 +22,7 @@ public class CollaboratorController extends HttpServlet {
             throws ServletException, IOException {
         String mode = request.getParameter("mode");
         PrintWriter out = response.getWriter();
+        ArrayList<Collaborator> liste = null;
         RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/views/collaborator/collaborator.jsp");
         try {
             String id = request.getParameter("id");
@@ -31,14 +32,38 @@ public class CollaboratorController extends HttpServlet {
             } else if (mode.equals("d")) {
                 Collaborator toDelete = Collaborator.getById(id);
                 toDelete.delete();
+            } else if (mode.equals("s")) {
+                String name = request.getParameter("name") != null && !request.getParameter("name").trim().equals("")
+                        ? request.getParameter("name")
+                        : null;
+                String email = request.getParameter("email") != null && !request.getParameter("email").trim().equals("")
+                        ? request.getParameter("email")
+                        : null;
+                String gender = request.getParameter("gender") != null
+                        && !request.getParameter("gender").trim().equals("") ? request.getParameter("gender") : null;
+                String role = request.getParameter("role") != null && !request.getParameter("role").trim().equals("")
+                        ? request.getParameter("role")
+                        : null;
+                Date dtn_d = request.getParameter("dtn_d") != null && !request.getParameter("dtn_d").trim().equals("")
+                        ? Date.valueOf(request.getParameter("dtn_d"))
+                        : null;
+                Date dtn_f = request.getParameter("dtn_f") != null && !request.getParameter("dtn_f").trim().equals("")
+                        ? Date.valueOf(request.getParameter("dtn_f"))
+                        : null;
+                liste = Collaborator.search(name, email, gender, role, dtn_d, dtn_f);
+                out.println("Search done");
+            } else {
+                liste = Collaborator.getAll();
             }
+            out.println(new Gson().toJson(liste));
             // ArrayList<Collaborator> liste = Collaborator.getAll();
         } catch (Exception e) {
-            request.setAttribute("error", e.getMessage());
+            out.println(e.getMessage());
+            // request.setAttribute("error", e.getMessage());
         } finally {
             if (out != null)
                 out.close();
-            disp.forward(request, response);
+            // disp.forward(request, response);
         }
     }
 

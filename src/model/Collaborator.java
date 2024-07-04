@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -236,6 +237,40 @@ public class Collaborator {
         }
     }
 
+    public static ArrayList<Collaborator> search(String name , String email, String gender, String role, Date debut, Date fin)throws Exception{
+        ArrayList<Collaborator> result = new ArrayList<Collaborator>();
+        Connection c = null; 
+        Statement st = null; 
+        ResultSet rs  = null; 
+        try{
+            String query  = "SELECT * FROM collaborator WHERE 1=1 ";
+            if(name != null) query += " AND name ILIKE \'%"+name+"%\'";
+            if(email != null) query += " AND email LIKE \'%"+email+"%\'";
+            if(gender != null) query += " AND id_gender = \'"+gender+"\'";
+            if(role != null) query +=  " AND id_role = \'"+role+"\'";
+            if(debut != null) query += " AND date_of_birth >= \'"+debut.toString()+"\'";
+            if(fin != null) query += " AND date_of_birth <= \'"+fin.toString()+"\'";
+            c = Database.getConnection();
+            System.out.println(query);
+            st = c.createStatement();
+            rs = st.executeQuery(query);
+            while ( rs.next()) {
+                Collaborator col = new Collaborator(rs.getString(2), rs.getString(3), rs.getString(6), rs.getString(7),
+                        rs.getDate(5));
+                col.setId(rs.getString(1));
+                col.setPassword(rs.getString(4));
+                result.add(col);
+            }
+        }catch(Exception e){
+            throw e;
+        }finally{
+            if(rs != null) rs.close();
+            if(st != null) st.close();
+            if(c != null) c.close();
+        }
+        return result;
+    }
+
     /* Getters */
     public String getId() {
         return id;
@@ -313,10 +348,8 @@ public class Collaborator {
     /* Test */
     public static void main(String[] args) {
         try {
-            Collaborator c = Collaborator.getById("COL3");
-            Collaborator c1 = Collaborator.getById("COL4");
-            c.update(c1);
-            System.out.println(new Gson().toJson(c));
+            ArrayList<Collaborator> ls = Collaborator.search("sa", "@test", null, null, Date.valueOf(LocalDate.parse("2005-07-21")),  Date.valueOf(LocalDate.parse("2005-07-30")));
+            System.out.println(new Gson().toJson(ls));
         } catch (Exception e) {
             e.printStackTrace();
         }
