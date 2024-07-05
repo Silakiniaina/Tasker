@@ -1,6 +1,7 @@
 body {
     min-height: 100vh;
     height: 100vh;
+    background-color: #c7dae2;
 }
 
 aside {
@@ -8,7 +9,7 @@ aside {
     flex-wrap: wrap;
     height: 100vh;
     max-height: 100vh;
-    overflow: hidden;
+    position: fixed;
 }
 
 .b-example-divider {
@@ -111,7 +112,7 @@ aside {
     height: 100%;
 }
 
-.onglet{
+.onglet {
     transition: .3s ease-in;
     font-family: poppins-regular;
     font-size: 14px;
@@ -120,11 +121,17 @@ aside {
     height: 38px;
     text-align: left;
     align-items: center;
+    text-decoration: none;
+    color: #0E2040;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 10px;
 }
 
 .onglet.active{
     background-color: #036EFF;
-    font-family: poppins-semibold;
+    font-family: poppins-bold;
     color: #FFFFFF;
 }
 .onglet:hover{
@@ -135,4 +142,22 @@ aside {
     position: absolute;
     bottom: 10px;
     width: 100%;
+    color: #0E2040;
+}
+
+.sidebar{
+    background-color: #eeeeee;
+}
+
+.sidebar .logo{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar .logo img{
+    width: 80px;
+    height: 80px;
 }
