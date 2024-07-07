@@ -1,10 +1,12 @@
 <%@page import="java.util.ArrayList" %>
 <%@page import="model.Collaborator" %>
 <%@page import="model.Gender" %>
+<%@page import="model.Role" %>
 
 <%
     ArrayList<Collaborator> listCollaborator = (ArrayList<Collaborator>)request.getAttribute("listCollaborator");
     ArrayList<Gender> listGender = (ArrayList<Gender>)request.getAttribute("listGender");
+    ArrayList<Role> listRole = (ArrayList<Role>)request.getAttribute("listRole");
 %>
 <%@include file ="../shared/sidebar.jsp" %>
 <main class="collaborator col-md-10">
@@ -61,50 +63,47 @@
         <div class="col-md-2"></div>
         <div class="modal-dialog modal-content col-md-8">
             <h2 class="insert-title">Insertion form</h2>
-            <form class="insert-collaborator">
+            <form class="insert-collaborator" action="collaborator" method="POST">
                 <div class="row">
                     <div class="input-container col-md-6">
                         <label for="validationDefault01" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="validationDefault01" placeholder="Name.."
-                            required>
+                        <input type="text" class="form-control" name="name" id="validationDefault01" placeholder="Name.."required>
                     </div>
                     <div class="input-container col-md-6">
                         <label for="validationDefault02" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="validationDefault02"
-                            placeholder="xyz@example.com" required>
+                        <input type="email" class="form-control" name="email" id="validationDefault02" placeholder="xyz@example.com" required>
                     </div>
                 </div>
                 <div class="input-container col-md-12">
                     <label for="validationDefault02" class="form-label">Date of birth</label>
-                    <input type="date" class="form-control" id="validationDefault02" required>
+                    <input type="date" name="dtn" class="form-control" id="validationDefault02" required>
                 </div>
                 <div class="input-container col-md-12">
                     <label for="validationDefaultUsername" class="form-label">Gender</label>
                     <div class="input-group">
-                        <select class="form-select" aria-label="Default select example" required>
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select class="form-select" name="gender" aria-label="Default select example" required>
+                        <% for(Gender gen : listGender){ %>
+                            <option value="<%= gen.getId() %>"><%= gen.getLabel() %></option>
+                        <% } %>
                         </select>
                     </div>
                 </div>
                 <div class="input-container col-md-12">
                     <label for="validationDefaultUsername" class="form-label">Role</label>
                     <div class="input-group">
-                        <select class="form-select" aria-label="Default select example" required>
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select class="form-select" name="role" aria-label="Default select example" required>
+                        <% for(Role rol : listRole){ %>
+                            <option value="<%= rol.getId() %>"><%= rol.getLabel() %></option>
+                        <% } %>
                         </select>
                     </div>
                 </div>
                 <div class="input-container col-md-12">
                     <label for="validationDefaultUsername" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="validationDefault02" placeholder="********"
+                    <input type="password" name="password" class="form-control" id="validationDefault02" placeholder="********"
                         required>
                 </div>
+                <input type="hidden" name="mode" value="i" >
                 <div class="input-container submit-btn col-md-12">
                     <button class="btn btn-primary" type="submit">Insert</button>
                 </div>
@@ -206,7 +205,16 @@
                     </div>
                     <div class="card-body">
                         <h2 class="name"><%= c.getName() %></h2>
-                        <h3 class="role"><%= c.getIdRole() %></h3>
+                        <%
+                            String role = "";
+                            for(Role r : listRole){
+                                if(c.getIdRole().equals(r.getId())){
+                                    role = r.getLabel();
+                                    break;
+                                }
+                            }
+                        %>
+                        <h3 class="role"><%= role %></h3>
                         <p class="collaborator-card-text">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
                                 <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/>

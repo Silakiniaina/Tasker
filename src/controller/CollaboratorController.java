@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Collaborator;
 import model.Gender;
+import model.Role;
 
 public class CollaboratorController extends HttpServlet {
 
@@ -54,11 +55,10 @@ public class CollaboratorController extends HttpServlet {
                 liste = Collaborator.getAll();
             }
             ArrayList<Gender> listGender = Gender.getAll();
-        
-
-
+            ArrayList<Role> listRole = Role.getAll();
             request.setAttribute("listCollaborator", liste);
             request.setAttribute("listGender", listGender);
+            request.setAttribute("listRole", listRole);
             request.setAttribute("page", "collaborator");
             disp.forward(request, response);
         }catch (Exception e) {
@@ -90,7 +90,7 @@ public class CollaboratorController extends HttpServlet {
             c.setPassword(password);
             if (mode.equals("i")) {
                 c.insert();
-                // response.sendRedirect("collaborator?mode=r");
+                response.sendRedirect("collaborator?mode=r");
             } else if (mode.equals("u")) {
                 String id = request.getParameter("id");
                 Collaborator old = Collaborator.getById(id);

@@ -99,8 +99,9 @@
 
 .list .collaborator-card .card-body .name {
     font-family: poppins-bold;
-    font-size: 24px;
-    text-align: left;
+    font-size: 18px;
+    text-wrap: wrap;
+    text-align: center;
 }
 
 .list .collaborator-card .card-body .role {
