@@ -49,7 +49,7 @@ public class Collaborator {
             prstm = c.prepareStatement("SELECT * FROM collaborator");
             rs = prstm.executeQuery();
             while (rs.next()) {
-                Collaborator col = new Collaborator(rs.getString(2), rs.getString(3), rs.getString(6), rs.getString(7),
+                Collaborator col = new Collaborator(rs.getString(2), rs.getString(3), rs.getString(7), rs.getString(8),
                         rs.getDate(5));
                 col.setId(rs.getString(1));
                 col.setPassword(rs.getString(4));
@@ -87,7 +87,7 @@ public class Collaborator {
             prstm.setString(1, id);
             rs = prstm.executeQuery();
             while (rs.next()) {
-                result = new Collaborator(rs.getString(2), rs.getString(3), rs.getString(6), rs.getString(7),
+                result = new Collaborator(rs.getString(2), rs.getString(3), rs.getString(7), rs.getString(8),
                         rs.getDate(5));
                 result.setId(rs.getString(1));
                 result.setPassword(rs.getString(4));
@@ -161,7 +161,7 @@ public class Collaborator {
             prstm.setString(2, Database.toSHA256(pwd));
             rs = prstm.executeQuery();
             if (rs.next()) {
-                result = new Collaborator(rs.getString(2), rs.getString(3), rs.getString(6), rs.getString(7),
+                result = new Collaborator(rs.getString(2), rs.getString(3), rs.getString(7), rs.getString(8),
                         rs.getDate(5));
                 result.setId(rs.getString(1));
                 result.setPassword(rs.getString(4));
@@ -266,7 +266,7 @@ public class Collaborator {
             st = c.createStatement();
             rs = st.executeQuery(query);
             while ( rs.next()) {
-                Collaborator col = new Collaborator(rs.getString(2), rs.getString(3), rs.getString(6), rs.getString(7),
+                Collaborator col = new Collaborator(rs.getString(2), rs.getString(3), rs.getString(7), rs.getString(8),
                         rs.getDate(5));
                 col.setId(rs.getString(1));
                 col.setPassword(rs.getString(4));

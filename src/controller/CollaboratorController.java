@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Collaborator;
+import model.Gender;
 
 public class CollaboratorController extends HttpServlet {
 
@@ -52,7 +53,12 @@ public class CollaboratorController extends HttpServlet {
             } else {
                 liste = Collaborator.getAll();
             }
+            ArrayList<Gender> listGender = Gender.getAll();
+        
+
+
             request.setAttribute("listCollaborator", liste);
+            request.setAttribute("listGender", listGender);
             request.setAttribute("page", "collaborator");
             disp.forward(request, response);
         }catch (Exception e) {

@@ -1,8 +1,10 @@
 <%@page import="java.util.ArrayList" %>
 <%@page import="model.Collaborator" %>
+<%@page import="model.Gender" %>
 
 <%
     ArrayList<Collaborator> listCollaborator = (ArrayList<Collaborator>)request.getAttribute("listCollaborator");
+    ArrayList<Gender> listGender = (ArrayList<Gender>)request.getAttribute("listGender");
 %>
 <%@include file ="../shared/sidebar.jsp" %>
 <main class="collaborator col-md-10">
@@ -191,7 +193,16 @@
             <% for(Collaborator c : listCollaborator){ %>
                 <div class="collaborator-card card col-sm-12">
                     <div class="image">
-                        <img src="assets/images/<%= c.getIdGender() %>.png" alt="">
+                        <% 
+                            String gender = "";
+                            for(Gender g : listGender) {
+                                if(c.getIdGender().equals(g.getId())){
+                                    gender = g.getLabel();
+                                    break;
+                                }
+                            }
+                        %>
+                        <img src="assets/images/<%= gender.toLowerCase() %>.png" alt="">
                     </div>
                     <div class="card-body">
                         <h2 class="name"><%= c.getName() %></h2>
