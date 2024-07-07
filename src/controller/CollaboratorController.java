@@ -5,15 +5,12 @@ import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import com.google.gson.Gson;
-
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Collaborator;
-import shared.Database;
 
 public class CollaboratorController extends HttpServlet {
 
@@ -26,13 +23,13 @@ public class CollaboratorController extends HttpServlet {
         RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/views/collaborator/collaborator.jsp");
         try {
             String id = request.getParameter("id");
-            if (mode.equals("u")) {
+            if(mode.equals("u")) {
                 Collaborator updated = Collaborator.getById(id);
                 request.setAttribute("updated", updated);
-            } else if (mode.equals("d")) {
+            }else if(mode.equals("d")) {
                 Collaborator toDelete = Collaborator.getById(id);
                 toDelete.delete();
-            } else if (mode.equals("s")) {
+            }else if(mode.equals("s")) {
                 String name = request.getParameter("name") != null && !request.getParameter("name").trim().equals("")
                         ? request.getParameter("name")
                         : null;
@@ -55,15 +52,16 @@ public class CollaboratorController extends HttpServlet {
             } else {
                 liste = Collaborator.getAll();
             }
-            out.println(new Gson().toJson(liste));
-            // ArrayList<Collaborator> liste = Collaborator.getAll();
-        } catch (Exception e) {
+            request.setAttribute("listCollaborator", liste);
+            request.setAttribute("page", "collaborator");
+            disp.forward(request, response);
+        }catch (Exception e) {
             out.println(e.getMessage());
-            // request.setAttribute("error", e.getMessage());
-        } finally {
-            if (out != null)
+            request.setAttribute("error", e.getMessage());
+        }finally {
+            if (out != null){
                 out.close();
-            // disp.forward(request, response);
+            }
         }
     }
 
@@ -97,5 +95,4 @@ public class CollaboratorController extends HttpServlet {
             out.println(e.getMessage());
         }
     }
-
 }

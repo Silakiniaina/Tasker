@@ -237,9 +237,20 @@ public class Collaborator {
         }
     }
 
+    /**
+     * A function to filter the list of collaborator
+     * @param name - The name or a part of name of the collaborator
+     * @param email - The email of the collaborator
+     * @param gender - The gender id of the collaborator
+     * @param role - The role id of the collaborator
+     * @param debut - The minor birth date
+     * @param fin - The major birth date
+     * @return The search result of Collaborator according to the parameter given, if all the parameters are null it will return all the collaborator in the table
+     * @throws Exception if the operation doesn't work as expected
+     */
     public static ArrayList<Collaborator> search(String name , String email, String gender, String role, Date debut, Date fin)throws Exception{
         ArrayList<Collaborator> result = new ArrayList<Collaborator>();
-        Connection c = null; 
+        Connection c = null;  
         Statement st = null; 
         ResultSet rs  = null; 
         try{
