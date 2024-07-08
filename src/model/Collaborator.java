@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -125,7 +126,7 @@ public class Collaborator {
             prstm.setString(2, col.getEmail());
             prstm.setString(3, col.getIdGender());
             prstm.setString(4, col.getIdRole());
-            prstm.setDate(5,col.getBirthDate());
+            prstm.setDate(5, col.getBirthDate());
             prstm.setString(6, this.getId());
             prstm.executeUpdate();
             c.commit();
@@ -239,45 +240,85 @@ public class Collaborator {
 
     /**
      * A function to filter the list of collaborator
-     * @param name - The name or a part of name of the collaborator
-     * @param email - The email of the collaborator
+     * 
+     * @param name   - The name or a part of name of the collaborator
+     * @param email  - The email of the collaborator
      * @param gender - The gender id of the collaborator
-     * @param role - The role id of the collaborator
-     * @param debut - The minor birth date
-     * @param fin - The major birth date
-     * @return The search result of Collaborator according to the parameter given, if all the parameters are null it will return all the collaborator in the table
+     * @param role   - The role id of the collaborator
+     * @param debut  - The minor birth date
+     * @param fin    - The major birth date
+     * @return The search result of Collaborator according to the parameter given,
+     *         if all the parameters are null it will return all the collaborator in
+     *         the table
      * @throws Exception if the operation doesn't work as expected
      */
-    public static ArrayList<Collaborator> search(String name , String email, String gender, String role, Date debut, Date fin)throws Exception{
+    public static ArrayList<Collaborator> search(String name, String email, String gender, String role, Date debut,
+            Date fin) throws Exception {
         ArrayList<Collaborator> result = new ArrayList<Collaborator>();
-        Connection c = null;  
-        Statement st = null; 
-        ResultSet rs  = null; 
-        try{
-            String query  = "SELECT * FROM collaborator WHERE 1=1 ";
-            if(name != null) query += " AND name ILIKE \'%"+name+"%\'";
-            if(email != null) query += " AND email LIKE \'%"+email+"%\'";
-            if(gender != null) query += " AND id_gender = \'"+gender+"\'";
-            if(role != null) query +=  " AND id_role = \'"+role+"\'";
-            if(debut != null) query += " AND date_of_birth >= \'"+debut.toString()+"\'";
-            if(fin != null) query += " AND date_of_birth <= \'"+fin.toString()+"\'";
+        Connection c = null;
+        Statement st = null;
+        ResultSet rs = null;
+        try {
+            String query = "SELECT * FROM collaborator WHERE 1=1 ";
+            if (name != null)
+                query += " AND name ILIKE \'%" + name + "%\'";
+            if (email != null)
+                query += " AND email LIKE \'%" + email + "%\'";
+            if (gender != null)
+                query += " AND id_gender = \'" + gender + "\'";
+            if (role != null)
+                query += " AND id_role = \'" + role + "\'";
+            if (debut != null)
+                query += " AND date_of_birth >= \'" + debut.toString() + "\'";
+            if (fin != null)
+                query += " AND date_of_birth <= \'" + fin.toString() + "\'";
             c = Database.getConnection();
             System.out.println(query);
             st = c.createStatement();
             rs = st.executeQuery(query);
-            while ( rs.next()) {
+            while (rs.next()) {
                 Collaborator col = new Collaborator(rs.getString(2), rs.getString(3), rs.getString(7), rs.getString(8),
                         rs.getDate(5));
                 col.setId(rs.getString(1));
                 col.setPassword(rs.getString(4));
                 result.add(col);
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             throw e;
-        }finally{
-            if(rs != null) rs.close();
-            if(st != null) st.close();
-            if(c != null) c.close();
+        } finally {
+            if (rs != null)
+                rs.close();
+            if (st != null)
+                st.close();
+            if (c != null)
+                c.close();
+        }
+        return result;
+    }
+
+    public static HashMap<String, Integer> getNumberCollaborator() throws Exception {
+        HashMap<String, Integer> result = new HashMap<>();
+        Connection c = null;
+        PreparedStatement prstm = null;
+        ResultSet rs = null;
+        try {
+            c = Database.getConnection();
+            prstm = c.prepareStatement("SELECT * FROM v_number_collaborator");
+            rs = prstm.executeQuery();
+            ResultSetMetaData meta = rs.getMetaData();
+            if (rs.next()) {
+                for (int i = 0; i < meta.getColumnCount(); i++)
+                    result.put(meta.getColumnLabel(i + 1), Integer.valueOf(rs.getString(i + 1)));
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (rs != null)
+                rs.close();
+            if (prstm != null)
+                prstm.close();
+            if (c != null)
+                c.close();
         }
         return result;
     }
@@ -359,8 +400,8 @@ public class Collaborator {
     /* Test */
     public static void main(String[] args) {
         try {
-            ArrayList<Collaborator> ls = Collaborator.search("sa", "@test", null, null, Date.valueOf(LocalDate.parse("2005-07-21")),  Date.valueOf(LocalDate.parse("2005-07-30")));
-            System.out.println(new Gson().toJson(ls));
+            HashMap<String, Integer> number = Collaborator.getNumberCollaborator();
+            System.out.println(new Gson().toJson(number));
         } catch (Exception e) {
             e.printStackTrace();
         }
