@@ -1,0 +1,12 @@
+node_modules/
+bin/
+lib/
+sass/
+
+
+
+*.class
+*.jar
+
+package-lock.json
+package.json
