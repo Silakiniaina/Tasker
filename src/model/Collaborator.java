@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -25,7 +24,9 @@ public class Collaborator {
     Timestamp insertDate;
     Date birthDate;
 
-    /* Constructor */
+    /* -------------------------------------------------------------------------- */
+    /* Constructors */
+    /* -------------------------------------------------------------------------- */
     public Collaborator(String name, String email, String idG, String idR, Date birDate) throws Exception {
         this.setName(name);
         this.setEmail(email);
@@ -34,13 +35,9 @@ public class Collaborator {
         this.setBirthDate(birDate);
     }
 
-    /**
-     * A function to get all the collaborator in the database
-     * 
-     * @return an arrayList of Collaborator if there is collaborator in the database
-     *         else return an empty arrayList
-     * @throws Exception
-     */
+    /* -------------------------------------------------------------------------- */
+    /* Function to fetch all the Collaborator in the database */
+    /* -------------------------------------------------------------------------- */
     public static ArrayList<Collaborator> getAll() throws Exception {
         ArrayList<Collaborator> result = new ArrayList<Collaborator>();
         Connection c = null;
@@ -70,14 +67,9 @@ public class Collaborator {
         return result;
     }
 
-    /**
-     * A function to get an instance of Collaborator by his id in the database
-     * 
-     * @param id
-     * @return An instance of Collaborator corresponding to the id taken as
-     *         parameter in the table collaborator else null
-     * @throws Exception if the operation doesn't pass as expected
-     */
+    /* -------------------------------------------------------------------------- */
+    /* Function to get an instance of Collaborator by his id in the database */
+    /* -------------------------------------------------------------------------- */
     public static Collaborator getById(String id) throws Exception {
         Collaborator result = null;
         Connection c = null;
@@ -107,13 +99,9 @@ public class Collaborator {
         return result;
     }
 
-    /**
-     * Update the information of the instance calling the function to be like the
-     * parameter
-     * 
-     * @param col
-     * @throws Exception if the operation doesn't pass as expected
-     */
+    /* -------------------------------------------------------------------------- */
+    /* Update the instance calling the function to be like the parameter */
+    /* -------------------------------------------------------------------------- */
     public void update(Collaborator col) throws Exception {
         Connection c = null;
         PreparedStatement prstm = null;
@@ -141,15 +129,9 @@ public class Collaborator {
         }
     }
 
-    /**
-     * A function for the login of a Collaborator.
-     * 
-     * @param email The email of the Collaborator.
-     * @param pwd   The password of the Collaborator.
-     * @return An instance of a Collaborator corresponding to the email and the
-     *         password, else null.
-     * @throws Exception if the function doesn't pass as expected.
-     */
+    /* -------------------------------------------------------------------------- */
+    /* Function for the login of a Collaborator */
+    /* -------------------------------------------------------------------------- */
     public static Collaborator login(String email, String pwd) throws Exception {
         Collaborator result = null;
         Connection c = null;
@@ -180,11 +162,9 @@ public class Collaborator {
         return result;
     }
 
-    /**
-     * A function to insert the instance of Collaborator in the database.
-     * 
-     * @throws Exception if the operation doesn't pass as expected.
-     */
+    /* -------------------------------------------------------------------------- */
+    /* function to insert the instance of Collaborator in the database. */
+    /* -------------------------------------------------------------------------- */
     public void insert() throws Exception {
         Connection c = null;
         PreparedStatement prstm = null;
@@ -212,11 +192,9 @@ public class Collaborator {
         }
     }
 
-    /**
-     * A function to delete the instance of Collaborator in the database
-     * 
-     * @throws Exception if the operation doesn't pass as expected
-     */
+    /* -------------------------------------------------------------------------- */
+    /* function to delete the instance of Collaborator in the database */
+    /* -------------------------------------------------------------------------- */
     public void delete() throws Exception {
         Connection c = null;
         PreparedStatement prstm = null;
@@ -238,20 +216,9 @@ public class Collaborator {
         }
     }
 
-    /**
-     * A function to filter the list of collaborator
-     * 
-     * @param name   - The name or a part of name of the collaborator
-     * @param email  - The email of the collaborator
-     * @param gender - The gender id of the collaborator
-     * @param role   - The role id of the collaborator
-     * @param debut  - The minor birth date
-     * @param fin    - The major birth date
-     * @return The search result of Collaborator according to the parameter given,
-     *         if all the parameters are null it will return all the collaborator in
-     *         the table
-     * @throws Exception if the operation doesn't work as expected
-     */
+    /* -------------------------------------------------------------------------- */
+    /* function to filter the list of collaborator */
+    /* -------------------------------------------------------------------------- */
     public static ArrayList<Collaborator> search(String name, String email, String gender, String role, Date debut,
             Date fin) throws Exception {
         ArrayList<Collaborator> result = new ArrayList<Collaborator>();
@@ -296,6 +263,9 @@ public class Collaborator {
         return result;
     }
 
+    /* -------------------------------------------------------------------------- */
+    /* function to fetch the number : total, this year, this month and today */
+    /* -------------------------------------------------------------------------- */
     public static HashMap<String, Integer> getNumberCollaborator() throws Exception {
         HashMap<String, Integer> result = new HashMap<>();
         Connection c = null;
@@ -323,7 +293,9 @@ public class Collaborator {
         return result;
     }
 
+    /* -------------------------------------------------------------------------- */
     /* Getters */
+    /* -------------------------------------------------------------------------- */
     public String getId() {
         return id;
     }
@@ -356,7 +328,9 @@ public class Collaborator {
         return this.birthDate;
     }
 
+    /* -------------------------------------------------------------------------- */
     /* Setters */
+    /* -------------------------------------------------------------------------- */
     public void setId(String id) {
         this.id = id;
     }
@@ -397,7 +371,9 @@ public class Collaborator {
         this.birthDate = d;
     }
 
+    /* -------------------------------------------------------------------------- */
     /* Test */
+    /* -------------------------------------------------------------------------- */
     public static void main(String[] args) {
         try {
             HashMap<String, Integer> number = Collaborator.getNumberCollaborator();

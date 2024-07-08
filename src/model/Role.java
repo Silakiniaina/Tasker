@@ -11,18 +11,18 @@ public class Role {
     String id;
     String label;
 
+    /* -------------------------------------------------------------------------- */
     /* Constructor */
-    public Role(String id, String label){
+    /* -------------------------------------------------------------------------- */
+    public Role(String id, String label) {
         this.setId(id);
         this.setLabel(label);
     }
 
-    /**
-     * A function to fetch all the data in the table Role
-     * @return - An arrayList of Role in the database
-     * @throws Exception - if the operation doesn't pass as expected
-     */
-    public static ArrayList<Role> getAll() throws Exception{
+    /* -------------------------------------------------------------------------- */
+    /* Function to fetch all the data in the table Role */
+    /* -------------------------------------------------------------------------- */
+    public static ArrayList<Role> getAll() throws Exception {
         ArrayList<Role> result = new ArrayList<Role>();
         Connection c = null;
         PreparedStatement prstm = null;
@@ -48,18 +48,24 @@ public class Role {
         return result;
     }
 
+    /* -------------------------------------------------------------------------- */
     /* Getters */
+    /* -------------------------------------------------------------------------- */
     public String getId() {
         return id;
     }
+
     public String getLabel() {
         return label;
     }
 
+    /* -------------------------------------------------------------------------- */
     /* Setters */
+    /* -------------------------------------------------------------------------- */
     public void setId(String id) {
         this.id = id;
     }
+
     public void setLabel(String label) {
         this.label = label;
     }

@@ -81,7 +81,6 @@ public class CollaboratorController extends HttpServlet {
             throws ServletException, IOException {
         String mode = request.getParameter("mode");
         PrintWriter out = response.getWriter();
-        RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/views/collaborator/collaborator.jsp");
         try {
             String name = request.getParameter("name");
             String email = request.getParameter("email");

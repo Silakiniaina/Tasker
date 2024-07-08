@@ -1,3 +1,6 @@
+/* -------------------------------------------------------------------------- */
+/*         Functions for generating an ID string for each primary key         */
+/* -------------------------------------------------------------------------- */
 CREATE OR REPLACE FUNCTION generate_id_gender()
     RETURNS TEXT AS $$
     DECLARE
