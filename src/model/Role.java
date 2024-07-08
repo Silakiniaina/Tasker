@@ -12,17 +12,18 @@ public class Role {
     String label;
 
     /* -------------------------------------------------------------------------- */
-    /* Constructor */
+    /*                                 Constructor                                */
     /* -------------------------------------------------------------------------- */
-    public Role(String id, String label) {
+    public Role(String id, String label){
         this.setId(id);
         this.setLabel(label);
     }
 
+
     /* -------------------------------------------------------------------------- */
-    /* Function to fetch all the data in the table Role */
+    /*              Function to fetch all the data in the table Role              */
     /* -------------------------------------------------------------------------- */
-    public static ArrayList<Role> getAll() throws Exception {
+    public static ArrayList<Role> getAll() throws Exception{
         ArrayList<Role> result = new ArrayList<Role>();
         Connection c = null;
         PreparedStatement prstm = null;
@@ -49,23 +50,21 @@ public class Role {
     }
 
     /* -------------------------------------------------------------------------- */
-    /* Getters */
+    /*                                   Getters                                  */
     /* -------------------------------------------------------------------------- */
     public String getId() {
         return id;
     }
-
     public String getLabel() {
         return label;
     }
 
     /* -------------------------------------------------------------------------- */
-    /* Setters */
+    /*                                   Setters                                  */
     /* -------------------------------------------------------------------------- */
     public void setId(String id) {
         this.id = id;
     }
-
     public void setLabel(String label) {
         this.label = label;
     }

@@ -12,17 +12,18 @@ public class Gender {
     String label;
 
     /* -------------------------------------------------------------------------- */
-    /* Constructor */
+    /*                                 Constructor                                */
     /* -------------------------------------------------------------------------- */
-    public Gender(String id, String label) {
+    public Gender(String id, String label){
         this.setId(id);
         this.setLabel(label);
     }
 
+
     /* -------------------------------------------------------------------------- */
-    /* Function to fetch all the data in the table gender */
+    /*             Function to fetch all the data in the table gender             */
     /* -------------------------------------------------------------------------- */
-    public static ArrayList<Gender> getAll() throws Exception {
+    public static ArrayList<Gender> getAll() throws Exception{
         ArrayList<Gender> result = new ArrayList<Gender>();
         Connection c = null;
         PreparedStatement prstm = null;
@@ -49,23 +50,21 @@ public class Gender {
     }
 
     /* -------------------------------------------------------------------------- */
-    /* Getters */
+    /*                                   Getters                                  */
     /* -------------------------------------------------------------------------- */
     public String getId() {
         return id;
     }
-
     public String getLabel() {
         return label;
     }
 
     /* -------------------------------------------------------------------------- */
-    /* Setters */
+    /*                                   Setters                                  */
     /* -------------------------------------------------------------------------- */
     public void setId(String id) {
         this.id = id;
     }
-
     public void setLabel(String label) {
         this.label = label;
     }

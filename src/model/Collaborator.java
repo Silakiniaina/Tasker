@@ -25,7 +25,7 @@ public class Collaborator {
     Date birthDate;
 
     /* -------------------------------------------------------------------------- */
-    /* Constructors */
+    /*                                 Constructors                               */
     /* -------------------------------------------------------------------------- */
     public Collaborator(String name, String email, String idG, String idR, Date birDate) throws Exception {
         this.setName(name);
@@ -36,7 +36,7 @@ public class Collaborator {
     }
 
     /* -------------------------------------------------------------------------- */
-    /* Function to fetch all the Collaborator in the database */
+    /*           Function to fetch all the Collaborator in the database           */
     /* -------------------------------------------------------------------------- */
     public static ArrayList<Collaborator> getAll() throws Exception {
         ArrayList<Collaborator> result = new ArrayList<Collaborator>();
@@ -68,7 +68,7 @@ public class Collaborator {
     }
 
     /* -------------------------------------------------------------------------- */
-    /* Function to get an instance of Collaborator by his id in the database */
+    /*    Function to get an instance of Collaborator by his id in the database   */
     /* -------------------------------------------------------------------------- */
     public static Collaborator getById(String id) throws Exception {
         Collaborator result = null;
@@ -100,7 +100,7 @@ public class Collaborator {
     }
 
     /* -------------------------------------------------------------------------- */
-    /* Update the instance calling the function to be like the parameter */
+    /*      Update the instance calling the function to be like the parameter     */
     /* -------------------------------------------------------------------------- */
     public void update(Collaborator col) throws Exception {
         Connection c = null;
@@ -130,7 +130,7 @@ public class Collaborator {
     }
 
     /* -------------------------------------------------------------------------- */
-    /* Function for the login of a Collaborator */
+    /*                  Function for the login of a Collaborator                  */
     /* -------------------------------------------------------------------------- */
     public static Collaborator login(String email, String pwd) throws Exception {
         Collaborator result = null;
@@ -163,7 +163,7 @@ public class Collaborator {
     }
 
     /* -------------------------------------------------------------------------- */
-    /* function to insert the instance of Collaborator in the database. */
+    /*      function to insert the instance of Collaborator in the database.      */
     /* -------------------------------------------------------------------------- */
     public void insert() throws Exception {
         Connection c = null;
@@ -193,7 +193,7 @@ public class Collaborator {
     }
 
     /* -------------------------------------------------------------------------- */
-    /* function to delete the instance of Collaborator in the database */
+    /*       function to delete the instance of Collaborator in the database      */
     /* -------------------------------------------------------------------------- */
     public void delete() throws Exception {
         Connection c = null;
@@ -217,7 +217,7 @@ public class Collaborator {
     }
 
     /* -------------------------------------------------------------------------- */
-    /* function to filter the list of collaborator */
+    /*                 function to filter the list of collaborator                */
     /* -------------------------------------------------------------------------- */
     public static ArrayList<Collaborator> search(String name, String email, String gender, String role, Date debut,
             Date fin) throws Exception {
@@ -264,7 +264,7 @@ public class Collaborator {
     }
 
     /* -------------------------------------------------------------------------- */
-    /* function to fetch the number : total, this year, this month and today */
+    /*    function to fetch the number : total, this year, this month and today   */
     /* -------------------------------------------------------------------------- */
     public static HashMap<String, Integer> getNumberCollaborator() throws Exception {
         HashMap<String, Integer> result = new HashMap<>();
@@ -294,7 +294,7 @@ public class Collaborator {
     }
 
     /* -------------------------------------------------------------------------- */
-    /* Getters */
+    /*                                   Getters                                  */
     /* -------------------------------------------------------------------------- */
     public String getId() {
         return id;
@@ -329,7 +329,7 @@ public class Collaborator {
     }
 
     /* -------------------------------------------------------------------------- */
-    /* Setters */
+    /*                                   Setters                                  */
     /* -------------------------------------------------------------------------- */
     public void setId(String id) {
         this.id = id;
@@ -372,7 +372,7 @@ public class Collaborator {
     }
 
     /* -------------------------------------------------------------------------- */
-    /* Test */
+    /*                                    Test                                    */
     /* -------------------------------------------------------------------------- */
     public static void main(String[] args) {
         try {
