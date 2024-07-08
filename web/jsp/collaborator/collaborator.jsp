@@ -1,4 +1,5 @@
 <%@page import="java.util.ArrayList" %>
+<%@page import="java.time.LocalDate" %>
 <%@page import="model.Collaborator" %>
 <%@page import="model.Gender" %>
 <%@page import="model.Role" %>
@@ -7,6 +8,7 @@
     ArrayList<Collaborator> listCollaborator = (ArrayList<Collaborator>)request.getAttribute("listCollaborator");
     ArrayList<Gender> listGender = (ArrayList<Gender>)request.getAttribute("listGender");
     ArrayList<Role> listRole = (ArrayList<Role>)request.getAttribute("listRole");
+    Collaborator updated = (Collaborator)request.getAttribute("updated");
 %>
 <%@include file ="../shared/sidebar.jsp" %>
 <main class="collaborator col-md-10">
@@ -58,33 +60,44 @@
             </div>
         </div>
     </div>
-    <div class="row modal fade" id="insert-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true" style="background: transparent;backdrop-filter: blur(8px);">
+    <div class="row modal fade <%= updated != null ? "show" : "" %>" id="insert-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-<%= updated != null ? "modal" : "hidden" %>="true" style="background: transparent;backdrop-filter: blur(8px);display:<%= updated != null ? "block" : "none" %> !important" <%= updated != null ? "role=\"dialog\"" : "" %>>
         <div class="col-md-2"></div>
         <div class="modal-dialog modal-content col-md-8">
-            <h2 class="insert-title">Insertion form</h2>
+            <span class="exit-btn" data-bs-target="insert-modal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+                </svg>
+            </span>
+            <h2 class="insert-title"><%= updated != null ? "Update" : "Insert" %> form</h2>
             <form class="insert-collaborator" action="collaborator" method="POST">
                 <div class="row">
                     <div class="input-container col-md-6">
                         <label for="validationDefault01" class="form-label">Name</label>
-                        <input type="text" class="form-control" name="name" id="validationDefault01" placeholder="Name.."required>
+                        <input type="text" class="form-control" name="name" id="validationDefault01" placeholder="Name.." value="<%= updated !=  null ? updated.getName() : "" %>" required>
                     </div>
                     <div class="input-container col-md-6">
                         <label for="validationDefault02" class="form-label">Email</label>
-                        <input type="email" class="form-control" name="email" id="validationDefault02" placeholder="xyz@example.com" required>
+                        <input type="email" class="form-control" name="email" id="validationDefault02" placeholder="xyz@example.com" value="<%= updated != null ? updated.getEmail() : "" %>" required>
                     </div>
                 </div>
                 <div class="input-container col-md-12">
                     <label for="validationDefault02" class="form-label">Date of birth</label>
-                    <input type="date" name="dtn" class="form-control" id="validationDefault02" required>
+                    <input type="date" name="dtn" class="form-control" id="validationDefault02" value="<%= updated != null ? updated.getBirthDate().toString() : LocalDate.now() %>" required>
                 </div>
                 <div class="input-container col-md-12">
                     <label for="validationDefaultUsername" class="form-label">Gender</label>
                     <div class="input-group">
                         <select class="form-select" name="gender" aria-label="Default select example" required>
-                        <% for(Gender gen : listGender){ %>
-                            <option value="<%= gen.getId() %>"><%= gen.getLabel() %></option>
-                        <% } %>
+                            <% 
+                                for (Gender gen : listGender) { 
+                                    String selected = "";
+                                    if (updated != null && updated.getIdGender().equals(gen.getId())) {
+                                        selected = "selected";
+                                }
+                            %>
+                                <option value="<%= gen.getId() %>" <%= selected %>><%= gen.getLabel() %></option>
+                            <% } %>
                         </select>
                     </div>
                 </div>
@@ -92,20 +105,28 @@
                     <label for="validationDefaultUsername" class="form-label">Role</label>
                     <div class="input-group">
                         <select class="form-select" name="role" aria-label="Default select example" required>
-                        <% for(Role rol : listRole){ %>
-                            <option value="<%= rol.getId() %>"><%= rol.getLabel() %></option>
+                        <% 
+                            for (Role rol : listRole) { 
+                                String selected = "";
+                                if (updated != null && updated.getIdRole().equals(rol.getId())) {
+                                    selected = "selected";
+                            }
+                        %>
+                            <option value="<%= rol.getId() %>" <%= selected %>><%= rol.getLabel() %></option>
                         <% } %>
                         </select>
                     </div>
                 </div>
+                <input type="hidden" name="id" value="<%= updated != null ? updated.getId() : "" %>">
+                <% if(updated == null ){ %>
                 <div class="input-container col-md-12">
                     <label for="validationDefaultUsername" class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" id="validationDefault02" placeholder="********"
-                        required>
+                    <input type="password" name="password" class="form-control" id="validationDefault02" placeholder="********" required>
                 </div>
-                <input type="hidden" name="mode" value="i" >
+                <% } %>
+                <input type="hidden" name="mode" value="<%= updated != null ? "u" : "i" %>" >
                 <div class="input-container submit-btn col-md-12">
-                    <button class="btn btn-primary" type="submit">Insert</button>
+                    <button class="btn btn-primary" type="submit"><%= updated != null ? "Update" : "Insert" %></button>
                 </div>
             </form>
         </div>
@@ -248,4 +269,5 @@
         </div>
     </div>
 </main>
+<% if(updated != null ){  %><div class="modal-backdrop fade show"></div> <% } %>
 <%@include file="../shared/footer.jsp" %>

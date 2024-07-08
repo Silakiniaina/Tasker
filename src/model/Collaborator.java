@@ -119,14 +119,13 @@ public class Collaborator {
             c = Database.getConnection();
             c.setAutoCommit(false);
             prstm = c.prepareStatement(
-                    "UPDATE collaborator SET name = ? , email = ? , password = ? , id_gender = ? , id_role = ? , date_of_birth = ? WHERE id_collaborator = ?");
+                    "UPDATE collaborator SET name = ? , email = ?, id_gender = ? , id_role = ? , date_of_birth = ? WHERE id_collaborator = ?");
             prstm.setString(1, col.getName());
             prstm.setString(2, col.getEmail());
-            prstm.setString(3, col.getPassword());
-            prstm.setString(4, col.getIdGender());
-            prstm.setString(5, col.getIdRole());
-            prstm.setDate(6, col.getBirthDate());
-            prstm.setString(7, this.getId());
+            prstm.setString(3, col.getIdGender());
+            prstm.setString(4, col.getIdRole());
+            prstm.setDate(5,col.getBirthDate());
+            prstm.setString(6, this.getId());
             prstm.executeUpdate();
             c.commit();
         } catch (Exception e) {

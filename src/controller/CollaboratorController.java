@@ -20,18 +20,20 @@ public class CollaboratorController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String mode = request.getParameter("mode");
+        String type = request.getParameter("type");
         PrintWriter out = response.getWriter();
         ArrayList<Collaborator> liste = null;
         RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/views/collaborator/collaborator.jsp");
         try {
             String id = request.getParameter("id");
-            if(mode.equals("u")) {
+            if(mode != null && mode.equals("u")) {
                 Collaborator updated = Collaborator.getById(id);
                 request.setAttribute("updated", updated);
-            }else if(mode.equals("d")) {
+            }else if(mode != null && mode.equals("d")) {
                 Collaborator toDelete = Collaborator.getById(id);
                 toDelete.delete();
-            }else if(mode.equals("s")) {
+            }
+            if(type != null && type.equals("s")) {
                 String name = request.getParameter("name") != null && !request.getParameter("name").trim().equals("")
                         ? request.getParameter("name")
                         : null;
@@ -50,8 +52,7 @@ public class CollaboratorController extends HttpServlet {
                         ? Date.valueOf(request.getParameter("dtn_f"))
                         : null;
                 liste = Collaborator.search(name, email, gender, role, dtn_d, dtn_f);
-                out.println("Search done");
-            } else {
+            }else{
                 liste = Collaborator.getAll();
             }
             ArrayList<Gender> listGender = Gender.getAll();
@@ -87,15 +88,17 @@ public class CollaboratorController extends HttpServlet {
             String gender = request.getParameter("gender");
             String role = request.getParameter("role");
             Collaborator c = new Collaborator(name, email, gender, role, date_of_birth);
-            c.setPassword(password);
+            if(password != null)
+                c.setPassword(password);
+            
             if (mode.equals("i")) {
                 c.insert();
-                response.sendRedirect("collaborator?mode=r");
+                response.sendRedirect("collaborator");
             } else if (mode.equals("u")) {
                 String id = request.getParameter("id");
                 Collaborator old = Collaborator.getById(id);
                 old.update(c);
-                out.println("Update done");
+                response.sendRedirect("collaborator");
             }
         } catch (Exception e) {
             out.println(e.getMessage());

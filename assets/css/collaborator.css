@@ -195,3 +195,16 @@
     font-size: 32px;
     padding: 2% 1%;
 }
+
+.collaborator .modal .exit-btn{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    color: black;
+    transition: .3s ease-in;
+    cursor: pointer;
+}
+
+.collaborator .modal .exit-btn:hover{
+    color: red;
+}
