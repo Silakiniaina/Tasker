@@ -1,4 +1,5 @@
 <%@page import="java.util.ArrayList" %>
+<%@page import="java.util.HashMap" %>
 <%@page import="java.time.LocalDate" %>
 <%@page import="model.Collaborator" %>
 <%@page import="model.Gender" %>
@@ -8,13 +9,14 @@
     ArrayList<Collaborator> listCollaborator = (ArrayList<Collaborator>)request.getAttribute("listCollaborator");
     ArrayList<Gender> listGender = (ArrayList<Gender>)request.getAttribute("listGender");
     ArrayList<Role> listRole = (ArrayList<Role>)request.getAttribute("listRole");
+    HashMap<String, Integer> number = (HashMap<String, Integer>)request.getAttribute("number");
     Collaborator updated = (Collaborator)request.getAttribute("updated");
 %>
 <%@include file ="../shared/sidebar.jsp" %>
 <main class="collaborator col-md-10">
     <h1 class="title">Collaborators</h1>
     <div class="numbers row d-flex align-item-center g-3 justify-content-flex-start">
-        <div class="numbers__item col-md-4">
+        <div class="numbers__item col-md-3">
             <span class="icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor"
                     class="bi bi-database-down" viewBox="0 0 16 16">
@@ -25,11 +27,26 @@
                 </svg>
             </span>
             <div class="numbers__item-content">
-                <h3 class="number_title">Total collaborators</h3>
-                <p class="item-value">123</p>
+                <h3 class="number_title">Total</h3>
+                <p class="item-value"><%= number != null ? number.get("total") : "0" %></p>
             </div>
         </div>
-        <div class="numbers__item col-md-4">
+        <div class="numbers__item col-md-3">
+            <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="52" height="64" fill="currentColor"
+                    class="bi bi-calendar3" viewBox="0 0 16 16">
+                    <path
+                        d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z" />
+                    <path
+                        d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
+                </svg>
+            </span>
+            <div class="numbers__item-content">
+                <h3 class="number_title">This year</h3>
+                <p class="item-value"><%= number != null ? number.get("year") : "0" %></p>
+            </div>
+        </div>
+        <div class="numbers__item col-md-3">
             <span class="icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="52" height="64" fill="currentColor"
                     class="bi bi-calendar3" viewBox="0 0 16 16">
@@ -41,10 +58,10 @@
             </span>
             <div class="numbers__item-content">
                 <h3 class="number_title">This months</h3>
-                <p class="item-value">23</p>
+                <p class="item-value"><%= number != null ? number.get("month") : "0" %></p>
             </div>
         </div>
-        <div class="numbers__item col-md-4">
+        <div class="numbers__item col-md-3">
             <span class="icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor"
                     class="bi bi-database-down" viewBox="0 0 16 16">
@@ -56,7 +73,7 @@
             </span>
             <div class="numbers__item-content">
                 <h3 class="number_title">Today</h3>
-                <p class="item-value">1</p>
+                <p class="item-value"><%= number != null ? number.get("today") : "0" %></p>
             </div>
         </div>
     </div>
@@ -137,39 +154,38 @@
         <div class="col-md-2"></div>
         <div class="modal-dialog modal-content col-md-8">
             <h2 class="filter-title">Filter form</h2>
-            <form class="insert-collaborator">
+            <form class="insert-collaborator" method="GET" action="collaborator">
+                <input type="hidden" name="type" value="s">
                 <div class="row">
                     <div class="input-container col-md-6">
                         <label for="validationDefault01" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="validationDefault01" placeholder="Name.."
-                            required>
+                        <input type="text" name="name" class="form-control" id="validationDefault01" placeholder="Name..">
                     </div>
                     <div class="input-container col-md-6">
                         <label for="validationDefault02" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="validationDefault02"
-                            placeholder="xyz@example.com" required>
+                        <input type="email" class="form-control" name="email" id="validationDefault02"placeholder="xyz@example.com">
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-container col-md-6">
                         <label for="validationDefaultUsername" class="form-label">Gender</label>
                         <div class="input-group">
-                            <select class="form-select" aria-label="Default select example" required>
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <select class="form-select" name="gender" aria-label="Default select example">
+                                <option value="">All</option>
+                                <% for(Gender gender : listGender){ %>
+                                    <option value="<%= gender.getId() %>"><%= gender.getLabel() %></option>
+                                <% } %>
                             </select>
                         </div>
                     </div>
                     <div class="input-container col-md-6">
                         <label for="validationDefaultUsername" class="form-label">Role</label>
                         <div class="input-group">
-                            <select class="form-select" aria-label="Default select example" required>
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <select class="form-select" name="role" aria-label="Default select example">
+                                <option value="">All</option>
+                                <% for(Role role : listRole){ %>
+                                    <option value="<%= role.getId() %>"><%= role.getLabel() %></option>
+                                <% } %>
                             </select>
                         </div>
                     </div>
@@ -177,11 +193,11 @@
                 <div class="row col-md-12">
                     <div class="input-container col-md-6">
                         <label for="validationDefaultUsername" class="form-label">Date of birth start</label>
-                        <input type="date" class="form-control" id="validationDefault02" required>
+                        <input type="date" name="dtn_d" class="form-control" id="validationDefault02">
                     </div>
                     <div class="input-container col-md-6">
                         <label for="validationDefaultUsername" class="form-label">Date of birth end</label>
-                        <input type="date" class="form-control" id="validationDefault02" required>
+                        <input type="date" name="dtn_f" class="form-control" id="validationDefault02">
                     </div>
                 </div>
                 <div class="input-container submit-btn col-md-12">
@@ -194,7 +210,7 @@
     <div class="list row">
         <div class="list-head row">
             <div class="list-head-title col-md-8">
-                List of collaborator(<%= listCollaborator != null ? listCollaborator.size() : "No data" %>)
+                List of collaborator(<%= listCollaborator != null && listCollaborator.size() > 0 ? listCollaborator.size() : "No data" %>)
             </div>
             <div class="cta-button col-md-2">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"

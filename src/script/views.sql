@@ -5,9 +5,9 @@ CREATE
     OR REPLACE VIEW v_number_collaborator AS
 SELECT
     t.total AS total,
-    a.annee AS cet_annee,
-    m.mois AS cet_mois,
-    j.jour AS aujourdhui
+    a.annee AS year,
+    m.mois AS month,
+    j.jour AS today
 FROM
     (
         SELECT
@@ -37,5 +37,5 @@ FROM
         FROM
             collaborator
         WHERE
-            insert_date = CURRENT_DATE
+            DATE(insert_date) = CURRENT_DATE
     ) AS j;

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -57,9 +58,12 @@ public class CollaboratorController extends HttpServlet {
             }
             ArrayList<Gender> listGender = Gender.getAll();
             ArrayList<Role> listRole = Role.getAll();
+            HashMap<String, Integer> number = Collaborator.getNumberCollaborator();
+
             request.setAttribute("listCollaborator", liste);
             request.setAttribute("listGender", listGender);
             request.setAttribute("listRole", listRole);
+            request.setAttribute("number", number);
             request.setAttribute("page", "collaborator");
             disp.forward(request, response);
         }catch (Exception e) {
