@@ -17,4 +17,13 @@
         <servlet-name>collaborator</servlet-name>
         <url-pattern>/collaborator</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>project</servlet-name>
+        <servlet-class>controller.ProjectController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>project</servlet-name>
+        <url-pattern>/project</url-pattern>
+    </servlet-mapping>
 </web-app>
