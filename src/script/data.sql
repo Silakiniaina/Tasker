@@ -8,3 +8,10 @@ INSERT INTO role(label) VALUES
     ('Project Manager'),
     ('Collaborator')
 ;
+
+INSERT INTO status(label) VALUES 
+    ('Finished'),
+    ('In progress'),
+    ('Sheduled'),
+    ('Blocked')
+;

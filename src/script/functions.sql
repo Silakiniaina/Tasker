@@ -208,3 +208,16 @@ CREATE OR REPLACE FUNCTION generate_id_team()
     END;
     $$
     LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION generate_id_status()
+    RETURNS TEXT AS $$
+    DECLARE
+        status_seqval TEXT;
+        status_id TEXT;
+    BEGIN
+        SELECT nextval('status_seq') INTO status_seqval;
+        status_id := 'STA' || status_seqval;
+        RETURN status_id;
+    END;
+    $$
+    LANGUAGE plpgsql;

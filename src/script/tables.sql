@@ -7,6 +7,14 @@ CREATE TABLE
     );
 
 CREATE TABLE
+    status(
+        id_status TEXT DEFAULT generate_id_status(),
+        label VARCHAR(50) NOT NULL,
+        PRIMARY KEY (id_status),
+        UNIQUE(label)
+    );
+
+CREATE TABLE
     Role (
         id_role TEXT DEFAULT generate_id_role(),
         label VARCHAR(150) NOT NULL,
@@ -78,19 +86,25 @@ CREATE TABLE
 CREATE TABLE
     Project (
         id_project TEXT DEFAULT generate_id_project(),
+        name TEXT NOT NULL, 
+        description TEXT NOT NULL,
         start_date TIMESTAMP NOT NULL,
         end_date TIMESTAMP NOT NULL,
         insert_date TIMESTAMP DEFAULT NOW (),
         id_responsable TEXT,
         id_project_category TEXT,
+        id_status TEXT NOT NULL, 
         PRIMARY KEY (id_project),
         FOREIGN KEY (id_responsable) REFERENCES Collaborator (id_collaborator),
+        FOREIGN KEY (id_status) REFERENCES status(id_status),
         FOREIGN KEY (id_project_category) REFERENCES ProjectCategory (id_project_category)
     );
 
 CREATE TABLE
     Task (
         id_task TEXT DEFAULT generate_id_task(),
+        name TEXT NOT NULL, 
+        description TEXT NOT NULL,
         start_date TIMESTAMP NOT NULL,
         end_date TIMESTAMP NOT NULL,
         insert_date TIMESTAMP DEFAULT NOW (),

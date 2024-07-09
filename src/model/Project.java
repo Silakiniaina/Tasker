@@ -1,6 +1,14 @@
 package model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+
+import com.google.gson.Gson;
+
+import shared.Database;
 
 public class Project {
     String id; 
@@ -10,17 +18,45 @@ public class Project {
     Timestamp endDate;
     String idResponsable;
     String idCategoryProject;
+    String idStatus;
 
     /* -------------------------------------------------------------------------- */
     /*                                Constructors                                */
     /* -------------------------------------------------------------------------- */
-    public Project(String name, String desc, Timestamp start, Timestamp end, String responsable, String category){
+    public Project(String name, String desc, Timestamp start, Timestamp end, String responsable, String category,String status){
         this.setName(name);
         this.setDescription(desc);
         this.setStartDate(start);
         this.setEndDate(end);
         this.setIdResponsable(responsable);
         this.setIdCategoryProject(category);
+        this.setIdStatus(status);
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /*               Function to get all the project in the database              */
+    /* -------------------------------------------------------------------------- */
+    public static ArrayList<Project> getAll()throws Exception{
+        ArrayList<Project> result = new ArrayList<>();
+        Connection c = null;
+        PreparedStatement prstm = null;
+        ResultSet rs = null;
+        try {
+            c = Database.getConnection();
+            prstm = c.prepareStatement("SELECT * FROM project");
+            rs = prstm.executeQuery();
+            while(rs.next()){
+                Project pr = new Project(rs.getString(2), rs.getString(3), rs.getTimestamp(4), rs.getTimestamp(5), rs.getString(7), rs.getString(8),rs.getString(9));
+                result.add(pr);
+            }
+        } catch (Exception e) {
+            throw e;
+        }finally{
+            if(rs != null)rs.close();
+            if(prstm != null)prstm.close();
+            if(c != null) c.close();
+        }
+        return result;
     }
     
     /* -------------------------------------------------------------------------- */
@@ -47,6 +83,9 @@ public class Project {
     public String getIdCategoryProject() {
         return idCategoryProject;
     }
+    public String getIdStatus(){
+        return idStatus;
+    }
     
     /* -------------------------------------------------------------------------- */
     /*                                   Setters                                  */
@@ -71,5 +110,20 @@ public class Project {
     }
     public void setIdCategoryProject(String idCategoryProject) {
         this.idCategoryProject = idCategoryProject;
+    }
+    public void setIdStatus(String status){
+        this.idStatus = status;
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /*                                    test                                    */
+    /* -------------------------------------------------------------------------- */
+    public static void main(String[] args) {
+        try {
+            ArrayList<Project> ls = Project.getAll();
+            System.out.println(new Gson().toJson(ls));
+        } catch (Exception e) {
+            e.getMessage();
+        }
     }
 }
