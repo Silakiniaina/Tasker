@@ -15,3 +15,8 @@ INSERT INTO status(label) VALUES
     ('Sheduled'),
     ('Blocked')
 ;
+
+INSERT INTO projectCategory(label) VALUES
+    ('Web application'),
+    ('Desktop application')
+;

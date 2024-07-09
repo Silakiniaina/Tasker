@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
@@ -57,6 +58,34 @@ public class Project {
             if(c != null) c.close();
         }
         return result;
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /*                        Function to insert a Project                        */
+    /* -------------------------------------------------------------------------- */
+    public void insert() throws Exception{
+        Connection c = null; 
+        PreparedStatement prstm  = null; 
+        try {
+            c = Database.getConnection();
+            c.setAutoCommit(false);
+            prstm = c.prepareStatement("INSERT INTO project(name,description,start_date,end_date,id_responsable,id_project_category,id_status) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            prstm.setString(1,this.getName());
+            prstm.setString(2, this.getDescription());
+            prstm.setTimestamp(3, this.getStartDate());
+            prstm.setTimestamp(4, this.getEndDate());
+            prstm.setString(5, this.getIdResponsable());
+            prstm.setString(6, this.getIdCategoryProject());
+            prstm.setString(7, this.getIdStatus());
+            prstm.executeUpdate();
+            c.commit();
+        } catch (Exception e) {
+            c.rollback();
+            throw e;
+        }finally{
+            if(prstm != null) prstm.close();
+            if(c != null) c.close();
+        }
     }
     
     /* -------------------------------------------------------------------------- */
@@ -120,6 +149,8 @@ public class Project {
     /* -------------------------------------------------------------------------- */
     public static void main(String[] args) {
         try {
+            Project p = new Project("Project 1","Description 1" , Timestamp.valueOf(LocalDateTime.now()), Timestamp.valueOf(LocalDateTime.now()), "COL2", "PRC2", "STA2");
+            p.insert();
             ArrayList<Project> ls = Project.getAll();
             System.out.println(new Gson().toJson(ls));
         } catch (Exception e) {
