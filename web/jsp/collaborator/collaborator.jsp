@@ -15,10 +15,6 @@
 <%@include file ="../shared/sidebar.jsp" %>
 <main class="collaborator col-md-10">
     <h1 class="title">Collaborators</h1>
-
-    /* -------------------------------------------------------------------------- */
-    /*               Number total , this year , this month and today              */
-    /* -------------------------------------------------------------------------- */
     <div class="numbers row d-flex align-item-center g-3 justify-content-flex-start">
         <div class="numbers__item col-md-3">
             <span class="icon">
@@ -81,10 +77,6 @@
             </div>
         </div>
     </div>
-
-    /* -------------------------------------------------------------------------- */
-    /*                          Insertion or Update modal                         */
-    /* -------------------------------------------------------------------------- */
     <div class="row modal fade <%= updated != null ? "show" : "" %>" id="insert-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-<%= updated != null ? "modal" : "hidden" %>="true" style="background: transparent;backdrop-filter: blur(8px);display:<%= updated != null ? "block" : "none" %> !important" <%= updated != null ? "role=\"dialog\"" : "" %>>
         <div class="col-md-2"></div>
@@ -157,10 +149,6 @@
         </div>
         <div class="col-md-2"></div>
     </div>
-
-    /* -------------------------------------------------------------------------- */
-    /*                                Filter modal                                */
-    /* -------------------------------------------------------------------------- */
     <div class="row modal fade" id="filter-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true" style="background: transparent;backdrop-filter: blur(8px);">
         <div class="col-md-2"></div>
@@ -219,10 +207,6 @@
         </div>
         <div class="col-md-2"></div>
     </div>
-
-    /* -------------------------------------------------------------------------- */
-    /*                            List of collaborators                           */
-    /* -------------------------------------------------------------------------- */
     <div class="list row">
         <div class="list-head row">
             <div class="list-head-title col-md-8">
@@ -241,10 +225,6 @@
                 </button>
             </div>
         </div>
-
-        /* -------------------------------------------------------------------------- */
-        /*                              Collaborator card                             */
-        /* -------------------------------------------------------------------------- */
         <div class="list-content">
             <% for(Collaborator c : listCollaborator){ %>
                 <div class="collaborator-card card col-sm-12">

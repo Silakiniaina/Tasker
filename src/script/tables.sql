@@ -79,8 +79,8 @@ CREATE TABLE
         id_role TEXT,
         PRIMARY KEY (id_collaborator),
         UNIQUE (email),
-        FOREIGN KEY (id_gender) REFERENCES Gender (id_gender),
-        FOREIGN KEY (id_role) REFERENCES Role (id_role)
+        FOREIGN KEY (id_gender) REFERENCES Gender (id_gender) ON DELETE CASCADE,
+        FOREIGN KEY (id_role) REFERENCES Role (id_role) ON DELETE CASCADE
     );
 
 CREATE TABLE
@@ -95,9 +95,9 @@ CREATE TABLE
         id_project_category TEXT,
         id_status TEXT NOT NULL, 
         PRIMARY KEY (id_project),
-        FOREIGN KEY (id_responsable) REFERENCES Collaborator (id_collaborator),
-        FOREIGN KEY (id_status) REFERENCES status(id_status),
-        FOREIGN KEY (id_project_category) REFERENCES ProjectCategory (id_project_category)
+        FOREIGN KEY (id_responsable) REFERENCES Collaborator (id_collaborator)  ON DELETE CASCADE,
+        FOREIGN KEY (id_status) REFERENCES status(id_status)  ON DELETE CASCADE,
+        FOREIGN KEY (id_project_category) REFERENCES ProjectCategory (id_project_category)  ON DELETE CASCADE
     );
 
 CREATE TABLE
@@ -112,8 +112,8 @@ CREATE TABLE
         id_task_category TEXT,
         id_collaborator TEXT,
         PRIMARY KEY (id_task),
-        FOREIGN KEY (id_task_category) REFERENCES TaskCategory (id_task_category),
-        FOREIGN KEY (id_collaborator) REFERENCES Collaborator (id_collaborator)
+        FOREIGN KEY (id_task_category) REFERENCES TaskCategory (id_task_category) ON DELETE CASCADE,
+        FOREIGN KEY (id_collaborator) REFERENCES Collaborator (id_collaborator) ON DELETE CASCADE
     );
 
 CREATE TABLE
@@ -127,8 +127,8 @@ CREATE TABLE
         id_task_category TEXT,
         id_task TEXT,
         PRIMARY KEY (id_subtask),
-        FOREIGN KEY (id_task_category) REFERENCES TaskCategory (id_task_category),
-        FOREIGN KEY (id_task) REFERENCES Task (id_task)
+        FOREIGN KEY (id_task_category) REFERENCES TaskCategory (id_task_category) ON DELETE CASCADE,
+        FOREIGN KEY (id_task) REFERENCES Task (id_task) ON DELETE CASCADE
     );
 
 CREATE TABLE
@@ -142,10 +142,10 @@ CREATE TABLE
         id_project TEXT,
         id_responsable TEXT,
         PRIMARY KEY (id_meeting),
-        FOREIGN KEY (id_room) REFERENCES room (id_room),
-        FOREIGN KEY (id_meeting_category) REFERENCES MeetingCategory (id_meeting_category),
-        FOREIGN KEY (id_project) REFERENCES Project (id_project),
-        FOREIGN KEY (id_responsable) REFERENCES Collaborator (id_collaborator)
+        FOREIGN KEY (id_room) REFERENCES room (id_room) ON DELETE CASCADE,
+        FOREIGN KEY (id_meeting_category) REFERENCES MeetingCategory (id_meeting_category)  ON DELETE CASCADE,
+        FOREIGN KEY (id_project) REFERENCES Project (id_project)  ON DELETE CASCADE,
+        FOREIGN KEY (id_responsable) REFERENCES Collaborator (id_collaborator)  ON DELETE CASCADE
     );
 
 CREATE TABLE
@@ -158,10 +158,10 @@ CREATE TABLE
         id_collaborator TEXT,
         id_comment_category TEXT,
         PRIMARY KEY (id_comment),
-        FOREIGN KEY (id_task) REFERENCES Task (id_task),
-        FOREIGN KEY (id_project) REFERENCES Project (id_project),
-        FOREIGN KEY (id_collaborator) REFERENCES Collaborator (id_collaborator),
-        FOREIGN KEY (id_comment_category) REFERENCES CommentCategory (id_comment_category)
+        FOREIGN KEY (id_task) REFERENCES Task (id_task) ON DELETE CASCADE,
+        FOREIGN KEY (id_project) REFERENCES Project (id_project) ON DELETE CASCADE,
+        FOREIGN KEY (id_collaborator) REFERENCES Collaborator (id_collaborator)  ON DELETE CASCADE,
+        FOREIGN KEY (id_comment_category) REFERENCES CommentCategory (id_comment_category) ON DELETE CASCADE
     );
 
 CREATE TABLE
@@ -172,9 +172,9 @@ CREATE TABLE
         id_report_category TEXT,
         id_reporter TEXT,
         PRIMARY KEY (id_report),
-        FOREIGN KEY (id_project) REFERENCES Project (id_project),
-        FOREIGN KEY (id_report_category) REFERENCES ReportCategory (id_report_category),
-        FOREIGN KEY (id_reporter) REFERENCES Collaborator (id_collaborator)
+        FOREIGN KEY (id_project) REFERENCES Project (id_project)  ON DELETE CASCADE,
+        FOREIGN KEY (id_report_category) REFERENCES ReportCategory (id_report_category)  ON DELETE CASCADE,
+        FOREIGN KEY (id_reporter) REFERENCES Collaborator (id_collaborator)  ON DELETE CASCADE
     );
 
 CREATE TABLE
@@ -182,6 +182,6 @@ CREATE TABLE
         id_project TEXT DEFAULT generate_id_team(),
         id_collaborator TEXT,
         PRIMARY KEY (id_project, id_collaborator),
-        FOREIGN KEY (id_project) REFERENCES Project (id_project),
-        FOREIGN KEY (id_collaborator) REFERENCES Collaborator (id_collaborator)
+        FOREIGN KEY (id_project) REFERENCES Project (id_project)  ON DELETE CASCADE,
+        FOREIGN KEY (id_collaborator) REFERENCES Collaborator (id_collaborator)  ON DELETE CASCADE
     );

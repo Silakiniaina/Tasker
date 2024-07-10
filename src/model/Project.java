@@ -149,7 +149,7 @@ public class Project {
     /* -------------------------------------------------------------------------- */
     public static void main(String[] args) {
         try {
-            Project p = new Project(null,"Description 1" , Timestamp.valueOf(LocalDateTime.now()), Timestamp.valueOf(LocalDateTime.now()), "COL2", "PRC2", "STA2");
+            Project p = new Project("Project 1","Description 1" , Timestamp.valueOf(LocalDateTime.now()), Timestamp.valueOf(LocalDateTime.now()), "COL1", "PRC2", "STA2");
             p.insert();
             ArrayList<Project> ls = Project.getAll();
             System.out.println(new Gson().toJson(ls));

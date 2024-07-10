@@ -1,3 +1,84 @@
-.project_container{
+.list .list-head-title {
+    font-family: poppins-semibold;
+    font-size: 24px;
+    padding: 1rem 3rem;
+}
+
+.list .list-head .cta-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.list .list-head .cta-button button {
+    width: 95%;
     font-family: poppins-regular;
+    transition: .3s ease-in;
+    border: none;
+}
+
+.list .list-head .cta-button button:hover {
+    background-color: black;
+    font-weight: 600;
+    color: yellow;
+}
+
+.project_container {
+    border-radius: 20px;
+    font-family: poppins-regular;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    grid-area: 10px;
+    gap: 20px;
+    padding: 20px 20px;
+}
+
+.project_container .project_card {
+    width: 32%;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 1px 1px 5px;
+}
+.project_container .project_card .project_card-description {
+    margin: 0;
+    padding: 10px;
+    font-size: 14px;
+    text-wrap: wrap;
+}
+
+.project_container .project_card .card-title{
+    font-family: 'poppins-semibold';
+    font-size: 28px;
+}
+.project_container .project_card .head{
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.project_container .project_card .project_card-deadline {
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    justify-content: flex-start;
+    gap: 10px;
+    align-items: center;
+    color: red;
+    padding: 5px 10px;
+}
+
+.project_container .project_card .project_card-deadline-label {
+    margin: 0;
+    font-size: 18px;
+    text-align: end;
+}
+
+.project_container .project_card .project_card-foot .project_card-foot-collaborator{
+    margin: 0;
+    font-size: 18px;
+    font-family: poppins-thin;
+    padding: 5px;
+    text-align: left;
 }

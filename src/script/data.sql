@@ -19,4 +19,4 @@ INSERT INTO status(label) VALUES
 INSERT INTO projectCategory(label) VALUES
     ('Web application'),
     ('Desktop application')
-;
+;;
