@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment and Report Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        .management-item {
+            border-left: 4px solid #007bff;
+            background-color: #f8f9fa;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .status-badge {
+            font-size: 0.8rem;
+        }
+        .item-info {
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <!-- Comment Management Component -->
+        <h3>Comment Management</h3>
+        <div class="management-item d-flex justify-content-between align-items-center">
+            <div>
+                <h5 class="mb-1">New feature suggestion</h5>
+                <p class="mb-1 text-muted item-info">#C203456 Posted 3 hours ago by Jane Smith</p>
+                <span class="badge bg-info status-badge">New</span>
+                <span class="badge bg-warning status-badge">Needs Review</span>
+            </div>
+            <div class="text-end">
+                <div class="item-info">2 replies</div>
+                <div class="btn-group">
+                    <button class="btn btn-sm btn-outline-secondary">Reply</button>
+                    <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-three-dots"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Report Management Component -->
+        <h3 class="mt-4">Report Management</h3>
+        <div class="management-item d-flex justify-content-between align-items-center">
+            <div>
+                <h5 class="mb-1">Monthly Sales Report</h5>
+                <p class="mb-1 text-muted item-info">#R405678 Generated 2 days ago by System</p>
+                <span class="badge bg-success status-badge">Completed</span>
+                <span class="badge bg-primary status-badge">Finance</span>
+            </div>
+            <div class="text-end">
+                <div class="item-info">Last updated: 07/13/2024</div>
+                <div class="btn-group">
+                    <button class="btn btn-sm btn-outline-secondary">View</button>
+                    <button class="btn btn-sm btn-outline-secondary">Download</button>
+                    <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-three-dots"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

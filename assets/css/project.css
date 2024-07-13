@@ -63,7 +63,7 @@
     flex-direction: row;
     align-content: space-between;
     justify-content: flex-start;
-    gap: 10px;
+    gap: 5px;
     align-items: center;
     color: red;
     padding: 5px 10px;
@@ -71,7 +71,7 @@
 
 .project_container .project_card .project_card-deadline-label {
     margin: 0;
-    font-size: 18px;
+    font-size: 13px;
     text-align: end;
 }
 
