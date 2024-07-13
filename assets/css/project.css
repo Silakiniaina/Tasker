@@ -1,84 +1,35 @@
-.list .list-head-title {
-    font-family: poppins-semibold;
-    font-size: 24px;
-    padding: 1rem 3rem;
+.project-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 1px 1px 3px black;
+}
+.project-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.status-badge {
+    font-size: 0.8rem;
+    padding: 3px 8px;
+    border-radius: 12px;
+}
+.status-offtrack { background-color: #ffcccb; color: #d32f2f; }
+.avatar-group img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: -10px;
+    border: 2px solid white;
+}
+.project-date {
+    color: #d32f2f;
+    font-size: 0.9rem;
 }
 
-.list .list-head .cta-button {
+.avatar-group {
     display: flex;
     align-items: center;
-    justify-content: center;
-}
-
-.list .list-head .cta-button button {
-    width: 95%;
-    font-family: poppins-regular;
-    transition: .3s ease-in;
-    border: none;
-}
-
-.list .list-head .cta-button button:hover {
-    background-color: black;
-    font-weight: 600;
-    color: yellow;
-}
-
-.project_container {
-    border-radius: 20px;
-    font-family: poppins-regular;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    grid-area: 10px;
-    gap: 20px;
-    padding: 20px 20px;
-}
-
-.project_container .project_card {
-    width: 32%;
-    padding: 10px;
-    border-radius: 15px;
-    box-shadow: 1px 1px 5px;
-}
-.project_container .project_card .project_card-description {
-    margin: 0;
-    padding: 10px;
-    font-size: 14px;
-    text-wrap: wrap;
-}
-
-.project_container .project_card .card-title{
-    font-family: 'poppins-semibold';
-    font-size: 28px;
-}
-.project_container .project_card .head{
-    flex-direction: row;
     justify-content: space-between;
-    align-items: center;
-}
-
-.project_container .project_card .project_card-deadline {
-    display: flex;
-    flex-direction: row;
-    align-content: space-between;
-    justify-content: flex-start;
-    gap: 5px;
-    align-items: center;
-    color: red;
-    padding: 5px 10px;
-}
-
-.project_container .project_card .project_card-deadline-label {
-    margin: 0;
-    font-size: 13px;
-    text-align: end;
-}
-
-.project_container .project_card .project_card-foot .project_card-foot-collaborator{
-    margin: 0;
-    font-size: 18px;
-    font-family: poppins-thin;
-    padding: 5px;
-    text-align: left;
+    gap: 20px;
 }
