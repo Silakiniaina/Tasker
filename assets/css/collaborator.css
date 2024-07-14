@@ -1,7 +1,7 @@
 
 .collaborator-card {
-    width: 16rem;
-    height: 300px;
+    width: 90%;
+    height: auto;
     box-shadow: 0.1px 0.1px 5px;
 }
 
@@ -55,4 +55,29 @@
     position: absolute;
     right: 10px;
     top: 10px;
+}
+
+@media (max-width: 767px) {
+    .collaborator-card {
+        width: 100%;
+    }
+
+    .cta-button {
+        display: none;
+    }
+
+    .cta-button.show {
+        display: block;
+        margin-top: 10px;
+    }
+
+    #toggleButtons {
+        display: block;
+    }
+}
+
+@media (min-width: 768px) {
+    #toggleButtons {
+        display: none;
+    }
 }
