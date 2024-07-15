@@ -2,10 +2,11 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
-import com.google.gson.Gson;
-
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,12 +17,58 @@ public class ProjectController extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String mode = request.getParameter("mode");
+        String type = request.getParameter("type");
         PrintWriter out = response.getWriter();
         ArrayList<Project> liste = null;
-        //RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/views/collaborator/collaborator.jsp");
+        RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/views/project/project.jsp");
         try {
-            liste = Project.getAll();
-            out.println(new Gson().toJson(liste));
+            String id = request.getParameter("id");
+            if(mode != null && mode.equals("u")) {
+                Project updated = Project.getById(id);
+                request.setAttribute("updated", updated);
+            }else if(mode != null && mode.equals("d")) {
+                Project toDelete = Project.getById(id);
+                toDelete.delete();
+            }
+            if(type != null && type.equals("s")) {
+                String name = request.getParameter("name") != null && !request.getParameter("name").trim().equals("")
+                        ? request.getParameter("name")
+                        : null;
+                String category = request.getParameter("category") != null && !request.getParameter("category").trim().equals("")
+                        ? request.getParameter("category")
+                        : null;
+                String responsable = request.getParameter("responsable") != null
+                        && !request.getParameter("responsable").trim().equals("") ? request.getParameter("responsable") : null;
+                String status = request.getParameter("status") != null && !request.getParameter("status").trim().equals("")
+                        ? request.getParameter("status")
+                        : null;
+                Date startDateDebut = request.getParameter("startDateDebut") != null && !request.getParameter("startDateDebut").trim().equals("")
+                        ? Date.valueOf(request.getParameter("startDateDebut"))
+                        : null;
+                Date startDateEnd = request.getParameter("startDateEnd") != null && !request.getParameter("startDateEnd").trim().equals("")
+                        ? Date.valueOf(request.getParameter("startDateEnd"))
+                        : null;
+                Date deadlineDebut = request.getParameter("deadlineDebut") != null && !request.getParameter("deadlineDebut").trim().equals("")
+                        ? Date.valueOf(request.getParameter("deadlineDebut"))
+                        : null;
+                Date deadlineEnd = request.getParameter("deadlineEnd") != null && !request.getParameter("deadlineEnd").trim().equals("")
+                        ? Date.valueOf(request.getParameter("deadlineEnd"))
+                        : null;
+                liste = Project.search();
+            }else{
+                liste = Project.getAll();
+            }
+            // ArrayList<Gender> listGender = Gender.getAll();
+            // ArrayList<Collaborator> listeCollaborator = Collaborator.getAll();
+            // HashMap<String, Integer> number = Collaborator.getNumberCollaborator();
+
+            request.setAttribute("listProject", liste);
+            // request.setAttribute("listGender", listGender);
+            // request.setAttribute("listRole", listRole);
+            // request.setAttribute("number", number);
+            request.setAttribute("page", "project");
+            disp.forward(request, response);
         }catch (Exception e) {
             out.println(e.getMessage());
             request.setAttribute("error", e.getMessage());
@@ -29,6 +76,40 @@ public class ProjectController extends HttpServlet{
             if (out != null){
                 out.close();
             }
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String mode = request.getParameter("mode");
+        PrintWriter out = response.getWriter();
+        try {
+            String name = request.getParameter("name");
+            String category = request.getParameter("category");
+            String password = request.getParameter("password");
+            Timestamp startDate = request.getParameter("startDate") != null && !request.getParameter("startDate").trim().equals("")
+                ? Timestamp.valueOf(request.getParameter("startDate"))
+                : null;
+            Timestamp deadline = request.getParameter("deadline") != null && !request.getParameter("deadline").trim().equals("")
+                ? Timestamp.valueOf(request.getParameter("deadline"))
+                : null;
+            String responsable = request.getParameter("responsable");
+            String status = request.getParameter("status");
+            String description = request.getParameter("description");
+            Project p = new Project(name, description, startDate, deadline, responsable, category, status);
+            
+            if (mode.equals("i")) {
+                p.insert();
+                response.sendRedirect("project");
+            } else if (mode.equals("u")) {
+                String id = request.getParameter("id");
+                Project old = Project.getById(id);
+                old.update(p);
+                response.sendRedirect("project");
+            }
+        } catch (Exception e) {
+            out.println(e.getMessage());
         }
     }
 }
