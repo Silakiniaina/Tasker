@@ -87,6 +87,62 @@ public class Project {
             if(c != null) c.close();
         }
     }
+
+    /* -------------------------------------------------------------------------- */
+    /*                        Function to update a project                        */
+    /* -------------------------------------------------------------------------- */
+    public void update(Project p) throws Exception {
+        Connection c = null;
+        PreparedStatement prstm = null;
+        try {
+            c = Database.getConnection();
+            c.setAutoCommit(false);
+            prstm = c.prepareStatement(
+                    "UPDATE collaborator SET name = ? , description = ?, start_date = ? , end_date = ? , id_responsable = ? , id_project_category = ?, id_status = ? WHERE id_priject = ?");
+            prstm.setString(1,p.getName());
+            prstm.setString(2, p.getDescription());
+            prstm.setTimestamp(3, p.getStartDate());
+            prstm.setTimestamp(4, p.getEndDate());
+            prstm.setString(5, p.getIdResponsable());
+            prstm.setString(6, p.getIdCategoryProject());
+            prstm.setString(7, p.getIdStatus());
+            prstm.setString(8, this.getId());
+            prstm.executeUpdate();
+            c.commit();
+        } catch (Exception e) {
+            c.rollback();
+            throw e;
+        } finally {
+            if (prstm != null)
+                prstm.close();
+            if (c != null)
+                c.close();
+        }
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /*                         Function to delete project                         */
+    /* -------------------------------------------------------------------------- */
+    public void delete() throws Exception {
+        Connection c = null;
+        PreparedStatement prstm = null;
+        try {
+            c = Database.getConnection();
+            c.setAutoCommit(false);
+            prstm = c.prepareStatement("DELETE FROM project WHERE id_project = ?");
+            prstm.setString(1, this.getId());
+            prstm.executeUpdate();
+            c.commit();
+        } catch (Exception e) {
+            c.rollback();
+            throw e;
+        } finally {
+            if (prstm != null)
+                prstm.close();
+            if (c != null)
+                c.close();
+        }
+    }
     
     /* -------------------------------------------------------------------------- */
     /*                                   Getters                                  */
