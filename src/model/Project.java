@@ -61,6 +61,32 @@ public class Project {
     }
 
     /* -------------------------------------------------------------------------- */
+    /*                     Function to get a project by his id                    */
+    /* -------------------------------------------------------------------------- */
+    public static Project getById(String id)throws Exception{
+        Project result = null;
+        Connection c = null;
+        PreparedStatement prstm = null;
+        ResultSet rs = null;
+        try {
+            c = Database.getConnection();
+            prstm = c.prepareStatement("SELECT * FROM project WHERE id_project = ?");
+            prstm.setString(1, id);
+            rs = prstm.executeQuery();
+            if(rs.next()){
+                result = new Project(rs.getString(2), rs.getString(3), rs.getTimestamp(4), rs.getTimestamp(5), rs.getString(7), rs.getString(8),rs.getString(9));
+            }
+        } catch (Exception e) {
+            throw e;
+        }finally{
+            if(rs != null)rs.close();
+            if(prstm != null)prstm.close();
+            if(c != null) c.close();
+        }
+        return result;
+    }
+
+    /* -------------------------------------------------------------------------- */
     /*                        Function to insert a Project                        */
     /* -------------------------------------------------------------------------- */
     public void insert() throws Exception{
