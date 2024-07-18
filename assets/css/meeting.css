@@ -1,0 +1,13 @@
+.meeting-item {
+    border-left: 4px solid #28a745;
+    background-color: #f8f9fa;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.status-badge {
+    font-size: 0.8rem;
+}
+.timer {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
