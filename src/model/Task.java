@@ -19,9 +19,10 @@ public class Task {
     private String idTaskCategory;
     private String idCollaborator;
     private String idProject;
+    private String idStatus;
 
     // Constructeur
-    public Task(String name, String description, Date st, Date en, String categ, String col, String pr) {
+    public Task(String name, String description, Date st, Date en, String categ, String col, String pr,String status) {
         this.setName(name);
         this.setDescription(description);
         this.setStartDate(st);
@@ -29,6 +30,7 @@ public class Task {
         this.setIdTaskCategory(categ);
         this.setIdCollaborator(col);
         this.setIdProject(pr);
+        this.setIdStatus(status);
 
     }
 
@@ -47,7 +49,7 @@ public class Task {
             while (rs.next()) {
                 Task t = new Task(rs.getString("name"), rs.getString("description"), rs.getDate("start_date"),
                         rs.getDate("end_date"), rs.getString("id_task_category"), rs.getString("id_collaborator"),
-                        rs.getString("id_project"));
+                        rs.getString("id_project"),rs.getString("id_status"));
                 t.setId(rs.getString("id_task"));
                 tasks.add(t);
             }
@@ -74,7 +76,7 @@ public class Task {
         try {
             c = Database.getConnection();
             c.setAutoCommit(false);
-            prstm = c.prepareStatement("INSERT INTO task(name,description,start_date,end_date,id_task_category,id_collaborator,id_project) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            prstm = c.prepareStatement("INSERT INTO task(name,description,start_date,end_date,id_task_category,id_collaborator,id_project,id_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             prstm.setString(1,this.getName());
             prstm.setString(2, this.getDescription());
             prstm.setDate(3, this.getStartDate());
@@ -82,6 +84,7 @@ public class Task {
             prstm.setString(5, this.getIdTaskCategory());
             prstm.setString(6, this.getIdCollaborator());
             prstm.setString(7, this.getIdProject());
+            prstm.setString(8, this.getIdStatus());
             prstm.executeUpdate();
             c.commit();
         } catch (Exception e) {
@@ -109,7 +112,7 @@ public class Task {
             if(rs.next()){
                 result = new Task(rs.getString("name"), rs.getString("description"), rs.getDate("start_date"),
                         rs.getDate("end_date"), rs.getString("id_task_category"), rs.getString("id_collaborator"),
-                        rs.getString("id_project"));
+                        rs.getString("id_project"), rs.getString("id_status"));
                 result.setId(rs.getString("id_task"));
             }
         } catch (Exception e) {
@@ -131,7 +134,7 @@ public class Task {
             c = Database.getConnection();
             c.setAutoCommit(false);
             prstm = c.prepareStatement(
-                "UPDATE task SET name = ? , description = ?, start_date = ? , end_date = ? , id_task_category = ? , id_collaborator = ?, id_project = ? WHERE id_task = ?");
+                "UPDATE task SET name = ? , description = ?, start_date = ? , end_date = ? , id_task_category = ? , id_collaborator = ?, id_project = ?, id_status  = ? WHERE id_task = ?");
                 prstm.setString(1,t.getName());
                 prstm.setString(2, t.getDescription());
                 prstm.setDate(3, t.getStartDate());
@@ -139,7 +142,8 @@ public class Task {
                 prstm.setString(5, t.getIdTaskCategory());
                 prstm.setString(6, t.getIdCollaborator());
                 prstm.setString(7, t.getIdProject());
-            prstm.setString(8, this.getId());
+                prstm.setString(8, t.getIdStatus());
+            prstm.setString(9, this.getId());
             prstm.executeUpdate();
             c.commit();
         } catch (Exception e) {
@@ -175,6 +179,13 @@ public class Task {
             if (c != null)
                 c.close();
         }
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /*                                   search                                   */
+    /* -------------------------------------------------------------------------- */
+    public static ArrayList<Task> search(){
+        return null;
     }
 
     // Getters et setters
@@ -241,6 +252,15 @@ public class Task {
     public void setIdProject(String idProject) {
         this.idProject = idProject;
     }
+    
+    public String getIdTask() {
+        return idTask;
+    }
+
+    public void setIdTask(String idTask) {
+        this.idTask = idTask;
+    }
+    
 
     public static void main(String[] args) {
         try {
@@ -254,5 +274,14 @@ public class Task {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    public String getIdStatus() {
+        return idStatus;
+    }
+
+    public void setIdStatus(String idStatus) {
+        this.idStatus = idStatus;
     }
 }

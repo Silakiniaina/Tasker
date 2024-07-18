@@ -50,33 +50,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="onglet nav-link <%= pageActive.equals("meeting") ? "active" : "" %>">
-                            <i class="far fa-calendar"></i>
-                            Meetings
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a href="collaborator" class="onglet nav-link <%= pageActive.equals("collaborator") ? "active" : "" %>">
                             <i class="fas fa-users"></i>
                             Collaborators
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="onglet nav-link <%= pageActive.equals("comment") ? "active" : "" %>">
-                            <i class="far fa-comment-dots"></i>
-                            Comments
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="onglet nav-link <%= pageActive.equals("report") ? "active" : "" %>">
-                            <i class="far fa-lightbulb"></i>
-                            Reports
-                        </a>
-                    </li>
-                    <li class="nav-item last_onglet">
-                        <a href="#" class="onglet nav-link <%= pageActive.equals("notification") ? "active" : "" %>">
-                            <i class="far fa-bell"></i>
-                            Notifications
+                        <a href="#" class="onglet nav-link <%= pageActive.equals("meeting") ? "active" : "" %>">
+                            <i class="far fa-calendar"></i>
+                            Meetings
                         </a>
                     </li>
                 </ul>
@@ -89,13 +71,9 @@
                         <strong style="color: black;">Sanda</strong>
                     </a>
                     <ul class="dropdown-menu dropdown-menu text-small shadow" aria-labelledby="dropdownUser1">
-                        <li><a class="dropdown-item" href="#">New project...</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
                         <li>
-                            <hr class="dropdown-divider">
+                            <a class="dropdown-item" href="login?mode=d">Sign out</a>
                         </li>
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
                     </ul>
                 </div>
             </div>

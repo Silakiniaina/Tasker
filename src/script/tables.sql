@@ -112,25 +112,12 @@ CREATE TABLE
         id_task_category TEXT NOT NULL,
         id_collaborator TEXT,
         id_project TEXT NOT NULL,
+        id_status TEXT NOT NULL, 
         PRIMARY KEY (id_task),
         FOREIGN KEY (id_task_category) REFERENCES TaskCategory (id_task_category) ON DELETE CASCADE,
         FOREIGN KEY (id_collaborator) REFERENCES Collaborator (id_collaborator) ON DELETE CASCADE,
-        FOREIGN KEY (id_project) REFERENCES Project (id_project) ON DELETE CASCADE
-    );
-
-CREATE TABLE
-    Subtask (
-        id_subtask TEXT DEFAULT generate_id_subtask(),
-        name VARCHAR(250) NOT NULL,
-        start_date TIMESTAMP NOT NULL,
-        end_date TIMESTAMP NOT NULL,
-        date_insertion TIMESTAMP DEFAULT NOW (),
-        progress NUMERIC(5, 2) DEFAULT 0,
-        id_task_category TEXT,
-        id_task TEXT,
-        PRIMARY KEY (id_subtask),
-        FOREIGN KEY (id_task_category) REFERENCES TaskCategory (id_task_category) ON DELETE CASCADE,
-        FOREIGN KEY (id_task) REFERENCES Task (id_task) ON DELETE CASCADE
+        FOREIGN KEY (id_project) REFERENCES Project (id_project) ON DELETE CASCADE,
+        FOREIGN KEY (id_status) REFERENCES Status (id_status) ON DELETE CASCADE
     );
 
 CREATE TABLE

@@ -43,6 +43,10 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String mode = req.getParameter("mode");
+        if(mode != null && mode.equals("d")){
+            req.getSession().removeAttribute("userActive");
+        }
         req.getRequestDispatcher("/WEB-INF/views/collaborator/login.jsp").forward(req, resp);
     }
 }
