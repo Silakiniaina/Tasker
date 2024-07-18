@@ -19,29 +19,6 @@
 %>
 <%@include file="../shared/sidebar.jsp" %>
             <h1 class="title">Project</h1>
-            <div class="numbers row d-flex align-item-center g-3 justify-content-flex-start">
-                <div class="numbers__item col-md-4">
-                    <i class="fas fa-database"></i>
-                    <div class="numbers__item-content">
-                        <h3 class="number_title">Total collaborators</h3>
-                        <p class="item-value">123</p>
-                    </div>
-                </div>
-                <div class="numbers__item col-md-4">
-                    <i class="fa fa-calendar-alt"></i>
-                    <div class="numbers__item-content">
-                        <h3 class="number_title">This months</h3>
-                        <p class="item-value">23</p>
-                    </div>
-                </div>
-                <div class="numbers__item col-md-4">
-                    <i class="fas fa-calendar-check"></i>
-                    <div class="numbers__item-content">
-                        <h3 class="number_title">Today</h3>
-                        <p class="item-value">1</p>
-                    </div>
-                </div>
-            </div>
             <div class="row modal fade" id="insert-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true" style="background: transparent;backdrop-filter: blur(8px);">
                 <div class="col-md-2"></div>

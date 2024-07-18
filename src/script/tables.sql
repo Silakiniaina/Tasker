@@ -109,11 +109,13 @@ CREATE TABLE
         end_date TIMESTAMP NOT NULL,
         insert_date TIMESTAMP DEFAULT NOW (),
         finished_date TIMESTAMP,
-        id_task_category TEXT,
+        id_task_category TEXT NOT NULL,
         id_collaborator TEXT,
+        id_project TEXT NOT NULL,
         PRIMARY KEY (id_task),
         FOREIGN KEY (id_task_category) REFERENCES TaskCategory (id_task_category) ON DELETE CASCADE,
-        FOREIGN KEY (id_collaborator) REFERENCES Collaborator (id_collaborator) ON DELETE CASCADE
+        FOREIGN KEY (id_collaborator) REFERENCES Collaborator (id_collaborator) ON DELETE CASCADE,
+        FOREIGN KEY (id_project) REFERENCES Project (id_collaborator) ON DELETE CASCADE
     );
 
 CREATE TABLE
