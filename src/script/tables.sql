@@ -123,9 +123,10 @@ CREATE TABLE
 CREATE TABLE
     Meeting (
         id_meeting TEXT DEFAULT generate_id_meeting(),
-        start_date TIMESTAMP NOT NULL,
-        end_date VARCHAR(50) NOT NULL,
-        insert_date VARCHAR(50) DEFAULT NOW (),
+        title TEXT NOT NULL,
+        start_time TIME NOT NULL,
+        end_time TIME NOT NULL,
+        insert_date TIMESTAMP DEFAULT NOW (),
         id_room TEXT,
         id_meeting_category TEXT,
         id_project TEXT,
