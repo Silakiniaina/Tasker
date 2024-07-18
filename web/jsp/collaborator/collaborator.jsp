@@ -13,6 +13,7 @@
     String user = (String)request.getAttribute("userType");
 %>
 <%@include file ="../shared/sidebar.jsp" %>
+    <h1 class="title">Collaborator</h1>
     <div class="row modal fade" id="insert-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true" style="background: transparent;backdrop-filter: blur(8px);display:none">
         <div class="col-md-2"></div>
