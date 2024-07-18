@@ -27,3 +27,8 @@ INSERT INTO taskCategory(label) VALUES
     ('Database'),
     ('Integration')
 ;
+
+INSERT INTO meetingCategory(label) VALUES
+    ('Focus group'),
+    ('Brainstorming')
+;

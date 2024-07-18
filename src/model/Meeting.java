@@ -225,4 +225,13 @@ public class Meeting {
     public void setIdStatus(String st){
         this.idStatus = st;
     }
+
+    public static void main(String[] args) {
+        try {
+            Meeting m = new Meeting("Focus Group",Time.valueOf("10:00:00"),Time.valueOf("12:00:00"), "MEC1", "COL1", "PRO1", "STA1");
+            m.insert();
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+    }
 }
