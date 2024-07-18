@@ -263,6 +263,10 @@ public class Collaborator {
         return result;
     }
 
+    public boolean isAdmin(){
+        return this.getIdRole().equals("ROL1");
+    }
+
     /* -------------------------------------------------------------------------- */
     /*    function to fetch the number : total, this year, this month and today   */
     /* -------------------------------------------------------------------------- */
@@ -376,8 +380,9 @@ public class Collaborator {
     /* -------------------------------------------------------------------------- */
     public static void main(String[] args) {
         try {
-            HashMap<String, Integer> number = Collaborator.getNumberCollaborator();
-            System.out.println(new Gson().toJson(number));
+            Collaborator c = new Collaborator("Admin", "admin@test.com", "GEN1", "ROL1", Date.valueOf("2005-07-12"));
+            c.setPassword("admin");
+            c.insert();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,5 +1,6 @@
 <%
     String pageActive = (String)request.getAttribute("page");
+    String userType = (String)request.getAttribute("userType");
 %>
 
 <!doctype html>
@@ -29,19 +30,21 @@
                 <hr style="color: blue;">
                 <ul class="list-onglet nav nav-pills flex-column mb-auto" style="gap:6px;">
                     <li class="nav-item">
-                        <a href="dashboard" class="onglet nav-link <%= pageActive.equals("dashboard") ? "active" : "" %>" aria-current="page">
-                            <i class="fa fa-tachometer-alt"></i>
-                            Dashboard
-                        </a>
+                        <% if(userType.equals("1")){ %>
+                            <a href="dashboard" class="onglet nav-link <%= pageActive.equals("dashboard") ? "active" : "" %>" aria-current="page">
+                                <i class="fa fa-tachometer-alt"></i>
+                                Dashboard
+                            </a>
+                        <% } %>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="onglet nav-link <%= pageActive.equals("project") ? "active" : "" %>" >
+                        <a href="project" class="onglet nav-link <%= pageActive.equals("project") ? "active" : "" %>" >
                             <i class="fas fa-project-diagram"></i>
                             Project
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="onglet nav-link <%= pageActive.equals("task") ? "active" : "" %>">
+                        <a href="task" class="onglet nav-link <%= pageActive.equals("task") ? "active" : "" %>">
                             <i class="fa fa-tasks"></i>
                             Tasks
                         </a>

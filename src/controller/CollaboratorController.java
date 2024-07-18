@@ -16,10 +16,10 @@ import model.Gender;
 import model.Role;
 
 public class CollaboratorController extends HttpServlet {
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        ProtectionController.verify(request, response);
         String mode = request.getParameter("mode");
         String type = request.getParameter("type");
         PrintWriter out = response.getWriter();
@@ -77,6 +77,7 @@ public class CollaboratorController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        ProtectionController.verify(request, response);
         String mode = request.getParameter("mode");
         PrintWriter out = response.getWriter();
         try {

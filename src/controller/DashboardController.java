@@ -15,6 +15,7 @@ public class DashboardController extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ProtectionController.verify(request, response);
         RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/views/dashboard/dashboard.jsp");
         try {
             HashMap<String, Integer> number = Collaborator.getNumberCollaborator();

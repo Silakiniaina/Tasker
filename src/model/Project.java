@@ -263,20 +263,4 @@ public class Project {
     public void setIdStatus(String status){
         this.idStatus = status;
     }
-
-    /* -------------------------------------------------------------------------- */
-    /*                                    test                                    */
-    /* -------------------------------------------------------------------------- */
-    public static void main(String[] args) {
-        try {
-            // Project p = new Project("Project 1","Description 1" , Date.valueOf(LocalDateTime.now()), Date.valueOf(LocalDateTime.now()), "COL1", "PRC2", "STA2");
-            // p.insert();
-            // ArrayList<Project> ls = Project.getAll();
-            // System.out.println(new Gson().toJson(ls));
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            //Date.valueOf(LocalDateTime.parse("", formatter))
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }

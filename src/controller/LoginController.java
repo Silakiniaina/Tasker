@@ -22,7 +22,12 @@ public class LoginController extends HttpServlet {
             if (email != null && password != null) {
                 Collaborator c = Collaborator.login(email, password);
                 if (c != null) {
-                    out.println("Connected " + c.getName());
+                    request.getSession().setAttribute("userActive", c);
+                    if(c.isAdmin()){
+                        response.sendRedirect("dashboard");
+                    }else{
+                        response.sendRedirect("project");
+                    }
                 } else {
                     request.setAttribute("error", "The informations provided seems to be not correct, please verify");
                     disp = request.getRequestDispatcher("/WEB-INF/views/collaborator/login.jsp");

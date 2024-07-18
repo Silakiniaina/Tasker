@@ -14,6 +14,7 @@
     ArrayList<Gender> listGender = (ArrayList<Gender>)request.getAttribute("listGender");
     ArrayList<ProjectCategory> listProjectCategory = (ArrayList<ProjectCategory>)request.getAttribute("listProjectCategory");
     ArrayList<Project> listProject = (ArrayList<Project>)request.getAttribute("listProject");
+    String user = (String)request.getAttribute("userType");
     Project updated = (Project)request.getAttribute("updated");
 %>
 <%@include file="../shared/sidebar.jsp" %>
@@ -215,18 +216,20 @@
                     <div class="list-head-title col-md-8">
                         List of project(<%= listProject != null ? listProject.size() : "0" %>)
                     </div>
-                    <div class="cta-button col-md-2">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#insert-modal">
-                            Add
-                        </button>
-                    </div>
-                    <div class="cta-button col-md-2">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#filter-modal">
-                            Filter
-                        </button>
-                    </div>
+                    <% if(user.equals("1")){ %>
+                        <div class="cta-button col-md-2">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#insert-modal">
+                                    Add
+                                </button>
+                        </div>
+                        <div class="cta-button col-md-2">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#filter-modal">
+                                Filter
+                            </button>
+                        </div>
+                    <% } %>
                 </div>
                 <div class="list-content d-flex flex-wrap">
                     <% for(Project p : listProject){ %>
@@ -274,6 +277,7 @@
                                         </div>
                                     </div>
                                     <div>
+                                    <% if(user.equals("1")){ %>
                                         <a href="project?mode=u&id=<%= p.getId() %>">
                                             <button type="button" class="edit-btn btn btn-outline-info">
                                                 <i class="far fa-edit"></i>
@@ -284,6 +288,7 @@
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </a>
+                                    <% } %>
                                     </div>
                                 </div>
                             </div>
