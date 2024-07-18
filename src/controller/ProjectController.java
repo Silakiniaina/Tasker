@@ -4,14 +4,22 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
+import com.google.gson.Gson;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Collaborator;
+import model.Gender;
 import model.Project;
+import model.ProjectCategory;
+import model.Status;
 
 public class ProjectController extends HttpServlet{
 
@@ -31,7 +39,7 @@ public class ProjectController extends HttpServlet{
                 Project toDelete = Project.getById(id);
                 toDelete.delete();
             }
-            if(type != null && type.equals("s")) {
+            if(type != null && type.equals("s")){
                 String name = request.getParameter("name") != null && !request.getParameter("name").trim().equals("")
                         ? request.getParameter("name")
                         : null;
@@ -59,13 +67,17 @@ public class ProjectController extends HttpServlet{
             }else{
                 liste = Project.getAll();
             }
-            // ArrayList<Gender> listGender = Gender.getAll();
-            // ArrayList<Collaborator> listeCollaborator = Collaborator.getAll();
+            ArrayList<Status> listStatus = Status.getAll();
+            ArrayList<Gender> listGender = Gender.getAll();
+            ArrayList<ProjectCategory> listProjectCategory = ProjectCategory.getAll();
+            ArrayList<Collaborator> listeCollaborator = Collaborator.getAll();
             // HashMap<String, Integer> number = Collaborator.getNumberCollaborator();
 
             request.setAttribute("listProject", liste);
-            // request.setAttribute("listGender", listGender);
-            // request.setAttribute("listRole", listRole);
+            request.setAttribute("listStatus", listStatus);
+            request.setAttribute("listGender", listGender);
+            request.setAttribute("listProjectCategory", listProjectCategory);
+            request.setAttribute("listCollaborator", listeCollaborator);
             // request.setAttribute("number", number);
             request.setAttribute("page", "project");
             disp.forward(request, response);
@@ -87,27 +99,24 @@ public class ProjectController extends HttpServlet{
         try {
             String name = request.getParameter("name");
             String category = request.getParameter("category");
-            String password = request.getParameter("password");
-            Timestamp startDate = request.getParameter("startDate") != null && !request.getParameter("startDate").trim().equals("")
-                ? Timestamp.valueOf(request.getParameter("startDate"))
+            Date startDate = request.getParameter("startDate") != null && !request.getParameter("startDate").trim().equals("")
+                ? Date.valueOf(request.getParameter("startDate"))
                 : null;
-            Timestamp deadline = request.getParameter("deadline") != null && !request.getParameter("deadline").trim().equals("")
-                ? Timestamp.valueOf(request.getParameter("deadline"))
+            Date deadline = request.getParameter("deadline") != null && !request.getParameter("deadline").trim().equals("")
+                ? Date.valueOf(request.getParameter("deadline"))
                 : null;
             String responsable = request.getParameter("responsable");
             String status = request.getParameter("status");
             String description = request.getParameter("description");
             Project p = new Project(name, description, startDate, deadline, responsable, category, status);
-            
             if (mode.equals("i")) {
                 p.insert();
-                response.sendRedirect("project");
             } else if (mode.equals("u")) {
                 String id = request.getParameter("id");
                 Project old = Project.getById(id);
                 old.update(p);
-                response.sendRedirect("project");
             }
+            response.sendRedirect("project");
         } catch (Exception e) {
             out.println(e.getMessage());
         }

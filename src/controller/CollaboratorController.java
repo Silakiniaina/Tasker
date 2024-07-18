@@ -58,12 +58,10 @@ public class CollaboratorController extends HttpServlet {
             }
             ArrayList<Gender> listGender = Gender.getAll();
             ArrayList<Role> listRole = Role.getAll();
-            HashMap<String, Integer> number = Collaborator.getNumberCollaborator();
 
             request.setAttribute("listCollaborator", liste);
             request.setAttribute("listGender", listGender);
             request.setAttribute("listRole", listRole);
-            request.setAttribute("number", number);
             request.setAttribute("page", "collaborator");
             disp.forward(request, response);
         }catch (Exception e) {

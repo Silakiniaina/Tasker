@@ -29,7 +29,7 @@
                 <hr style="color: blue;">
                 <ul class="list-onglet nav nav-pills flex-column mb-auto" style="gap:6px;">
                     <li class="nav-item">
-                        <a href="#" class="onglet nav-link <%= pageActive.equals("dashboard") ? "active" : "" %>" aria-current="page">
+                        <a href="dashboard" class="onglet nav-link <%= pageActive.equals("dashboard") ? "active" : "" %>" aria-current="page">
                             <i class="fa fa-tachometer-alt"></i>
                             Dashboard
                         </a>
