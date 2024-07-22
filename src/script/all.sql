@@ -363,35 +363,23 @@ CREATE TABLE
     );
 
 CREATE TABLE
-    Subtask (
-        id_subtask TEXT DEFAULT generate_id_subtask(),
-        name VARCHAR(250) NOT NULL,
-        start_date TIMESTAMP NOT NULL,
-        end_date TIMESTAMP NOT NULL,
-        date_insertion TIMESTAMP DEFAULT NOW (),
-        progress NUMERIC(5, 2) DEFAULT 0,
-        id_task_category TEXT,
-        id_task TEXT,
-        PRIMARY KEY (id_subtask),
-        FOREIGN KEY (id_task_category) REFERENCES TaskCategory (id_task_category) ON DELETE CASCADE,
-        FOREIGN KEY (id_task) REFERENCES Task (id_task) ON DELETE CASCADE
-    );
-
-CREATE TABLE
     Meeting (
         id_meeting TEXT DEFAULT generate_id_meeting(),
-        start_date TIMESTAMP NOT NULL,
-        end_date VARCHAR(50) NOT NULL,
-        insert_date VARCHAR(50) DEFAULT NOW (),
+        title TEXT NOT NULL,
+        start_time TIME NOT NULL,
+        end_time TIME NOT NULL,
+        insert_date TIMESTAMP DEFAULT NOW (),
         id_room TEXT,
         id_meeting_category TEXT,
         id_project TEXT,
         id_responsable TEXT,
+        id_status TEXT NOT NULL,
         PRIMARY KEY (id_meeting),
         FOREIGN KEY (id_room) REFERENCES room (id_room) ON DELETE CASCADE,
         FOREIGN KEY (id_meeting_category) REFERENCES MeetingCategory (id_meeting_category)  ON DELETE CASCADE,
         FOREIGN KEY (id_project) REFERENCES Project (id_project)  ON DELETE CASCADE,
-        FOREIGN KEY (id_responsable) REFERENCES Collaborator (id_collaborator)  ON DELETE CASCADE
+        FOREIGN KEY (id_responsable) REFERENCES Collaborator (id_collaborator)  ON DELETE CASCADE,
+        FOREIGN KEY (id_status) REFERENCES Status (id_status)  ON DELETE CASCADE
     );
 
 CREATE TABLE

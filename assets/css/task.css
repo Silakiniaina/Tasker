@@ -5,6 +5,7 @@
     border-radius: 10px;
     border: 1px solid;
     box-shadow: 1px 1px 2px black;
+    max-height: 120px;
 }
 
 .task-content{
@@ -15,25 +16,113 @@
     gap: 5px;
 }
 
+.task-content-head{
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.task-content-head .status{
+    width: 100px;
+    font-family: poppins-bold;
+    font-size: 12px;
+}
+
+.task-content .task-description{
+    font-size: 12px;
+    text-wrap: wrap;
+    word-wrap: break-word;
+    max-height: 50px;
+    overflow: hidden;
+}
+
 .task-config{
     display:flex; 
     justify-content: space-between; 
     align-items: center;  
+    height: 100%;
+    padding: 10px;
 }
 
+.task-config-info{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.task-config-info .assignment{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.task-config .task-config-action {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.task-config .task-config-action i{
+    padding: 12px;
+    font-size: 28px;
+    font-style: bolder;
+}
+
+.timer{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+.timer b{
+    width: 100%;
+    text-align: start;
+}
 .task-chrono{
     align-items: center; 
-    height: 30%; 
-    width: 130px; 
-    padding: 4px 8px; 
-    border-radius: 15px; 
+    font-size: 14px;
+    height: 50%; 
+    width: 200px; 
     gap: 5px; 
-    background-color: rgb(195, 233, 195); 
-    color: rgb(38, 141, 38); 
-    text-align: center;
+    text-align: start;  
+}
+
+.task-chrono.start-date{
+    color: aqua;
+}
+.task-chrono.end-date{
+    color: red;
+}
+
+.task-chrono i{
+    font-size: 18px;
+    margin-right: 5px;
 }
 
 .task-assignment{
     gap: 5px; 
     padding: 5px 2px;
+}
+
+.task-config-info .category{
+    font-family: poppins-thin;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20%;
+    text-align: center;
+}
+
+.task-config-info .category b{
+    font-family: poppins-bold;
+}
+
+.dropdown-toggle::after{
+    display: none;
 }

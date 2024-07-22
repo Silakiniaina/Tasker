@@ -97,7 +97,8 @@ CREATE TABLE
         PRIMARY KEY (id_project),
         FOREIGN KEY (id_responsable) REFERENCES Collaborator (id_collaborator)  ON DELETE CASCADE,
         FOREIGN KEY (id_status) REFERENCES status(id_status)  ON DELETE CASCADE,
-        FOREIGN KEY (id_project_category) REFERENCES ProjectCategory (id_project_category)  ON DELETE CASCADE
+        FOREIGN KEY (id_project_category) REFERENCES ProjectCategory (id_project_category)  ON DELETE CASCADE,
+        CHECK (start_date <= end_date)
     );
 
 CREATE TABLE
@@ -123,7 +124,7 @@ CREATE TABLE
 CREATE TABLE
     Meeting (
         id_meeting TEXT DEFAULT generate_id_meeting(),
-        title TEXT NOT NULL,
+        date_meeting DATE NOT NULL,
         start_time TIME NOT NULL,
         end_time TIME NOT NULL,
         insert_date TIMESTAMP DEFAULT NOW (),
@@ -131,11 +132,14 @@ CREATE TABLE
         id_meeting_category TEXT,
         id_project TEXT,
         id_responsable TEXT,
+        id_status TEXT NOT NULL,
         PRIMARY KEY (id_meeting),
         FOREIGN KEY (id_room) REFERENCES room (id_room) ON DELETE CASCADE,
         FOREIGN KEY (id_meeting_category) REFERENCES MeetingCategory (id_meeting_category)  ON DELETE CASCADE,
         FOREIGN KEY (id_project) REFERENCES Project (id_project)  ON DELETE CASCADE,
-        FOREIGN KEY (id_responsable) REFERENCES Collaborator (id_collaborator)  ON DELETE CASCADE
+        FOREIGN KEY (id_responsable) REFERENCES Collaborator (id_collaborator)  ON DELETE CASCADE,
+        FOREIGN KEY (id_status) REFERENCES Status (id_status)  ON DELETE CASCADE,
+        CHECK(start_time < end_time)
     );
 
 CREATE TABLE

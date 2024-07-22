@@ -10,6 +10,7 @@
     <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../assets/css/sidebar.css" rel="stylesheet">
     <link href="../../assets/css/task.css" rel="stylesheet">
+    <link href="../../assets/icons/fontawesome/css/all.min.css" rel="stylesheet">
 </head>
 
 <body class="row">
@@ -281,185 +282,72 @@
                         <div>
                             <span class="d-flex row task-card" style="background-color: #FFFFFF;">
                                 <div class="task-content col-md-7 d-flex">
-                                    <div class="d-flex">
+                                    <div class="col-md-12 task-content-head d-flex">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-lightbulb" viewBox="0 0 16 16">
                                             <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a2 2 0 0 0-.453-.618A5.98 5.98 0 0 1 2 6m6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1"/>
                                         </svg>
+                                        <div class="task">
+                                            <b>#</b>TAS1
+                                        </div>
                                         <b>Mettre la durée des tâches</b>
+                                        <span class="badge rounded-pill bg-success status">Success</span>
+                                        <div class="task-assignment d-flex">
+                                            <div>
+                                                <img src="../../assets/images/female.png" alt="Abigail" style="border-radius: 50%; width: 30px; height: 30px;">
+                                            </div>
+                                            <b>Silakiniaina</b>
+                                        </div>
                                     </div>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus laudantium eius accusantium totam corrupti est tempora voluptas quia sed aliquid ducimus quos ab, quisquam quas quasi rerum. Distinctio, temporibus dolore?</p>
+                                    <p class="task-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus laudantium eius accusantium totam 
+
+                                    </p>
                                 </div>
                                 <div class="task-config col-md-5">
-                                    <div class="task-chrono d-flex">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-stopwatch" viewBox="0 0 16 16">
-                                            <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5z"/>
-                                            <path d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64l.012-.013.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5M8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3"/>
-                                        </svg>
-                                        <b  style="font-size: 14px;">00:45:00</b>
-                                    </div>
-                                    <div class="task-assignment d-flex">
-                                        <div>
-                                            <img src="../../assets/images/female.png" alt="Abigail" style="border-radius: 50%; width: 30px; height: 30px;">
+                                    <div class="col-md-11 task-config-info">
+                                        <div class="col-md-12 d-flex category">
+                                            <div class="project">
+                                                <b>Project : </b>
+                                                Tasker
+                                            </div>
+                                            <div class="task-category">
+                                                <b>Category : </b>
+                                                Front end
+                                            </div>
                                         </div>
-                                        <b>Silakiniaina</b>
-                                    </div>
-                                    <div class="d-flex" style="gap: 10px;">
-                                        <a href="#" >
-                                            <button type="button" class="edit-btn btn btn-outline-info">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
-                                                </svg>
-                                            </button>
-                                        </a>
-                                        <a href="#" >
-                                            <button type="button" class="delete-btn btn btn-outline-danger">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                                                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-                                                </svg>
-                                            </button>
-                                        </a>
-                                    </div>
-                                </div>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div>
-                            <span class="d-flex row task-card" style="background-color: #FFFFFF;">
-                                <div class="task-content col-md-7 d-flex">
-                                    <div class="d-flex">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-lightbulb" viewBox="0 0 16 16">
-                                            <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a2 2 0 0 0-.453-.618A5.98 5.98 0 0 1 2 6m6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1"/>
-                                        </svg>
-                                        <b>Mettre la durée des tâches</b>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus laudantium eius accusantium totam corrupti est tempora voluptas quia sed aliquid ducimus quos ab, quisquam quas quasi rerum. Distinctio, temporibus dolore?</p>
-                                </div>
-                                <div class="task-config col-md-5">
-                                    <div class="d-flex" style="align-items: center; height: 30%; width: 130px; padding: 4px 8px; border-radius: 15px; gap: 5px; background-color: rgb(195, 233, 195); color: rgb(38, 141, 38); text-align: center;">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-stopwatch" viewBox="0 0 16 16">
-                                            <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5z"/>
-                                            <path d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64l.012-.013.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5M8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3"/>
-                                        </svg>
-                                        <b  style="font-size: 14px;">00:45:00</b>
-                                    </div>
-                                    <div class="d-flex" style="gap: 5px; padding: 5px 2px;">
-                                        <div>
-                                            <img src="../../assets/images/female.png" alt="Abigail" style="border-radius: 50%; width: 30px; height: 30px;">
+                                        <div class="col-md-12 assignment">
+                                            <div class="d-flex"> 
+                                                <div class="timer">
+                                                    <b>Start date : </b>
+                                                    <div class="task-chrono start-date">
+                                                        <i class="fa fa-hourglass-start"></i>
+                                                        2024-12-07 12:00:00
+                                                    </div>
+                                                </div>
+                                                <div class="timer">
+                                                    <b>End date : </b>
+                                                    <div class="task-chrono end-date">
+                                                        <i class="fa fa-hourglass-end"></i>
+                                                        2024-12-07 12:00:00
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <b>Silakiniaina</b>
                                     </div>
-                                    <div class="d-flex" style="gap: 10px;">
-                                        <a href="#" >
-                                            <button type="button" class="edit-btn btn btn-outline-info">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
-                                                </svg>
-                                            </button>
-                                        </a>
-                                        <a href="#" >
-                                            <button type="button" class="delete-btn btn btn-outline-danger">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                                                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-                                                </svg>
-                                            </button>
-                                        </a>
-                                    </div>
-                                </div>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div>
-                            <span class="d-flex row task-card" style="background-color: #FFFFFF;">
-                                <div class="task-content col-md-7 d-flex">
-                                    <div class="d-flex">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-lightbulb" viewBox="0 0 16 16">
-                                            <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a2 2 0 0 0-.453-.618A5.98 5.98 0 0 1 2 6m6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1"/>
-                                        </svg>
-                                        <b>Mettre la durée des tâches</b>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus laudantium eius accusantium totam corrupti est tempora voluptas quia sed aliquid ducimus quos ab, quisquam quas quasi rerum. Distinctio, temporibus dolore?</p>
-                                </div>
-                                <div class="task-config col-md-5">
-                                    <div class="d-flex" style="align-items: center; height: 30%; width: 130px; padding: 4px 8px; border-radius: 15px; gap: 5px; background-color: rgb(195, 233, 195); color: rgb(38, 141, 38); text-align: center;">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-stopwatch" viewBox="0 0 16 16">
-                                            <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5z"/>
-                                            <path d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64l.012-.013.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5M8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3"/>
-                                        </svg>
-                                        <b  style="font-size: 14px;">00:45:00</b>
-                                    </div>
-                                    <div class="d-flex" style="gap: 5px; padding: 5px 2px;">
-                                        <div>
-                                            <img src="../../assets/images/female.png" alt="Abigail" style="border-radius: 50%; width: 30px; height: 30px;">
+                                    <div class="col-md-1 task-config-action">
+                                        <div class="dropdown"> 
+                                            <i class="fa fa-ellipsis-v dropdown-toggle"
+                                            id="dropendMenuButton" data-bs-toggle="dropdown" aria-expanded="true">
+                                            </i>
+                                            <ul class="dropdown-menu" aria-labelledby="dropendMenuButton"
+                                                style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(153px, -158px);">
+                                                <li>
+                                                    <a class="dropdown-item" href="#">Edit</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="#">Delete</a>
+                                                </li>
+                                            </ul>
                                         </div>
-                                        <b>Silakiniaina</b>
-                                    </div>
-                                    <div class="d-flex" style="gap: 10px;">
-                                        <a href="#" >
-                                            <button type="button" class="edit-btn btn btn-outline-info">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
-                                                </svg>
-                                            </button>
-                                        </a>
-                                        <a href="#" >
-                                            <button type="button" class="delete-btn btn btn-outline-danger">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                                                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-                                                </svg>
-                                            </button>
-                                        </a>
-                                    </div>
-                                </div>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div>
-                            <span class="d-flex row task-card" style="background-color: #FFFFFF;">
-                                <div class="task-content col-md-7 d-flex">
-                                    <div class="d-flex">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-lightbulb" viewBox="0 0 16 16">
-                                            <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a2 2 0 0 0-.453-.618A5.98 5.98 0 0 1 2 6m6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1"/>
-                                        </svg>
-                                        <b>Mettre la durée des tâches</b>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus laudantium eius accusantium totam corrupti est tempora voluptas quia sed aliquid ducimus quos ab, quisquam quas quasi rerum. Distinctio, temporibus dolore?</p>
-                                </div>
-                                <div class="task-config col-md-5">
-                                    <div class="d-flex" style="align-items: center; height: 30%; width: 130px; padding: 4px 8px; border-radius: 15px; gap: 5px; background-color: rgb(195, 233, 195); color: rgb(38, 141, 38); text-align: center;">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-stopwatch" viewBox="0 0 16 16">
-                                            <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5z"/>
-                                            <path d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64l.012-.013.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5M8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3"/>
-                                        </svg>
-                                        <b  style="font-size: 14px;">00:45:00</b>
-                                    </div>
-                                    <div class="d-flex" style="gap: 5px; padding: 5px 2px;">
-                                        <div>
-                                            <img src="../../assets/images/female.png" alt="Abigail" style="border-radius: 50%; width: 30px; height: 30px;">
-                                        </div>
-                                        <b>Silakiniaina</b>
-                                    </div>
-                                    <div class="d-flex" style="gap: 10px;">
-                                        <a href="#" >
-                                            <button type="button" class="edit-btn btn btn-outline-info">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
-                                                </svg>
-                                            </button>
-                                        </a>
-                                        <a href="#" >
-                                            <button type="button" class="delete-btn btn btn-outline-danger">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                                                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-                                                </svg>
-                                            </button>
-                                        </a>
                                     </div>
                                 </div>
                             </span>

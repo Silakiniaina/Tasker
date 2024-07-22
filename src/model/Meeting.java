@@ -97,7 +97,7 @@ public class Meeting {
         try {
             c = Database.getConnection();
             c.setAutoCommit(false);
-            prstm = c.prepareStatement("INSERT INTO meeeting(name,start_time,end_time,id_meeting_category,id_responsable,id_project,id_status) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            prstm = c.prepareStatement("INSERT INTO meeting(title,start_time,end_time,id_meeting_category,id_responsable,id_project,id_status) VALUES (?, ?, ?, ?, ?, ?, ?)");
             prstm.setString(1,this.getTitle());
             prstm.setTime(2, this.getStartTime());
             prstm.setTime(3, this.getEndTime());
@@ -231,7 +231,7 @@ public class Meeting {
             Meeting m = new Meeting("Focus Group",Time.valueOf("10:00:00"),Time.valueOf("12:00:00"), "MEC1", "COL1", "PRO1", "STA1");
             m.insert();
         } catch (Exception e) {
-            // TODO: handle exception
+            e.printStackTrace();
         }
     }
 }

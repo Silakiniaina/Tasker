@@ -11,3 +11,10 @@
     font-size: 1.2rem;
     font-weight: bold;
 }
+
+.responsable_img{
+    width: 20px;
+    height: 20px;
+    border: 1px solid;
+    border-radius: 50px;
+}
