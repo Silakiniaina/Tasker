@@ -16,6 +16,19 @@
     gap: 5px;
 }
 
+.task-content .task-status.finished{
+    color: rgb(85, 182, 85);
+}
+.task-content .task-status.blocked{
+    color: rgb(222, 36, 22);
+}
+.task-content .task-status.sheduled{
+    color: rgb(13, 153, 218);
+}
+.task-content .task-status.progressing{
+    color: rgb(241, 129, 24);
+}
+
 .task-content-head{
     align-items: center;
     justify-content: flex-start;

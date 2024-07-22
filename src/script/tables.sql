@@ -106,10 +106,9 @@ CREATE TABLE
         id_task TEXT DEFAULT generate_id_task(),
         name TEXT NOT NULL, 
         description TEXT NOT NULL,
-        start_date DATE NOT NULL,
-        end_date DATE NOT NULL,
+        start_date TIMESTAMP NOT NULL,
+        end_date TIMESTAMP NOT NULL,
         insert_date TIMESTAMP DEFAULT NOW (),
-        finished_date TIMESTAMP,
         id_task_category TEXT NOT NULL,
         id_collaborator TEXT,
         id_project TEXT NOT NULL,
@@ -118,7 +117,8 @@ CREATE TABLE
         FOREIGN KEY (id_task_category) REFERENCES TaskCategory (id_task_category) ON DELETE CASCADE,
         FOREIGN KEY (id_collaborator) REFERENCES Collaborator (id_collaborator) ON DELETE CASCADE,
         FOREIGN KEY (id_project) REFERENCES Project (id_project) ON DELETE CASCADE,
-        FOREIGN KEY (id_status) REFERENCES Status (id_status) ON DELETE CASCADE
+        FOREIGN KEY (id_status) REFERENCES Status (id_status) ON DELETE CASCADE,
+        CHECK(start_date < end_date)
     );
 
 CREATE TABLE
