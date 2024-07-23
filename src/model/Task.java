@@ -4,13 +4,16 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
 
 import shared.Database;
+import shared.Utils;
 
 public class Task {
     private String idTask;
@@ -190,6 +193,14 @@ public class Task {
         return null;
     }
 
+    /* -------------------------------------------------------------------------- */
+    /*                            Duration of the task                            */
+    /* -------------------------------------------------------------------------- */
+    public int getDurationHours(){
+        long time = this.getEndDate().toInstant().toEpochMilli() - this.getStartDate().toInstant().toEpochMilli();
+        return Math.round(time/3600000);
+    }
+
     // Getters et setters
     public String getId() {
         return idTask;
@@ -266,15 +277,11 @@ public class Task {
 
     public static void main(String[] args) {
         try {
-            // ArrayList<Task> ls = Task.getAll();
-            // System.out.println(new Gson().toJson(ls));
-            // // Task t = new Task("creation", "Creation formulaire login1", Date.valueOf("2024-07-19"), Date.valueOf("2024-07-29"), "TAC1","COL1", "PRO1");
-            // // t.insert();
-            // Task t1 =  Task.getById("TAS2");
-            // Task t2 = Task.getById("TAS3");
-            // t1.update(t2);
             Timestamp t = Timestamp.valueOf(LocalDateTime.now());
-            System.out.println(t.toString());
+            Timestamp t1 = Timestamp.valueOf(LocalDateTime.now().plusHours(5));
+            System.out.println("t : "+t.toString()+" - t1 : "+t1.toString());
+            long time = t1.toInstant().toEpochMilli() - t.toInstant().toEpochMilli();
+            System.out.println(Math.round(time/3600000));
         } catch (Exception e) {
             e.printStackTrace();
         }

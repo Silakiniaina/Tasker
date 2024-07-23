@@ -54,7 +54,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="col-md-12">
                             <div class="input-container col-md-6">
                                 <label for="validationDefault02" class="form-label">Start Date</label>
                                 <input type="date" name="startDate" class="form-control" id="validationDefault02" value="<%= updated != null ? updated.getStartDate().toString() : LocalDateTime.now() %>" required>

@@ -76,11 +76,11 @@
                 <div class="row">
                     <div class="input-container col-md-6">
                         <label for="validationDefault02" class="form-label">Date start</label>
-                        <input type="datetime-local" name="startDate" value="<%= updated != null ? Utils.formatDate(updated.getStartDate()) : Utils.formatDate(Timestamp.valueOf(LocalDateTime.now())) %>"  class="form-control" id="validationDefault02" required>
+                        <input type="datetime-local" name="startDate" value="<%= updated != null ? Utils.formatDate(updated.getStartDate(),false) : Utils.formatDate(Timestamp.valueOf(LocalDateTime.now()), false) %>"  class="form-control" id="validationDefault02" required>
                     </div>
                     <div class="input-container col-md-6">
-                        <label for="validationDefault02" class="form-label">Deadline</label>
-                        <input type="datetime-local" name="deadline" value="<%= updated != null ? Utils.formatDate(updated.getStartDate()) : Utils.formatDate(Timestamp.valueOf(LocalDateTime.now())) %>" class="form-control" id="validationDefault02" required>
+                        <label for="validationDefault02" class="form-label">Duration in h</label>
+                        <input type="number" name="duration" min="1" value="<%= updated != null ? updated.getDurationHours() : "1" %>" class="form-control" id="validationDefault02" required>
                     </div>
                 </div>
                 <div class="input-container col-md-12">
@@ -152,67 +152,117 @@
             <div>
                 <span class="d-flex row task-card" style="background-color: #FFFFFF;">
                     <div class="task-content col-md-7 d-flex">
-                        <div class="d-flex">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-lightbulb" viewBox="0 0 16 16">
-                                <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a2 2 0 0 0-.453-.618A5.98 5.98 0 0 1 2 6m6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1"/>
-                            </svg>
+                        <div class="col-md-12 task-content-head d-flex">
+                            <% 
+                                String status = "" ;
+                                for(Status stat : listStatus){
+                                    if(t.getIdStatus().equals(stat.getId())){
+                                        status = stat.getLabel();
+                                    }
+                                }
+                            %>
+                            <div class="<%= status.toLowerCase() %> task-status">
+                                <i class="fa fa-lightbulb" style="font-size: 20px;"></i>
+                            </div>
+                            <div class="task">
+                                <b>#</b><%= t.getId() %>
+                            </div>
+                            <% 
+                                String taskCategoryLabel = "";
+                                for (TaskCategory tc : listTaskCategory) { 
+                                    if (t.getIdTaskCategory().equals(tc.getId())) {
+                                        taskCategoryLabel = tc.getLabel();
+                                    }
+                                }
+                            %>
+                            <div class="task-category"><%= taskCategoryLabel %></div>
                             <b><%= t.getName() %></b>
-                        </div>
-                        <p><%= t.getDescription() %></p>
-                    </div>
-                    <div class="task-config col-md-5">
-                        <div class="task-chrono d-flex">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-stopwatch" viewBox="0 0 16 16">
-                                <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5z"/>
-                                <path d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64l.012-.013.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5M8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3"/>
-                            </svg>
-                            <b  style="font-size: 14px;"><%= t.getEndDate().toString() %></b>
-                        </div>
-                        <div class="task-assignment d-flex">
-                        <% 
-                            if(t.getIdCollaborator() != null){
-                                String name = "";
-                                String gender = "";
-                                for(Collaborator col : listCollaborator){ 
-                                    if(col.getId().equals(t.getIdCollaborator())){
-                                        name = col.getName();
-                                        for(Gender g : listGender){
-                                            if(g.getId().equals(col.getIdGender())){
-                                                gender = g.getLabel();
+                            <div class="task-assignment d-flex">
+                                <% 
+                                    if(t.getIdCollaborator() != null){
+                                        String name = "";
+                                        String gender = "";
+                                        for(Collaborator col : listCollaborator){ 
+                                            if(col.getId().equals(t.getIdCollaborator())){
+                                                name = col.getName();
+                                                for(Gender g : listGender){
+                                                    if(g.getId().equals(col.getIdGender())){
+                                                        gender = g.getLabel();
+                                                        break;
+                                                    }
+                                                }
                                                 break;
                                             }
                                         }
-                                        break;
+                                %>
+                                    <div>
+                                        <img src="assets/images/<%= gender.toLowerCase() %>.png" alt="Abigail" style="border-radius: 50%; width: 30px; height: 30px;">
+                                    </div>
+                                    <b><%= name %></b>
+                                <% } else{ %> 
+                                    <b>Not assigned</b> 
+                                <% } %>
+                            </div>
+                        </div>
+                        <p class="task-description">
+                            <%= t.getDescription() %>
+                        </p>
+                    </div>
+                    <div class="task-config col-md-5">
+                        <div class="col-md-11 task-config-info">
+                            <div class="col-md-12 d-flex category">
+                            <% 
+                                String projectLabel = "";
+                                for(Project p : listProject){ 
+                                    if(t.getIdProject().equals(p.getId())){
+                                        projectLabel = p.getName();
                                     }
                                 }
-                        %>
-                                <div>
-                                    <img src="assets/images/<%= gender.toLowerCase() %>.png" alt="Abigail" style="border-radius: 50%; width: 30px; height: 30px;">
+                            %>
+                                <div class="project">
+                                    <b>Project : </b>
+                                    <%= projectLabel %>
                                 </div>
-                                <b><%= name %></b>
-                        <% } else{ %> 
-                                <b>Not assigned</b> 
-                        <% } %>
+                            </div>
+                            <div class="col-md-12 assignment">
+                                <div class="d-flex">
+                                    <div class="timer">
+                                        <b>Start date : </b>
+                                        <div class="task-chrono start-date">
+                                            <i class="fa fa-hourglass-start"></i>
+                                            <%= Utils.formatDate(t.getStartDate(),false) %>
+                                        </div>
+                                    </div>
+                                    <div class="timer">
+                                        <b>End date : </b>
+                                        <div class="task-chrono end-date">
+                                            <i class="fa fa-hourglass-end"></i>
+                                            <%= Utils.formatDate(t.getEndDate(),false) %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="d-flex" style="gap: 10px;">
-                            <% if(user.equals("1")){ %>
-                                <a href="task?mode=u&id=<%= t.getId() %>">
-                                    <button type="button" class="edit-btn btn btn-outline-info">
-                                        <i class="far fa-edit"></i>
-                                    </button>
-                                </a>
-                                <a href="task?mode=d&id=<%= t.getId() %>">
-                                    <button type="button" class="delete-btn btn btn-outline-danger">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-                                </a>
-                            <% } %>
+                        <div class="col-md-1 task-config-action">
+                            <div class="dropdown">
+                                <i class="fa fa-ellipsis-v dropdown-toggle" id="dropendMenuButton"
+                                    data-bs-toggle="dropdown" aria-expanded="true">
+                                </i>
+                                <ul class="dropdown-menu" aria-labelledby="dropendMenuButton"
+                                    style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(153px, -158px);">
+                                    <li>
+                                        <a class="dropdown-item" href="task?mode=u&id=<%= t.getId() %>">Edit</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="task?mode=d&id=<%= t.getId() %>">Delete</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </span>
             </div>
         </div>
     <% } %>
-    </div>
 </div>
 <%@include file="../shared/footer.jsp" %>
