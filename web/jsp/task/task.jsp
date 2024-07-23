@@ -1,5 +1,7 @@
 <%@page import="java.util.ArrayList" %>
-<%@page import="java.time.LocalDate" %>
+<%@page import="java.time.LocalDateTime" %>
+<%@page import="java.sql.Timestamp" %>
+<%@page import="shared.Utils" %>
 <%@page import="model.Gender" %>
 <%@page import="model.TaskCategory" %>
 <%@page import="model.Task" %>
@@ -74,11 +76,11 @@
                 <div class="row">
                     <div class="input-container col-md-6">
                         <label for="validationDefault02" class="form-label">Date start</label>
-                        <input type="date" name="startDate" value="<%= updated != null ? updated.getStartDate().toString() : LocalDate.now() %>"  class="form-control" id="validationDefault02" required>
+                        <input type="datetime-local" name="startDate" value="<%= updated != null ? Utils.formatDate(updated.getStartDate()) : Utils.formatDate(Timestamp.valueOf(LocalDateTime.now())) %>"  class="form-control" id="validationDefault02" required>
                     </div>
                     <div class="input-container col-md-6">
                         <label for="validationDefault02" class="form-label">Deadline</label>
-                        <input type="date" name="deadline" value="<%= updated != null ? updated.getEndDate().toString() : LocalDate.now() %>" class="form-control" id="validationDefault02" required>
+                        <input type="datetime-local" name="deadline" value="<%= updated != null ? Utils.formatDate(updated.getStartDate()) : Utils.formatDate(Timestamp.valueOf(LocalDateTime.now())) %>" class="form-control" id="validationDefault02" required>
                     </div>
                 </div>
                 <div class="input-container col-md-12">

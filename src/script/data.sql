@@ -11,7 +11,7 @@ INSERT INTO role(label) VALUES
 
 INSERT INTO status(label) VALUES 
     ('Finished'),
-    ('In progress'),
+    ('Progressing'),
     ('Sheduled'),
     ('Blocked')
 ;

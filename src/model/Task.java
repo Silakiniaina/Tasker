@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
@@ -14,15 +16,15 @@ public class Task {
     private String idTask;
     private String name;
     private String description;
-    private Date startDate;
-    private Date endDate;
+    private Timestamp startDate;
+    private Timestamp endDate;
     private String idTaskCategory;
     private String idCollaborator;
     private String idProject;
     private String idStatus;
 
     // Constructeur
-    public Task(String name, String description, Date st, Date en, String categ, String col, String pr,String status) {
+    public Task(String name, String description, Timestamp st, Timestamp en, String categ, String col, String pr,String status) {
         this.setName(name);
         this.setDescription(description);
         this.setStartDate(st);
@@ -47,8 +49,8 @@ public class Task {
             prstm = c.prepareStatement("SELECT * FROM task");
             rs = prstm.executeQuery();
             while (rs.next()) {
-                Task t = new Task(rs.getString("name"), rs.getString("description"), rs.getDate("start_date"),
-                        rs.getDate("end_date"), rs.getString("id_task_category"), rs.getString("id_collaborator"),
+                Task t = new Task(rs.getString("name"), rs.getString("description"), rs.getTimestamp("start_date"),
+                        rs.getTimestamp("end_date"), rs.getString("id_task_category"), rs.getString("id_collaborator"),
                         rs.getString("id_project"),rs.getString("id_status"));
                 t.setId(rs.getString("id_task"));
                 tasks.add(t);
@@ -79,8 +81,8 @@ public class Task {
             prstm = c.prepareStatement("INSERT INTO task(name,description,start_date,end_date,id_task_category,id_collaborator,id_project,id_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             prstm.setString(1,this.getName());
             prstm.setString(2, this.getDescription());
-            prstm.setDate(3, this.getStartDate());
-            prstm.setDate(4, this.getEndDate());
+            prstm.setTimestamp(3, this.getStartDate());
+            prstm.setTimestamp(4, this.getEndDate());
             prstm.setString(5, this.getIdTaskCategory());
             prstm.setString(6, this.getIdCollaborator());
             prstm.setString(7, this.getIdProject());
@@ -110,8 +112,8 @@ public class Task {
             prstm.setString(1, id);
             rs = prstm.executeQuery();
             if(rs.next()){
-                result = new Task(rs.getString("name"), rs.getString("description"), rs.getDate("start_date"),
-                        rs.getDate("end_date"), rs.getString("id_task_category"), rs.getString("id_collaborator"),
+                result = new Task(rs.getString("name"), rs.getString("description"), rs.getTimestamp("start_date"),
+                        rs.getTimestamp("end_date"), rs.getString("id_task_category"), rs.getString("id_collaborator"),
                         rs.getString("id_project"), rs.getString("id_status"));
                 result.setId(rs.getString("id_task"));
             }
@@ -137,8 +139,8 @@ public class Task {
                 "UPDATE task SET name = ? , description = ?, start_date = ? , end_date = ? , id_task_category = ? , id_collaborator = ?, id_project = ?, id_status  = ? WHERE id_task = ?");
                 prstm.setString(1,t.getName());
                 prstm.setString(2, t.getDescription());
-                prstm.setDate(3, t.getStartDate());
-                prstm.setDate(4, t.getEndDate());
+                prstm.setTimestamp(3, t.getStartDate());
+                prstm.setTimestamp(4, t.getEndDate());
                 prstm.setString(5, t.getIdTaskCategory());
                 prstm.setString(6, t.getIdCollaborator());
                 prstm.setString(7, t.getIdProject());
@@ -213,19 +215,19 @@ public class Task {
         this.description = description;
     }
 
-    public Date getStartDate() {
+    public Timestamp getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(Timestamp startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public Timestamp getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(Timestamp endDate) {
         this.endDate = endDate;
     }
 
@@ -271,6 +273,8 @@ public class Task {
             // Task t1 =  Task.getById("TAS2");
             // Task t2 = Task.getById("TAS3");
             // t1.update(t2);
+            Timestamp t = Timestamp.valueOf(LocalDateTime.now());
+            System.out.println(t.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }

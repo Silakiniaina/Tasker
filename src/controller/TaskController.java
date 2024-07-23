@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import jakarta.servlet.RequestDispatcher;
@@ -97,11 +98,11 @@ public class TaskController extends HttpServlet{
         try {
             String name = request.getParameter("name");
             String category = request.getParameter("category");
-            Date startDate = request.getParameter("startDate") != null && !request.getParameter("startDate").trim().equals("")
-                ? Date.valueOf(request.getParameter("startDate"))
+            Timestamp startDate = request.getParameter("startDate") != null && !request.getParameter("startDate").trim().equals("")
+                ? Timestamp.valueOf(request.getParameter("startDate"))
                 : null;
-            Date deadline = request.getParameter("deadline") != null && !request.getParameter("deadline").trim().equals("")
-                ? Date.valueOf(request.getParameter("deadline"))
+            Timestamp deadline = request.getParameter("deadline") != null && !request.getParameter("deadline").trim().equals("")
+                ? Timestamp.valueOf(request.getParameter("deadline"))
                 : null;
             String collaborator = request.getParameter("collaborator") != null && !request.getParameter("collaborator").trim().equals("")
                 ? request.getParameter("collaborator")
