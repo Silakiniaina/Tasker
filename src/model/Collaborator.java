@@ -10,8 +10,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.google.gson.Gson;
-
 import shared.Database;
 
 public class Collaborator {
