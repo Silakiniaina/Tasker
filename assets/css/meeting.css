@@ -1,15 +1,53 @@
 .meeting-item {
-    border-left: 4px solid #28a745;
+    display:flex;
+    justify-content : space-between;
+    align-items:center;
     background-color: #f8f9fa;
     padding: 10px;
     margin-bottom: 10px;
 }
+.meeting-item.finished{
+    border-left: 5px solid rgb(85, 182, 85);
+}
+.meeting-item.progressing{
+    border-left: 5px solid rgb(241, 129, 24);
+}
+.meeting-item.sheduled{
+    border-left: 5px solid rgb(13, 153, 218);
+}
+.meeting-item.blocked{
+    border-left: 5px solid rgb(222, 36, 22);
+}
+
+.meeting-category {
+    font-size: 18px;
+    font-family: 'poppins-semibold';
+}
+
 .status-badge {
     font-size: 0.8rem;
 }
+
 .timer {
-    font-size: 1.2rem;
+    font-size: 18px;
+    font-family: 'poppins-bold';
     font-weight: bold;
+}
+
+.action{
+    padding: 1px 20px;
+    font-family: 'poppins-bold';
+    font-size: 20px;
+}
+
+.room{
+    border: 1px solid;
+    font-family: 'poppins-semibold';
+    background-color: gray;
+    text-align: center;
+    padding: 0px 15px;
+    color: white;
+    border-radius: 10px;
 }
 
 .responsable_img{
@@ -17,4 +55,8 @@
     height: 20px;
     border: 1px solid;
     border-radius: 50px;
+}
+
+.dropend .dropdown-toggle::after {
+    display: none;
 }
