@@ -44,4 +44,13 @@
         <servlet-name>task</servlet-name>
         <url-pattern>/task</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>meeting</servlet-name>
+        <servlet-class>controller.MeetingController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>meeting</servlet-name>
+        <url-pattern>/meeting</url-pattern>
+    </servlet-mapping>
 </web-app>

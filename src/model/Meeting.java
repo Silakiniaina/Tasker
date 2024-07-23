@@ -171,6 +171,10 @@ public class Meeting {
                 c.close();
         }
     }
+
+    public static ArrayList<Meeting> search(){
+        return null;
+    }
     
     /* -------------------------------------------------------------------------- */
     /*                                   Getters                                  */
