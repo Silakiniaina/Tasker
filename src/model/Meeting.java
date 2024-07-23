@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.Time;
 import java.util.ArrayList;
 
+import com.google.gson.Gson;
+
 import shared.Database;
 
 public class Meeting {
@@ -228,8 +230,8 @@ public class Meeting {
 
     public static void main(String[] args) {
         try {
-            Meeting m = new Meeting("Focus Group",Time.valueOf("10:00:00"),Time.valueOf("12:00:00"), "MEC1", "COL1", "PRO1", "STA1");
-            m.insert();
+            ArrayList<Meeting> ls = Meeting.getAll();
+            System.out.println(new Gson().toJson(ls));
         } catch (Exception e) {
             e.printStackTrace();
         }

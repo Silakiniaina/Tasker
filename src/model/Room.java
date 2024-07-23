@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import com.google.gson.Gson;
+
 import shared.Database;
 
 public class Room {
@@ -67,5 +69,14 @@ public class Room {
     }
     public void setLabel(String label) {
         this.label = label;
+    }
+
+    public static void main(String[] args) {
+        try {
+            ArrayList<Room> ls = Room.getAll();
+            System.out.println(new Gson().toJson(ls));
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
     }
 }

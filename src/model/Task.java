@@ -1,19 +1,13 @@
 package model;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Time;
 import java.sql.Timestamp;
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-import com.google.gson.Gson;
-
 import shared.Database;
-import shared.Utils;
 
 public class Task {
     private String idTask;
@@ -129,7 +123,7 @@ public class Task {
         }
         return result;
     }
-    
+
     /* -------------------------------------------------------------------------- */
     /*                                Update a task                               */
     /* -------------------------------------------------------------------------- */
