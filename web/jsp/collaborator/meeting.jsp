@@ -1,7 +1,30 @@
+<%@page import="java.util.ArrayList" %>
+<%@page import="java.sql.Time" %>
+<%@page import="shared.Utils" %>
+<%@page import="model.Gender" %>
+<%@page import="model.MeetingCategory" %>
+<%@page import="model.Meeting" %>
+<%@page import="model.Room" %>
+<%@page import="model.Collaborator" %>
+<%@page import="model.Project" %>
+<%@page import="model.Status" %>
+<%@page import="model.Gender" %>
+
+<%
+    ArrayList<Collaborator> listCollaborator = (ArrayList<Collaborator>)request.getAttribute("listCollaborator");
+    ArrayList<Status> listStatus = (ArrayList<Status>)request.getAttribute("listStatus");
+    ArrayList<MeetingCategory> listMeetingCategory = (ArrayList<MeetingCategory>)request.getAttribute("listMeetingCategory");
+    ArrayList<Project> listProject = (ArrayList<Project>)request.getAttribute("listProject");
+    ArrayList<Meeting> listMeeting = (ArrayList<Meeting>)request.getAttribute("listMeeting");
+    ArrayList<Room> listRoom = (ArrayList<Room>)request.getAttribute("listRoom");
+
+    String user = (String)request.getAttribute("userType");
+    Meeting updated = (Meeting)request.getAttribute("updated");
+%>
+
 <%@include file="../shared/sidebar.jsp" %>
-<h1 class="title">Task</h1>
-<div class="row modal fade" id="insert-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
-    aria-hidden="true" style="background: transparent;backdrop-filter: blur(8px);">
+<h1 class="title">Meeting</h1>
+<div class="row modal fade" id="insert-modal" tabindex="-1" aria-labelledby="exampleModalLabel"aria-hidden="true" style="background: transparent;backdrop-filter: blur(8px);">
     <div class="col-md-2"></div>
     <div class="modal-dialog modal-content col-md-8">
         <span class="exit-btn" data-bs-target="insert-modal">
@@ -13,45 +36,49 @@
         </span>
         <h2 class="insert-title">Insertion form</h2>
         <form class="insert-collaborator">
+            <div class="input-container row">
+                <label for="validationDefaultUsername" class="form-label">Meeting category</label>
+                <div class="input-group">
+                    <select class="form-select" name="category" aria-label="Default select example" required>
+                        <% 
+                            String selectedCategory = "";
+                            for (MeetingCategory mc : listMeetingCategory) { 
+                                if (updated != null && updated.getIdCategoryMeeting().equals(mc.getId())) {
+                                    selectedCategory = "selected";
+                                }
+                        %>
+                            <option value="<%= mc.getId() %>" <%= selectedCategory %>><%= mc.getLabel() %></option>
+                        <% } %>
+                    </select>
+                </div>
+            </div>
             <div class="input-container col-md-12">
-                <label for="validationDefaultUsername" class="form-label">Project</label>
+                <label for="validationDefault02" class="form-label">Date</label>
+                <input type="date" class="form-control" id="validationDefault02" required>
+            </div>
+            <div class="row">
+                <div class="input-container col-md-6">
+                    <label for="validationDefault02" class="form-label">Start time</label>
+                    <input type="time" class="form-control" id="validationDefault02" required>
+                </div>
+                <div class="input-container col-md-6">
+                    <label for="validationDefault02" class="form-label">End time</label>
+                    <input type="time" class="form-control" id="validationDefault02" required>
+                </div>
+            </div>
+            <div class="input-container col-md-12">
+                <label for="validationDefaultUsername" class="form-label">Responsable</label>
                 <div class="input-group">
                     <select class="form-select" aria-label="Default select example" required>
+                        <option selected>Not assigned</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
                         <option value="3">Three</option>
                     </select>
                 </div>
             </div>
-            <div class="row">
-                <div class="input-container col-md-6">
-                    <label for="validationDefault01" class="form-label">Title</label>
-                    <input type="text" class="form-control" id="validationDefault01" placeholder="Name.."
-                        required>
-                </div>
-                <div class="input-container col-md-6">
-                    <label for="validationDefaultUsername" class="form-label">Task category</label>
-                    <div class="input-group">
-                        <select class="form-select" aria-label="Default select example" required>
-                            <option value="1" selected>One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-container col-md-6">
-                    <label for="validationDefault02" class="form-label">Date start</label>
-                    <input type="date" class="form-control" id="validationDefault02" required>
-                </div>
-                <div class="input-container col-md-6">
-                    <label for="validationDefault02" class="form-label">Duration in day</label>
-                    <input type="number" class="form-control" id="validationDefault02" required>
-                </div>
-            </div>
             <div class="input-container col-md-12">
-                <label for="validationDefaultUsername" class="form-label">Assignment</label>
+                <label for="validationDefaultUsername" class="form-label">Room</label>
                 <div class="input-group">
                     <select class="form-select" aria-label="Default select example" required>
                         <option selected>Not assigned</option>
@@ -72,17 +99,13 @@
                     </select>
                 </div>
             </div>
-            <div class="input-container col-12 mb-3">
-                <label for="validationDefaultUsername" class="form-label">Description</label>
-                <textarea class="form-control" name="description" aria-label="With textarea"></textarea>
-            </div>
             <div class="input-container submit-btn col-md-12">
                 <button class="btn btn-primary" type="submit">Filter</button>
             </div>
         </form>
     </div>
     <div class="col-md-2"></div>
-</div>
+    </div>
 <div class="row modal fade" id="filter-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true" style="background: transparent;backdrop-filter: blur(8px);">
     <div class="col-md-2"></div>
@@ -165,16 +188,53 @@
         </div>
     </div>
     <div class="row list-content">
+    <% for(Meeting m : listMeeting){ %>
         <div class="col-md-4" style=" padding :10px;">
             <div class="meeting-item progressing">
                 <div class="col-md-8">
-                    <h5 class="mb-1 meeting-category">Quarterly Team Review</h5>
+                    <%
+                        String category = "";
+                        for(MeetingCategory mc : listMeetingCategory){
+                            if(mc.getId().equals(m.getIdCategoryMeeting())){
+                                category = mc.getLabel();
+                                break;
+                            }
+                        }
+                    %>
+                    <h5 class="mb-1 meeting-category"><%= category %></h5>
                     <p class="mb-1">
-                        <b>#</b>Tasker
+                    <%
+                        String project = "";
+                        for(Project pr : listProject){
+                            if(pr.getId().equals(m.getIdProject())){
+                                category = pr.getName();
+                                break;
+                            }
+                        }
+                    %>
+                        <b>#</b><%= project %>
                     </p>
                     <p class="mb-1 text-muted">
-                        <img class="responsable_img" src="../../assets/images/male.png" alt="">
-                        Sanda
+                        <% 
+                            String name = "";
+                            String gender = "";
+                            for(Collaborator col : listCollaborator){ 
+                                if(col.getId().equals(m.getIdResponsable())){
+                                    name = col.getName();
+                                    for(Gender g : listGender){
+                                        if(g.getId().equals(col.getIdGender())){
+                                            gender = g.getLabel();
+                                            break;
+                                        }
+                                    }
+                                    break;
+                                }
+                            }
+                        %>
+                        <div>
+                            <img src="assets/images/<%= gender.toLowerCase() %>.png" alt="<%= name %>" style="border-radius: 50%; width: 30px; height: 30px;">
+                        </div>
+                        <b><%= name %></b>
                     </p>
                 </div>
                 <div class="text-end meeting-information col-md-4">
@@ -185,21 +245,31 @@
                         <ul class="dropdown-menu" aria-labelledby="dropendMenuButton"
                             style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(153px, -158px);">
                             <li>
-                                <a class="dropdown-item" href="#">Edit</a>
+                                <a class="dropdown-item" href="meeting?mode=u&id=<%= m.getId() %>">Edit</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">Delete</a>
+                                <a class="dropdown-item" href="meeting?mode=d&id=<%= m.getId() %>">Delete</a>
                             </li>
                         </ul>
                     </div>
                     <div class="col-md-12 timer">
-                        01:00:00
+                        <%= m.getDuration().toString() %>
                     </div>
+                    <%
+                        String room = "";
+                        for(Room r : listRoom){
+                            if(r.getId().equals(m.getIdRoom())){
+                                room = r.getLabel();
+                                break;
+                            }
+                        }
+                    %>
                     <div class="col-md-12 room">
-                        Room 2
+                        <%= room %>
                     </div>
                 </div>
             </div>
         </div>
+    <% } %>  
     </div>
 <%@include file="../shared/footer.jsp" %>

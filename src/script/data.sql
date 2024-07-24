@@ -32,3 +32,10 @@ INSERT INTO meetingCategory(label) VALUES
     ('Focus group'),
     ('Brainstorming')
 ;
+
+INSERT INTO room(label) VALUES 
+    ('Room 1'),
+    ('Room 2'),
+    ('Room 3'),
+    ('Room 4')
+;

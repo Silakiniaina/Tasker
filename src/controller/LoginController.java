@@ -17,7 +17,6 @@ public class LoginController extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         RequestDispatcher disp = null;
-        PrintWriter out = response.getWriter();
         try {
             if (email != null && password != null) {
                 Collaborator c = Collaborator.login(email, password);

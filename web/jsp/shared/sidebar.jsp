@@ -1,6 +1,10 @@
+<%@page import="model.Gender" %>
+<%@page import="model.Collaborator" %>
 <%
     String pageActive = (String)request.getAttribute("page");
     String userType = (String)request.getAttribute("userType");
+    ArrayList<Gender> listGender = (ArrayList<Gender>)request.getAttribute("listGender");
+    Collaborator active = (Collaborator)request.getSession().getAttribute("userActive");
 %>
 
 <!doctype html>
@@ -56,7 +60,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="onglet nav-link <%= pageActive.equals("meeting") ? "active" : "" %>">
+                        <a href="meeting" class="onglet nav-link <%= pageActive.equals("meeting") ? "active" : "" %>">
                             <i class="far fa-calendar"></i>
                             Meetings
                         </a>
@@ -66,9 +70,19 @@
                 <div class="dropdown">
                     <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                         id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="assets/images/male.png" alt="" width="32" height="32"
+                        <% 
+                            String gend = "";
+                            for(Gender g : listGender){
+                                if(active.getIdGender().equals(g.getId())){
+                                    gend = g.getLabel();
+                                    break;
+                                }
+                            }
+                        
+                        %>
+                        <img src="assets/images/<%= gend.toLowerCase() %>.png" alt="" width="32" height="32"
                             class="rounded-circle me-2" style="border: 1px solid black;">
-                        <strong style="color: black;">Sanda</strong>
+                        <strong style="color: black;"><%= active.getName() %></strong>
                     </a>
                     <ul class="dropdown-menu dropdown-menu text-small shadow" aria-labelledby="dropdownUser1">
                         <li>

@@ -11,7 +11,6 @@
 <%
     ArrayList<Collaborator> listCollaborator = (ArrayList<Collaborator>)request.getAttribute("listCollaborator");
     ArrayList<Status> listStatus = (ArrayList<Status>)request.getAttribute("listStatus");
-    ArrayList<Gender> listGender = (ArrayList<Gender>)request.getAttribute("listGender");
     ArrayList<ProjectCategory> listProjectCategory = (ArrayList<ProjectCategory>)request.getAttribute("listProjectCategory");
     ArrayList<Project> listProject = (ArrayList<Project>)request.getAttribute("listProject");
     String user = (String)request.getAttribute("userType");

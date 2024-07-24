@@ -7,7 +7,6 @@
 
 <%
     ArrayList<Collaborator> listCollaborator = (ArrayList<Collaborator>)request.getAttribute("listCollaborator");
-    ArrayList<Gender> listGender = (ArrayList<Gender>)request.getAttribute("listGender");
     ArrayList<Role> listRole = (ArrayList<Role>)request.getAttribute("listRole");
     Collaborator updated = (Collaborator)request.getAttribute("updated");
     String user = (String)request.getAttribute("userType");

@@ -15,6 +15,7 @@ import model.Gender;
 import model.Meeting;
 import model.MeetingCategory;
 import model.Project;
+import model.Room;
 import model.Status;
 
 public class MeetingController extends HttpServlet{
@@ -70,20 +71,25 @@ public class MeetingController extends HttpServlet{
             } else {
                 liste = Meeting.getAll();
             }
+
+            /* ------------------ Fetching all data that the view need ------------------ */
             ArrayList<Status> listStatus = Status.getAll();
             ArrayList<Gender> listGender = Gender.getAll();
             ArrayList<MeetingCategory> listMeetingCategory = MeetingCategory.getAll();
             ArrayList<Collaborator> listeCollaborator = Collaborator.getAll();
             ArrayList<Project> listProject = Project.getAll();
+            ArrayList<Room> listRoom = Room.getAll();
 
+            /* ------------------------ sending data to the view ------------------------ */
             request.setAttribute("listMeeting", liste);
             request.setAttribute("listProject", listProject);
             request.setAttribute("listStatus", listStatus);
             request.setAttribute("listGender", listGender);
             request.setAttribute("listMeetingCategory", listMeetingCategory);
             request.setAttribute("listCollaborator", listeCollaborator);
-
+            request.setAttribute("listRoom", listRoom);
             request.setAttribute("page", "meeting");
+
             disp.forward(request, response);
         } catch (Exception e) {
             out.println(e.getMessage());

@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import jakarta.servlet.RequestDispatcher;
@@ -9,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Collaborator;
+import model.Gender;
 import model.Project;
 
 public class DashboardController extends HttpServlet{
@@ -20,9 +22,11 @@ public class DashboardController extends HttpServlet{
         try {
             HashMap<String, Integer> number = Collaborator.getNumberCollaborator();
             HashMap<String, Integer> project = Project.getNumberProject();
+            ArrayList<Gender> listGender = Gender.getAll();
 
             request.setAttribute("numberCollaborator", number);
             request.setAttribute("numberProject", project);
+            request.setAttribute("listGender", listGender);
             request.setAttribute("page", "dashboard");
 
             disp.forward(request,response);
