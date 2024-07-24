@@ -1,5 +1,6 @@
 <%@page import="java.util.ArrayList" %>
 <%@page import="java.sql.Time" %>
+<%@page import="java.time.LocalDate" %>
 <%@page import="shared.Utils" %>
 <%@page import="model.Gender" %>
 <%@page import="model.MeetingCategory" %>
@@ -34,8 +35,8 @@
                     d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
             </svg>
         </span>
-        <h2 class="insert-title">Insertion form</h2>
-        <form class="insert-collaborator">
+        <h2 class="insert-title"><%= updated != null ? "Update" : "Insertion" %> form</h2>
+        <form class="insert-collaborator" method="POST" action="meeting">
             <div class="input-container row">
                 <label for="validationDefaultUsername" class="form-label">Meeting category</label>
                 <div class="input-group">
@@ -54,53 +55,88 @@
             </div>
             <div class="input-container col-md-12">
                 <label for="validationDefault02" class="form-label">Date</label>
-                <input type="date" class="form-control" id="validationDefault02" required>
+                <input type="date" name="date" value="<%= updated != null ? updated.getDateMeeting().toString() : LocalDate.now().toString() %>" class="form-control" id="validationDefault02" required>
             </div>
             <div class="row">
                 <div class="input-container col-md-6">
                     <label for="validationDefault02" class="form-label">Start time</label>
-                    <input type="time" class="form-control" id="validationDefault02" required>
+                    <input type="time" name="start_time" value="<%= updated != null ? updated.getStartTime().toString().substring(0,5) : "" %>" class="form-control" id="validationDefault02" required>
                 </div>
                 <div class="input-container col-md-6">
                     <label for="validationDefault02" class="form-label">End time</label>
-                    <input type="time" class="form-control" id="validationDefault02" required>
+                    <input type="time" name="end_time" value="<%= updated != null ? updated.getEndTime().toString().substring(0,5) : "" %>" class="form-control" id="validationDefault02" required>
                 </div>
             </div>
-            <div class="input-container col-md-12">
-                <label for="validationDefaultUsername" class="form-label">Responsable</label>
-                <div class="input-group">
-                    <select class="form-select" aria-label="Default select example" required>
-                        <option selected>Not assigned</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
+            <div class="row">
+                <div class="input-container col-md-6">
+                    <label for="validationDefaultUsername" class="form-label">Responsable</label>
+                    <div class="input-group">
+                        <select class="form-select" name="project" aria-label="Default select example" required>
+                            <% 
+                                String proj = "";
+                                for (Project pro : listProject) { 
+                                    if (updated != null && updated.getIdProject().equals(pro.getId())) {
+                                        proj = "selected";
+                                    }
+                            %>
+                                <option value="<%= pro.getId() %>" <%= proj %>><%= pro.getName() %></option>
+                            <% } %>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-container col-md-6">
+                    <label for="validationDefaultUsername" class="form-label">Responsable</label>
+                    <div class="input-group">
+                        <select class="form-select" name="responsable" aria-label="Default select example" required>
+                            <% 
+                                String collab = "";
+                                for (Collaborator col : listCollaborator) { 
+                                    if (updated != null && updated.getIdResponsable().equals(col.getId())) {
+                                        collab = "selected";
+                                    }
+                            %>
+                                <option value="<%= col.getId() %>" <%= collab %>><%= col.getName() %></option>
+                            <% } %>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="input-container col-md-12">
                 <label for="validationDefaultUsername" class="form-label">Room</label>
                 <div class="input-group">
-                    <select class="form-select" aria-label="Default select example" required>
-                        <option selected>Not assigned</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <select class="form-select" name="room" aria-label="Default select example" required>
+                        <% 
+                            String selectedRoom = "";
+                            for (Room r : listRoom) { 
+                                if (updated != null && updated.getIdRoom().equals(r.getId())) {
+                                    selectedRoom = "selected";
+                                }
+                        %>
+                            <option value="<%= r.getId() %>" <%= selectedRoom %>><%= r.getLabel() %></option>
+                        <% } %>
                     </select>
                 </div>
             </div>
             <div class="input-container col-md-12">
                 <label for="validationDefaultUsername" class="form-label">Status</label>
                 <div class="input-group">
-                    <select class="form-select" aria-label="Default select example" required>
-                        <option selected>Blocked</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <select class="form-select" name="status" aria-label="Default select example" required>
+                        <% 
+                            String selectedStatus = "";
+                            for (Status st : listStatus) { 
+                                if (updated != null && updated.getIdStatus().equals(st.getId())) {
+                                    selectedStatus = "selected";
+                                }
+                        %>
+                            <option value="<%= st.getId() %>" <%= selectedStatus %>><%= st.getLabel() %></option>
+                        <% } %>
                     </select>
                 </div>
             </div>
+            <input type="hidden" name="mode" value="<%= updated != null ? "u" : "i" %>">
+            <input type="hidden" name="id" value="<%= updated != null ? updated.getId() : "" %>">
             <div class="input-container submit-btn col-md-12">
-                <button class="btn btn-primary" type="submit">Filter</button>
+                <button class="btn btn-primary" type="submit"><%= updated != null ? "Update" : "Insert" %></button>
             </div>
         </form>
     </div>
@@ -190,7 +226,16 @@
     <div class="row list-content">
     <% for(Meeting m : listMeeting){ %>
         <div class="col-md-4" style=" padding :10px;">
-            <div class="meeting-item progressing">
+            <%
+                String status = "";
+                for(Status st : listStatus){
+                    if(st.getId().equals(m.getIdStatus())){
+                        status = st.getLabel().toLowerCase();
+                        break;
+                    }
+                }
+            %>
+            <div class="meeting-item <%= status %>">
                 <div class="col-md-8">
                     <%
                         String category = "";
@@ -207,14 +252,31 @@
                         String project = "";
                         for(Project pr : listProject){
                             if(pr.getId().equals(m.getIdProject())){
-                                category = pr.getName();
+                                project = pr.getName();
                                 break;
                             }
                         }
                     %>
                         <b>#</b><%= project %>
                     </p>
-                    <p class="mb-1 text-muted">
+                    <div class="meeting-date col-md-12">
+                        <p class="mb-1">
+                            <b><%= m.getDateMeeting().toString() %></b>
+                        </p>
+                        <%
+                            String room = "";
+                            for(Room r : listRoom){
+                                if(r.getId().equals(m.getIdRoom())){
+                                    room = r.getLabel();
+                                    break;
+                                }
+                            }
+                        %>
+                        <div class="col-md-7 room">
+                            <%= room %>
+                        </div>
+                    </div>
+                    <div class="mb-1 text-muted meeting-responsable">
                         <% 
                             String name = "";
                             String gender = "";
@@ -235,7 +297,7 @@
                             <img src="assets/images/<%= gender.toLowerCase() %>.png" alt="<%= name %>" style="border-radius: 50%; width: 30px; height: 30px;">
                         </div>
                         <b><%= name %></b>
-                    </p>
+                    </div>
                 </div>
                 <div class="text-end meeting-information col-md-4">
                     <div class="dropend col-md-12 action">
@@ -252,20 +314,11 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-md-12 timer">
-                        <%= m.getDuration().toString() %>
+                    <div class="col-md-12 timer start">
+                        <%= m.getStartTime().toString() %>
                     </div>
-                    <%
-                        String room = "";
-                        for(Room r : listRoom){
-                            if(r.getId().equals(m.getIdRoom())){
-                                room = r.getLabel();
-                                break;
-                            }
-                        }
-                    %>
-                    <div class="col-md-12 room">
-                        <%= room %>
+                    <div class="col-md-12 timer end">
+                        <%= m.getEndTime().toString() %>
                     </div>
                 </div>
             </div>

@@ -5,6 +5,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Time;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
@@ -216,8 +219,8 @@ public class Meeting {
     /*                           Duration of the meeting                          */
     /* -------------------------------------------------------------------------- */
     public Time getDuration(){
-        long difference = this.getEndTime().toInstant().toEpochMilli() - this.getStartTime().toInstant().toEpochMilli();
-        return new Time(difference);
+        Duration d = Duration.between(this.getStartTime().toLocalTime(),this.getEndTime().toLocalTime());
+        return new Time(d.toMillis());
     }
     
     /* -------------------------------------------------------------------------- */
@@ -253,8 +256,8 @@ public class Meeting {
 
     public static void main(String[] args) {
         try {
-            ArrayList<Meeting> ls = Meeting.getAll();
-            System.out.println(new Gson().toJson(ls));
+            Meeting m = Meeting.getById("MEE1");
+            System.out.println(m.getDuration().toString());
         } catch (Exception e) {
             e.printStackTrace();
         }

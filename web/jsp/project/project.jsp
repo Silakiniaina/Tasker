@@ -1,6 +1,6 @@
 
 <%@page import="java.util.ArrayList" %>
-<%@page import="java.time.LocalDateTime" %>
+<%@page import="java.time.LocalDate" %>
 <%@page import="model.Project" %>
 <%@page import="model.ProjectCategory" %>
 <%@page import="model.Status" %>
@@ -53,14 +53,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="row" style="width:105%;">
                             <div class="input-container col-md-6">
                                 <label for="validationDefault02" class="form-label">Start Date</label>
-                                <input type="date" name="startDate" class="form-control" id="validationDefault02" value="<%= updated != null ? updated.getStartDate().toString() : LocalDateTime.now() %>" required>
+                                <input type="date" name="startDate" class="form-control" id="validationDefault02" value="<%= updated != null ? updated.getStartDate().toString() : LocalDate.now().toString() %>" required>
                             </div>
                             <div class="input-container col-md-6">
                                 <label for="validationDefault02" class="form-label">End Date</label>
-                                <input type="date" name="deadline" class="form-control" id="validationDefault02" value="<%= updated != null ? updated.getEndDate().toString() : LocalDateTime.now() %>" required>
+                                <input type="date" name="deadline" class="form-control" id="validationDefault02" value="<%= updated != null ? updated.getEndDate().toString() : LocalDate.now().toString() %>" required>
                             </div>    
                         </div>
                         <div class="input-container col-md-12">

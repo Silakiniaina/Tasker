@@ -24,14 +24,34 @@
     font-family: 'poppins-semibold';
 }
 
+.meeting-date {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.meeting-responsable{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
 .status-badge {
     font-size: 0.8rem;
 }
 
 .timer {
-    font-size: 18px;
-    font-family: 'poppins-bold';
-    font-weight: bold;
+    font-size: 16px;
+    font-family: 'poppins-regular';
+}
+
+.timer.start{
+    color: aqua;
+}
+.timer.end{
+    color: red;
 }
 
 .action{
@@ -40,14 +60,14 @@
     font-size: 20px;
 }
 
-.room{
-    border: 1px solid;
+.room {
+    /* border: 1px solid; */
     font-family: 'poppins-semibold';
-    background-color: gray;
+    /* background-color: gray; */
     text-align: center;
     padding: 0px 15px;
-    color: white;
-    border-radius: 10px;
+    color: #343030;
+    /* border-radius: 10px; */
 }
 
 .responsable_img{

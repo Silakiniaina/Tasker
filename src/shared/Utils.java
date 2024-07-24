@@ -1,5 +1,6 @@
 package shared;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.Instant;
 
@@ -39,5 +40,18 @@ public class Utils {
     public static Timestamp getDeadline(Timestamp startDate ,int duration){
         long timestamp = startDate.toInstant().toEpochMilli() + (duration*3600000);
         return Timestamp.from(Instant.ofEpochMilli(timestamp));
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /*                               Format the time                              */
+    /* -------------------------------------------------------------------------- */
+    public static Time formatTime(String t){
+        String formated = "";
+        if(t.length() < 8){
+            formated = t+":00";
+        }else{
+            formated = t;
+        }
+        return Time.valueOf(formated);
     }
 }

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import jakarta.servlet.RequestDispatcher;
@@ -19,7 +18,6 @@ import model.MeetingCategory;
 import model.Project;
 import model.Room;
 import model.Status;
-import model.Task;
 import shared.Utils;
 
 public class MeetingController extends HttpServlet{
@@ -112,7 +110,6 @@ public class MeetingController extends HttpServlet{
 
         /* ------------------------ Request paremeters values ----------------------- */
         String mode = request.getParameter("mode");
-        String name = request.getParameter("name");
         String category = request.getParameter("category");
         String date = request.getParameter("date");
         String start_time_str = request.getParameter("start_time");
@@ -121,31 +118,28 @@ public class MeetingController extends HttpServlet{
         String room = request.getParameter("room");
         String status = request.getParameter("status");
         String responsable = request.getParameter("responsable");
-
         try {
             Date dateMeeting = date != null && !date.trim().equals("")
                     ? Date.valueOf(date)
                     : null;
             Time start_time = start_time_str != null 
-                    ? Time.valueOf(start_time_str)
+                    ? Utils.formatTime(start_time_str)
                     : null;
             Time end_time = end_time_str != null
-                    ? Time.valueOf(end_time_str)
+                    ? Utils.formatTime(end_time_str)
                     : null;
 
-            Meeting p = new Meeting(dateMeeting, start_time, end_time, category, project, responsable, status, room);
+            Meeting m = new Meeting(dateMeeting, start_time, end_time, category, project, responsable, status, room);
             if (mode.equals("i")) {
-                p.insert();
+                m.insert();
             } else if (mode.equals("u")) {
                 String id = request.getParameter("id");
                 Meeting old = Meeting.getById(id);
-                old.update(p);
+                old.update(m);
             }
-            response.sendRedirect("task");
+            response.sendRedirect("meeting");
         } catch (Exception e) {
-            out.println(e.getMessage());
+            e.printStackTrace(out);
         }
     }
-
-    
 }
