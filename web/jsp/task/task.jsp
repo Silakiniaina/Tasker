@@ -101,19 +101,10 @@
                     </div>
                 </div>
                 <div class="input-container col-md-12">
-                    <label for="validationDefaultUsername" class="form-label">Status</label>
+                    <label for="validationDefaultUsername" class="form-label">Progress</label>
                     <div class="input-group">
-                        <select class="form-select" name="status" aria-label="Default select example" required>
-                            <% 
-                                for (Status status : listStatus) { 
-                                    String selected = "";
-                                        if (updated != null && updated.getIdStatus().equals(status.getId())) {
-                                            selected = "selected";
-                                }
-                            %>
-                                <option value="<%= status.getId() %>" <%= selected %>><%= status.getLabel() %></option>
-                            <% } %>
-                        </select>
+                        <label for="validationDefault02" class="form-label">Duration in h</label>
+                        <input type="number" name="progress" min="0" max="100" value="<%= updated != null ? updated.getProgress() : "0" %>" class="form-control" id="validationDefault02" required>
                     </div>
                 </div>
                 <div class="input-container col-12 mb-3">
