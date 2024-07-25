@@ -1,0 +1,37 @@
+.list-content{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.team-card{
+    min-height: 200px;
+    width: 95%;
+}
+
+.card-header{
+    display : flex;
+    justify-content : space-between;
+    align-items : center;
+}
+
+.collaborator-list{
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 10px;
+}
