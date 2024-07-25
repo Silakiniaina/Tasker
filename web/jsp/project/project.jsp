@@ -216,7 +216,7 @@
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <span class="project-title"><%= p.getName() %></span>
                                     <div>
-                                        <span class="status-badge">Sheduled</span>
+                                        <span class="<%= p.getStatus() %>status-badge"><%= p.getStatus() %></span>
                                     </div>
                                 </div>
                                 <p class="mb-3"><%= p.getDescription() %></p>
