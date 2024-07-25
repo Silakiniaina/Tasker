@@ -59,7 +59,7 @@ public class Team {
     }
 
     /* -------------------------------------------------------------------------- */
-    /* Getting all the collaborator by id project */
+    /* Getting all the collaborator by id project   */
     /* -------------------------------------------------------------------------- */
     public static ArrayList<String> getIdCollaboratorByIdProject(String idProject) throws Exception {
         ArrayList<String> result = new ArrayList<>();
@@ -85,6 +85,32 @@ public class Team {
                 c.close();
         }
         return result;
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /*                         Insert a collaborator team                         */
+    /* -------------------------------------------------------------------------- */
+    public void insert() throws Exception{
+        Connection c = null;
+        PreparedStatement prstm = null;
+        try {
+            c = Database.getConnection();
+            c.setAutoCommit(false);
+            prstm = c.prepareStatement(
+                    "INSERT INTO team(id_project,id_collaborator) VALUES (?, ?)");
+            prstm.setString(1, this.getIdProject());
+            prstm.setString(2, this.getIdCollaborator());
+            prstm.executeUpdate();
+            c.commit();
+        } catch (Exception e) {
+            c.rollback();
+            throw e;
+        } finally {
+            if (prstm != null)
+                prstm.close();
+            if (c != null)
+                c.close();
+        }
     }
 
     /* -------------------------------------------------------------------------- */
