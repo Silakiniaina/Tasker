@@ -68,7 +68,7 @@ public class Team {
         ResultSet rs = null;
         try {
             c = Database.getConnection();
-            prstm = c.prepareStatement("SELECT id_collaborator FROM team WHERE id_project = ? ");
+            prstm = c.prepareStatement("SELECT id_collaborator FROM v_all_team WHERE id_project = ? ");
             prstm.setString(1, idProject);
             rs = prstm.executeQuery();
             while (rs.next()) {
@@ -116,16 +116,28 @@ public class Team {
     /* -------------------------------------------------------------------------- */
     /*                              list of all team                              */
     /* -------------------------------------------------------------------------- */
-    public static HashMap<String,ArrayList<Team>> getAll() throws Exception{
-        HashMap<String,ArrayList<Team>> result = new HashMap<>();
+    public static HashMap<String,ArrayList<String>> getAll() throws Exception{
+        HashMap<String,ArrayList<String>> result = new HashMap<>();
         Connection c = null; 
         PreparedStatement prstm = null; 
         ResultSet rs = null; 
         try {
             c = Database.getConnection();
-            prstm = c.prepareStatement("SELECT * FROM ");
+            prstm = c.prepareStatement("SELECT id_project FROM project");
+            rs = prstm.executeQuery();
+            while (rs.next()) {
+                String id_project = rs.getString("id_project");
+                result.put(id_project, Team.getIdCollaboratorByIdProject(id_project));
+            }
         } catch (Exception e) {
-            // TODO: handle exception
+            throw e;
+        }finally {
+            if (rs != null)
+                rs.close();
+            if (prstm != null)
+                prstm.close();
+            if (c != null)
+                c.close();
         }
         return result;
     }
@@ -170,7 +182,7 @@ public class Team {
 
     public static void main(String[] args) {
         try {
-            ArrayList<String> ls = Team.getIdCollaboratorByIdProject("PRO1");
+            HashMap<String,ArrayList<String>> ls  = Team.getAll();
             System.out.println(new Gson().toJson(ls));
         } catch (Exception e) {
             e.printStackTrace();
