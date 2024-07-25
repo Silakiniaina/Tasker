@@ -112,7 +112,7 @@ public class TaskController extends HttpServlet {
         String duration = request.getParameter("duration");
         String project = request.getParameter("project");
         String description = request.getParameter("description");
-        String status = request.getParameter("status");
+        String progress_str = request.getParameter("progress");
         String collaborator = request.getParameter("collaborator");
 
         try {
@@ -125,8 +125,11 @@ public class TaskController extends HttpServlet {
             collaborator = collaborator != null && !collaborator.trim().equals("") 
                     ? collaborator 
                     : null;
+            double progress = progress_str != null
+                    ? Double.parseDouble(progress_str)
+                    : null;
 
-            Task p = new Task(name, description, startDate, deadline, category, collaborator, project, status);
+            Task p = new Task(name, description, startDate, deadline, category, collaborator, project, progress);
             if (mode.equals("i")) {
                 p.insert();
             } else if (mode.equals("u")) {

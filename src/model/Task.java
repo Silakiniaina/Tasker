@@ -7,6 +7,8 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import com.google.gson.Gson;
+
 import shared.Database;
 
 public class Task {
@@ -18,10 +20,10 @@ public class Task {
     private String idTaskCategory;
     private String idCollaborator;
     private String idProject;
-    private String idStatus;
+    private double progress;
 
     // Constructeur
-    public Task(String name, String description, Timestamp st, Timestamp en, String categ, String col, String pr,String status) {
+    public Task(String name, String description, Timestamp st, Timestamp en, String categ, String col, String pr,double progress) {
         this.setName(name);
         this.setDescription(description);
         this.setStartDate(st);
@@ -29,7 +31,7 @@ public class Task {
         this.setIdTaskCategory(categ);
         this.setIdCollaborator(col);
         this.setIdProject(pr);
-        this.setIdStatus(status);
+        this.setProgress(progress);
 
     }
 
@@ -48,7 +50,7 @@ public class Task {
             while (rs.next()) {
                 Task t = new Task(rs.getString("name"), rs.getString("description"), rs.getTimestamp("start_date"),
                         rs.getTimestamp("end_date"), rs.getString("id_task_category"), rs.getString("id_collaborator"),
-                        rs.getString("id_project"),rs.getString("id_status"));
+                        rs.getString("id_project"),rs.getDouble("progress"));
                 t.setId(rs.getString("id_task"));
                 tasks.add(t);
             }
@@ -75,7 +77,7 @@ public class Task {
         try {
             c = Database.getConnection();
             c.setAutoCommit(false);
-            prstm = c.prepareStatement("INSERT INTO task(name,description,start_date,end_date,id_task_category,id_collaborator,id_project,id_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            prstm = c.prepareStatement("INSERT INTO task(name,description,start_date,end_date,id_task_category,id_collaborator,id_project,progress) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             prstm.setString(1,this.getName());
             prstm.setString(2, this.getDescription());
             prstm.setTimestamp(3, this.getStartDate());
@@ -83,7 +85,7 @@ public class Task {
             prstm.setString(5, this.getIdTaskCategory());
             prstm.setString(6, this.getIdCollaborator());
             prstm.setString(7, this.getIdProject());
-            prstm.setString(8, this.getIdStatus());
+            prstm.setDouble(8, this.getProgress());
             prstm.executeUpdate();
             c.commit();
         } catch (Exception e) {
@@ -111,7 +113,7 @@ public class Task {
             if(rs.next()){
                 result = new Task(rs.getString("name"), rs.getString("description"), rs.getTimestamp("start_date"),
                         rs.getTimestamp("end_date"), rs.getString("id_task_category"), rs.getString("id_collaborator"),
-                        rs.getString("id_project"), rs.getString("id_status"));
+                        rs.getString("id_project"), rs.getDouble("progress"));
                 result.setId(rs.getString("id_task"));
             }
         } catch (Exception e) {
@@ -134,7 +136,7 @@ public class Task {
             c = Database.getConnection();
             c.setAutoCommit(false);
             prstm = c.prepareStatement(
-                "UPDATE task SET name = ? , description = ?, start_date = ? , end_date = ? , id_task_category = ? , id_collaborator = ?, id_project = ?, id_status  = ? WHERE id_task = ?");
+                "UPDATE task SET name = ? , description = ?, start_date = ? , end_date = ? , id_task_category = ? , id_collaborator = ?, id_project = ?, progress  = ? WHERE id_task = ?");
                 prstm.setString(1,t.getName());
                 prstm.setString(2, t.getDescription());
                 prstm.setTimestamp(3, t.getStartDate());
@@ -142,7 +144,7 @@ public class Task {
                 prstm.setString(5, t.getIdTaskCategory());
                 prstm.setString(6, t.getIdCollaborator());
                 prstm.setString(7, t.getIdProject());
-                prstm.setString(8, t.getIdStatus());
+                prstm.setDouble(8, t.getProgress());
             prstm.setString(9, this.getId());
             prstm.executeUpdate();
             c.commit();
@@ -268,26 +270,22 @@ public class Task {
     public void setIdTask(String idTask) {
         this.idTask = idTask;
     }
+
+    public void setProgress(double d){
+        this.progress = d;
+    }
+
+    public double getProgress(){
+        return this.progress;
+    }
     
 
     public static void main(String[] args) {
         try {
-            Timestamp t = Timestamp.valueOf(LocalDateTime.now());
-            Timestamp t1 = Timestamp.valueOf(LocalDateTime.now().plusHours(5));
-            System.out.println("t : "+t.toString()+" - t1 : "+t1.toString());
-            long time = t1.toInstant().toEpochMilli() - t.toInstant().toEpochMilli();
-            System.out.println(Math.round(time/3600000));
+            Task t = Task.getById("TAS8");
+            System.out.println(new Gson().toJson(t));
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-
-    public String getIdStatus() {
-        return idStatus;
-    }
-
-    public void setIdStatus(String idStatus) {
-        this.idStatus = idStatus;
     }
 }
