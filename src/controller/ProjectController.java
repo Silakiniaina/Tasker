@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Collaborator;
 import model.Gender;
+import model.Priority;
 import model.Project;
 import model.ProjectCategory;
 import model.Status;
@@ -70,10 +71,12 @@ public class ProjectController extends HttpServlet{
             }
             ArrayList<Status> listStatus = Status.getAll();
             ArrayList<Gender> listGender = Gender.getAll();
+            ArrayList<Priority> listPrioriyt = Priority.getAll();
             ArrayList<ProjectCategory> listProjectCategory = ProjectCategory.getAll();
             ArrayList<Collaborator> listeCollaborator = Collaborator.getAll();
 
             request.setAttribute("listProject", liste);
+            request.setAttribute("listPriority", listPrioriyt);
             request.setAttribute("listStatus", listStatus);
             request.setAttribute("listGender", listGender);
             request.setAttribute("listProjectCategory", listProjectCategory);
@@ -98,6 +101,7 @@ public class ProjectController extends HttpServlet{
         PrintWriter out = response.getWriter();
         String name = request.getParameter("name");
         String category = request.getParameter("category");
+        String priority = request.getParameter("priority");
         String responsable = request.getParameter("responsable");
         String description = request.getParameter("description");
         try {
@@ -107,7 +111,7 @@ public class ProjectController extends HttpServlet{
             Date deadline = request.getParameter("deadline") != null && !request.getParameter("deadline").trim().equals("")
                 ? Date.valueOf(request.getParameter("deadline"))
                 : null;
-            Project p = new Project(name, description, startDate, deadline, responsable, category);
+            Project p = new Project(name, description, startDate, deadline, responsable, category,priority);
             if (mode.equals("i")) {
                 p.insert();
             } else if (mode.equals("u")) {

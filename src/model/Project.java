@@ -20,6 +20,7 @@ public class Project {
     Date endDate;
     String idResponsable;
     String idProjectCategory;
+    String idPriority;
     double progress;
 
     /* -------------------------------------------------------------------------- */
@@ -36,13 +37,14 @@ public class Project {
         this.setProgress(progress);
     }
 
-    public Project(String name, String desc, Date start, Date end, String responsable, String category) {
+    public Project(String name, String desc, Date start, Date end, String responsable, String category, String priority) {
         this.setName(name);
         this.setDescription(desc);
         this.setStartDate(start);
         this.setEndDate(end);
         this.setIdResponsable(responsable);
         this.setIdProjectCategory(category);
+        this.setIdPriority(priority);
     }
 
     /* -------------------------------------------------------------------------- */
@@ -67,6 +69,7 @@ public class Project {
                         rs.getString("id_project_category"),
                         rs.getDouble("progress"));
                 pr.setId(rs.getString("id_project"));
+                pr.setIdPriority(rs.getString("id_priority"));
                 result.add(pr);
             }
         } catch (Exception e) {
@@ -105,6 +108,7 @@ public class Project {
                     rs.getString("id_project_category"),
                     rs.getDouble("progress"));
                 result.setId(rs.getString("id_project"));
+                result.setIdPriority(rs.getString("id_priority"));
             }
         } catch (Exception e) {
             throw e;
@@ -129,13 +133,14 @@ public class Project {
             c = Database.getConnection();
             c.setAutoCommit(false);
             prstm = c.prepareStatement(
-                    "INSERT INTO project(name,description,start_date,end_date,id_responsable,id_project_category) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                    "INSERT INTO project(name,description,start_date,end_date,id_responsable,id_project_category,id_priority) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             prstm.setString(1, this.getName());
             prstm.setString(2, this.getDescription());
             prstm.setDate(3, this.getStartDate());
             prstm.setDate(4, this.getEndDate());
             prstm.setString(5, this.getIdResponsable());
             prstm.setString(6, this.getIdProjectCategory());
+            prstm.setString(7, this.getIdPriority());
             prstm.executeUpdate();
             c.commit();
         } catch (Exception e) {
@@ -159,14 +164,15 @@ public class Project {
             c = Database.getConnection();
             c.setAutoCommit(false);
             prstm = c.prepareStatement(
-                    "UPDATE project SET name = ? , description = ?, start_date = ? , end_date = ? , id_responsable = ? , id_project_category = ? WHERE id_project = ?");
+                    "UPDATE project SET name = ? , description = ?, start_date = ? , end_date = ? , id_responsable = ? , id_project_category = ?, id_priority = ? WHERE id_project = ?");
             prstm.setString(1, p.getName());
             prstm.setString(2, p.getDescription());
             prstm.setDate(3, p.getStartDate());
             prstm.setDate(4, p.getEndDate());
             prstm.setString(5, p.getIdResponsable());
             prstm.setString(6, p.getIdProjectCategory());
-            prstm.setString(7, this.getId());
+            prstm.setString(7, p.getIdPriority());
+            prstm.setString(8, this.getId());
             prstm.executeUpdate();
             c.commit();
         } catch (Exception e) {
@@ -304,6 +310,10 @@ public class Project {
         return this.progress;
     }
 
+    public String getIdPriority(){
+        return this.idPriority;
+    }
+
     /* -------------------------------------------------------------------------- */
     /* Setters */
     /* -------------------------------------------------------------------------- */
@@ -337,6 +347,10 @@ public class Project {
 
     public void setProgress(double d){
         this.progress = d;
+    }
+
+    public void setIdPriority(String str){
+        this.idPriority = str;
     }
 
     public static void main(String[] args) {
