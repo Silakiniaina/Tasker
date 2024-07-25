@@ -73,7 +73,6 @@ public class TaskController extends HttpServlet {
             } else {
                 liste = Task.getAll();
             }
-            ArrayList<Status> listStatus = Status.getAll();
             ArrayList<Gender> listGender = Gender.getAll();
             ArrayList<TaskCategory> listTaskCategory = TaskCategory.getAll();
             ArrayList<Collaborator> listeCollaborator = Collaborator.getAll();
@@ -81,7 +80,6 @@ public class TaskController extends HttpServlet {
 
             request.setAttribute("listTask", liste);
             request.setAttribute("listProject", listProject);
-            request.setAttribute("listStatus", listStatus);
             request.setAttribute("listGender", listGender);
             request.setAttribute("listTaskCategory", listTaskCategory);
             request.setAttribute("listCollaborator", listeCollaborator);

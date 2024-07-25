@@ -7,12 +7,10 @@
 <%@page import="model.Task" %>
 <%@page import="model.Collaborator" %>
 <%@page import="model.Project" %>
-<%@page import="model.Status" %>
 <%@page import="model.Gender" %>
 
 <%
     ArrayList<Collaborator> listCollaborator = (ArrayList<Collaborator>)request.getAttribute("listCollaborator");
-    ArrayList<Status> listStatus = (ArrayList<Status>)request.getAttribute("listStatus");
     ArrayList<TaskCategory> listTaskCategory = (ArrayList<TaskCategory>)request.getAttribute("listTaskCategory");
     ArrayList<Project> listProject = (ArrayList<Project>)request.getAttribute("listProject");
     ArrayList<Task> listTask = (ArrayList<Task>)request.getAttribute("listTask");
