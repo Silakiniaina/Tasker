@@ -143,6 +143,32 @@ public class Team {
     }
 
     /* -------------------------------------------------------------------------- */
+    /*                                Delete a team                               */
+    /* -------------------------------------------------------------------------- */
+    public void delete() throws Exception{
+        Connection c = null;
+        PreparedStatement prstm = null;
+        try {
+            c = Database.getConnection();
+            c.setAutoCommit(false);
+            prstm = c.prepareStatement(
+                "DELETE FROM team WHERE id_project = ? AND  id_collaborator = ?");
+            prstm.setString(1, this.getIdProject());
+            prstm.setString(2, this.getIdCollaborator());
+            prstm.executeUpdate();
+            c.commit();
+        } catch (Exception e) {
+            c.rollback();
+            throw e;
+        } finally {
+            if (prstm != null)
+                prstm.close();
+            if (c != null)
+                c.close();
+        }
+    }
+
+    /* -------------------------------------------------------------------------- */
     /* Getters */
     /* -------------------------------------------------------------------------- */
     public String getIdProject() {
