@@ -1,65 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Management Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <style>
-        .card {
-            border: none;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        .card-header {
-            background-color: #f8f9fa;
-            border-bottom: none;
-        }
-        .task-card {
-            border: 1px solid #e9ecef;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-        .add-task {
-            border: 2px dashed #20c997;
-            color: #20c997;
-            text-align: center;
-            padding: 10px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            cursor: pointer;
-        }
-
-        .avatar img {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        border: 2px solid white;
-    }
-    </style>
+    <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../assets/css/main.css" rel="stylesheet">
+    <link href="../../../assets/css/backlog.css" rel="stylesheet">
+    <link href="../../../assets/icons/fontawesome/css/all.min.css" rel="stylesheet">
 </head>
+
 <body>
-    <div class="container mt-4">
-        <h1>Overview</h1>
-        <p class="text-muted">Edit or modify all card as you want</p>
-        
-        <div class="row mb-3">
-            <div class="col-md-8">
-                <input type="text" class="form-control bg-light" placeholder="Search Projects">
+    <div class="col-md-12 container project-information d-flex">
+        <div class="col-md-6 col-sm-12 project-description">
+            <div class="project-description-head d-flex justify-content-between align-items-center">
+                <div class="title-category col-md-10">
+                    <h2 class="col-md-6 project-title">Addole</h2>
+                    <b class="col-md-3">Web Application</b>
+                    <div class="col-md-3 priority normal">
+                        <i class="fas fa-bookmark" style="color: black;"></i>
+                        <b>High</b>
+                        <i class="fas fa-angle-double-up"></i>
+                    </div>
+                </div>
+                <span class="col-md-2 project-status badge rounded-pill sheduled">Danger</span>
             </div>
-            <div class="col-md-4">
-                <select class="form-select bg-light">
-                    <option>List View</option>
-                </select>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti est fuga facere nam qui doloremque,
+                quae, consectetur debitis impedit dolore voluptatem nulla totam blanditiis optio nisi perferendis quod
+                maxime a!</p>
+            <div class="row project-duration">
+                <div class="col-md-6 col-sm-6 start-date">
+                    <b>Start date : </b>2024-12-07
+                </div>
+                <div class="col-md-6 col-sm-6 deadline">
+                    <b>Deadline : </b>2024-12-12
+                </div>
+            </div>
+            <div class="project-responsable">
+                <b>Responsable : </b>
+                <img src="../../../assets/images/femle.png" alt="">
+                Sanda
+            </div>
+            <div class="project-team">
+                <b>Team : </b>
+                <div>
+                    <ul class="list-group ">
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div class="collab-item">
+                                <img src="../../../assets/images/femle.png" alt="">
+                                Sanda
+                            </div>
+                            <div class="collab-work">
+                                <b>#</b>Front-End
+                            </div>
+                            <b>78%</b>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div class="collab-item">
+                                <img src="../../../assets/images/femle.png" alt="">
+                                Sanda
+                            </div>
+                            <div class="collab-work">
+                                <b>#</b>Front-End
+                            </div>
+                            <b>78%</b>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div class="collab-item">
+                                <img src="../../../assets/images/femle.png" alt="">
+                                Sanda
+                            </div>
+                            <div class="collab-work">
+                                <b>#</b>Front-End
+                            </div>
+                            <b>78%</b>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-        
+        <div class="col-md-6 col-sm-12 project-stat">
+            <canvas id="project_evolution"></canvas>
+        </div>
+    </div>
+    <div class="col-md-12 container mt-4">
+        <h1>Backlog</h1>
         <div class="row">
             <div class="col-md-4">
                 <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0">Backlog SubTasks</h5>
-                        <i class="fas fa-ellipsis-h"></i>
+                    <div class="card-header">
+                        <h5>Sheduled tasks</h5>
                     </div>
                     <div class="card-body">
                         <div class="add-task">
@@ -67,91 +98,43 @@
                         </div>
                         <!-- Exemple de structure pour une tâche -->
                         <div class="task-card p-3">
-                            <h6>Food Research</h6>
-                            <p class="text-muted small">Food design is required for our new project let's research the best practices.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <span class="me-2"><i class="fas fa-paperclip"></i> 5</span>
-                                    <span><i class="far fa-comment"></i> 8</span>
-                                </div>
-                                <div class="avatar">
-                                    <img src="../../assets/images/female.png" alt="User Avatar" class="rounded-circle">
+                            <div class="task-card-head d-flex justify-content-between">
+                                <h6>Food Research</h6>
+                                <div class="task-id">
+                                    <b>#</b>TAS1
                                 </div>
                             </div>
-                        </div>
-                        <div class="task-card p-3">
-                            <h6>Food Research</h6>
-                            <p class="text-muted small">Food design is required for our new project let's research the best practices.</p>
+                            <p class="text-muted small">Food design is required for our new project let's research the
+                                best practices.</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <span class="me-2"><i class="fas fa-paperclip"></i> 5</span>
-                                    <span><i class="far fa-comment"></i> 8</span>
+                                    <span class="me-2"><i class="fas fa-bookmark"></i>
+                                        <b>High</b>
+                                    </span>
+                                    <span>Front-End</span>
                                 </div>
                                 <div class="avatar">
-                                    <img src="../../assets/images/female.png" alt="User Avatar" class="rounded-circle">
+                                    <img src="../../../assets/images/female.png" alt="User Avatar"
+                                        class="rounded-circle">Silakiniaina
                                 </div>
                             </div>
-                        </div>
-                        <div class="task-card p-3">
-                            <h6>Food Research</h6>
-                            <p class="text-muted small">Food design is required for our new project let's research the best practices.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <span class="me-2"><i class="fas fa-paperclip"></i> 5</span>
-                                    <span><i class="far fa-comment"></i> 8</span>
-                                </div>
-                                <div class="avatar">
-                                    <img src="../../assets/images/female.png" alt="User Avatar" class="rounded-circle">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="task-card p-3">
-                            <h6>Food Research</h6>
-                            <p class="text-muted small">Food design is required for our new project let's research the best practices.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <span class="me-2"><i class="fas fa-paperclip"></i> 5</span>
-                                    <span><i class="far fa-comment"></i> 8</span>
-                                </div>
-                                <div class="avatar">
-                                    <img src="../../assets/images/female.png" alt="User Avatar" class="rounded-circle">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="task-card p-3">
-                            <h6>Food Research</h6>
-                            <p class="text-muted small">Food design is required for our new project let's research the best practices.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <span class="me-2"><i class="fas fa-paperclip"></i> 5</span>
-                                    <span><i class="far fa-comment"></i> 8</span>
-                                </div>
-                                <div class="avatar">
-                                    <img src="../../assets/images/female.png" alt="User Avatar" class="rounded-circle">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="task-card p-3">
-                            <h6>Food Research</h6>
-                            <p class="text-muted small">Food design is required for our new project let's research the best practices.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <span class="me-2"><i class="fas fa-paperclip"></i> 5</span>
-                                    <span><i class="far fa-comment"></i> 8</span>
-                                </div>
-                                <div class="avatar">
-                                    <img src="../../assets/images/female.png" alt="User Avatar" class="rounded-circle">
-                                </div>
+                            <div class="progress mb-3">
+                                <div class="progress-bar bg-info text-dark w-100" role="progressbar" aria-valuenow="100"
+                                    aria-valuemin="0" aria-valuemax="100">100%</div>
                             </div>
                         </div>
                         <!-- Répétez cette structure pour chaque tâche -->
                     </div>
                 </div>
             </div>
+
             <!-- Repeat the column structure for "In progress" and "Completed" -->
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
+    <script module="../../../assets/js/chart.js"></script>
+    <script type="module" src="../../../assets/js/project-backlog.js"></script>
 </body>
+
 </html>

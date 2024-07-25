@@ -17,16 +17,16 @@
 }
 
 .task-content .task-status.finished{
-    color: rgb(85, 182, 85);
+    color: var(--green);
 }
 .task-content .task-status.blocked{
-    color: rgb(222, 36, 22);
+    color:var(--red);
 }
 .task-content .task-status.sheduled{
-    color: rgb(13, 153, 218);
+    color: var(--primary-color);
 }
 .task-content .task-status.progressing{
-    color: rgb(241, 129, 24);
+    color:var(--orange);
 }
 
 .task-content-head{
@@ -107,10 +107,10 @@
 }
 
 .task-chrono.start-date{
-    color: aqua;
+    color: var(--lightblue);
 }
 .task-chrono.end-date{
-    color: red;
+    color: var(--red);
 }
 
 .task-chrono i{

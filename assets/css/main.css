@@ -1,6 +1,6 @@
 /* ---------------------------------- fonts --------------------------------- */
 @font-face {
-    font-family: poppins-black;
+    font-family: poppins-var(--dark);
     src: url("../font/Poppins-Black.ttf");
 }
 
@@ -44,6 +44,22 @@
     src: url("../font/Poppins-Thin.ttf");
 }
 
+/* ---------------------------------- Color --------------------------------- */
+:root {
+    --white: #FFFFFF;
+    --background:#EEEEEE;
+    --dark: #000000;
+    --primary-color: #186bdc;
+    --secondary-color: #dde51d;
+    --dark: #202020;
+    --red :#ec5b3d;
+    --green:#20b447;
+    --orange : #d8a52f;
+    --lightblue : #8fd7e0;
+    --body-background : #c3eef4;
+
+}
+
 /* ----------------------------------- bod ---------------------------------- */
 
 body{
@@ -67,7 +83,7 @@ main .title {
 /* ---------------------------------- list ---------------------------------- */
 .list {
     height: auto;
-    background-color: #eeeeee;
+    background-color: var(--background);
     border-radius: 10px;
     margin-top: 20px;
     padding: 1% 10px;
@@ -93,16 +109,16 @@ main .title {
 }
 
 .list .list-head .cta-button button:hover {
-    background-color: black;
+    background-color: var(--var(--dark));
     font-weight: 600;
-    color: yellow;
+    color: var(--secondary-color);
 }
 
 /* --------------------------------- sidebar -------------------------------- */
 body {
     min-height: 100vh;
     height: 100vh;
-    background-color: #c7dae2;
+    background-color: var(--body-background);
 }
 
 #sidebar {
@@ -224,7 +240,7 @@ body {
     text-align: left;
     align-items: center;
     text-decoration: none;
-    color: #0E2040;
+    color: var(--dark);
     display: flex;
     align-items: center;
     justify-content: left;
@@ -236,23 +252,23 @@ body {
 }
 
 .onglet.active{
-    background-color: #036EFF;
+    background-color: var(--primary-color);
     font-family: poppins-bold;
-    color: #FFFFFF;
+    color: var(--white);
 }
 .onglet:hover{
-    background-color: #9bc0c97a;
+    background-color: var(--lightblue);
 }
 
 .last_onglet{
     position: absolute;
     bottom: 10px;
     width: 100%;
-    color: #0E2040;
+    color: var(--dark);
 }
 
 .sidebar{
-    background-color: #eeeeee;
+    background-color: var(--background);
     height: 100vh;
 }
 
@@ -300,7 +316,7 @@ body {
 /* --------------------------------- number --------------------------------- */
 .numbers {
     padding: .5%;
-    background-color: #eeeeee;
+    background-color: var(--background);
     border-radius: 10px;
 }
 
@@ -361,8 +377,8 @@ body {
 }
 
 .input-container.submit-btn button:hover {
-    background-color: black;
-    color: yellow;
+    background-color: var(--dark);
+    color: var(--secondary-color);
 }
 
 .input-container {
@@ -393,11 +409,11 @@ body {
     position: absolute;
     top: 5px;
     right: 10px;
-    color: black;
+    color: var(--dark);
     transition: .3s ease-in;
     cursor: pointer;
 }
 
 .modal .exit-btn:hover{
-    color: red;
+    color: var(--red);
 }

@@ -1,0 +1,96 @@
+.project-information{
+    padding: 1%;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+}
+
+.title-category{
+    display: flex;
+    align-items: center;
+    justify-content : flex-start;
+    gap: 5%;
+}
+
+.priority{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+}
+
+.priority.highest{
+    color: var(--red);
+}
+.priority.high{
+    color: var(--orange);
+}
+.priority.normal{
+    color: var(--primary-color);
+}
+.priority.low{
+    color: var(--lightblue);
+}
+.priority.lowest{
+    color: var(--green);
+}
+
+.project-title{
+    font-family: poppins-bold;
+}
+
+.project-status{
+    font-family: poppins-semibold;
+    color: var(--white);
+}
+
+.project-status.blocked{
+    background-color: var(--red);
+}
+.project-status.finished{
+    background-color: var(--green);
+}
+.project-status.progressing{
+    background-color: var(--orange);
+}
+.project-status.sheduled{
+    background-color: var(--primary-color);
+}
+
+
+.project-duration{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.card {
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: none;
+}
+
+.task-card {
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.add-task {
+    border: 2px dashed #20c997;
+    color: #20c997;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.avatar img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid white;
+}

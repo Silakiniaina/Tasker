@@ -2,21 +2,21 @@
     display:flex;
     justify-content : space-between;
     align-items:center;
-    background-color: #f8f9fa;
+    background-color: var(--white);
     padding: 10px;
     margin-bottom: 10px;
 }
 .meeting-item.finished{
-    border-left: 5px solid rgb(85, 182, 85);
+    border-left: 5px solid var(--green);
 }
 .meeting-item.progressing{
-    border-left: 5px solid rgb(241, 129, 24);
+    border-left: 5px solid var(--orange);
 }
 .meeting-item.sheduled{
-    border-left: 5px solid rgb(13, 153, 218);
+    border-left: 5px solid var(--primary-color);
 }
 .meeting-item.blocked{
-    border-left: 5px solid rgb(222, 36, 22);
+    border-left: 5px solid var(--red);
 }
 
 .meeting-category {
@@ -48,10 +48,10 @@
 }
 
 .timer.start{
-    color: aqua;
+    color: var(--lightblue);
 }
 .timer.end{
-    color: red;
+    color: var(--red);
 }
 
 .action{
@@ -61,13 +61,10 @@
 }
 
 .room {
-    /* border: 1px solid; */
     font-family: 'poppins-semibold';
-    /* background-color: gray; */
     text-align: center;
     padding: 0px 15px;
-    color: #343030;
-    /* border-radius: 10px; */
+    color: var(--dark);
 }
 
 .responsable_img{
