@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.google.gson.Gson;
 
@@ -236,6 +237,18 @@ public class Task {
         return tasks;
     }
 
+    /* -------------------------------------------------------------------------- */
+    /*                       List of all task of all status                       */
+    /* -------------------------------------------------------------------------- */
+    public static HashMap<String, ArrayList<Task>> getTasksByStatus(String id_project) throws Exception{
+        HashMap<String, ArrayList<Task>> result = new HashMap<>();
+        ArrayList<Status> listStatus = Status.getAll();
+        for(Status st : listStatus){
+            result.put(st.getLabel().toLowerCase(),Task.getListTaskByIdProject(id_project, st.getLabel().toLowerCase()));
+        }
+        return result;
+    }
+
     // Getters et setters
     public String getId() {
         return idTask;
@@ -327,7 +340,7 @@ public class Task {
 
     public static void main(String[] args) {
         try {
-            ArrayList<Task> ls = Task.getListTaskByIdProject("PRO1", "finished");
+            HashMap<String, ArrayList<Task>> ls = Task.getTasksByStatus("PRO1");
             System.out.println(new Gson().toJson(ls));
         } catch (Exception e) {
             e.printStackTrace();
