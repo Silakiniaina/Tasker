@@ -17,4 +17,58 @@
         <servlet-name>collaborator</servlet-name>
         <url-pattern>/collaborator</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>project</servlet-name>
+        <servlet-class>controller.ProjectController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>project</servlet-name>
+        <url-pattern>/project</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>dashboard</servlet-name>
+        <servlet-class>controller.DashboardController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>dashboard</servlet-name>
+        <url-pattern>/dashboard</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>task</servlet-name>
+        <servlet-class>controller.TaskController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>task</servlet-name>
+        <url-pattern>/task</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>meeting</servlet-name>
+        <servlet-class>controller.MeetingController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>meeting</servlet-name>
+        <url-pattern>/meeting</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>backlog</servlet-name>
+        <servlet-class>controller.BacklogController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>backlog</servlet-name>
+        <url-pattern>/backlog</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>projectteam</servlet-name>
+        <servlet-class>controller.TeamController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>projectteam</servlet-name>
+        <url-pattern>/team</url-pattern>
+    </servlet-mapping>
 </web-app>

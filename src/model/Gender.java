@@ -11,17 +11,18 @@ public class Gender {
     String id;
     String label;
 
-    /* Constructor */
+    /* -------------------------------------------------------------------------- */
+    /*                                 Constructor                                */
+    /* -------------------------------------------------------------------------- */
     public Gender(String id, String label){
         this.setId(id);
         this.setLabel(label);
     }
 
-    /**
-     * A function to fetch all the data in the table gender
-     * @return - An arrayList of Gender in the database
-     * @throws Exception - if the operation doesn't pass as expected
-     */
+
+    /* -------------------------------------------------------------------------- */
+    /*             Function to fetch all the data in the table gender             */
+    /* -------------------------------------------------------------------------- */
     public static ArrayList<Gender> getAll() throws Exception{
         ArrayList<Gender> result = new ArrayList<Gender>();
         Connection c = null;
@@ -48,7 +49,9 @@ public class Gender {
         return result;
     }
 
-    /* Getters */
+    /* -------------------------------------------------------------------------- */
+    /*                                   Getters                                  */
+    /* -------------------------------------------------------------------------- */
     public String getId() {
         return id;
     }
@@ -56,7 +59,9 @@ public class Gender {
         return label;
     }
 
-    /* Setters */
+    /* -------------------------------------------------------------------------- */
+    /*                                   Setters                                  */
+    /* -------------------------------------------------------------------------- */
     public void setId(String id) {
         this.id = id;
     }

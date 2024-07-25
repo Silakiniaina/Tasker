@@ -1,0 +1,419 @@
+/* ---------------------------------- fonts --------------------------------- */
+@font-face {
+    font-family: poppins-var(--dark);
+    src: url("../font/Poppins-Black.ttf");
+}
+
+@font-face {
+    font-family: poppins-bold;
+    src: url("../font/Poppins-Bold.ttf");
+}
+
+@font-face {
+    font-family: poppins-extrabold;
+    src: url("../font/Poppins-ExtraBold.ttf");
+}
+
+@font-face {
+    font-family: poppins-extralight;
+    src: url("../font/Poppins-ExtraLight.ttf");
+}
+
+@font-face {
+    font-family: poppins-light;
+    src: url("../font/Poppins-Light.ttf");
+}
+
+@font-face {
+    font-family: poppins-medium;
+    src: url("../font/Poppins-Medium.ttf");
+}
+
+@font-face {
+    font-family: poppins-regular;
+    src: url("../font/Poppins-Regular.ttf");
+}
+
+@font-face {
+    font-family: poppins-semibold;
+    src: url("../font/Poppins-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: poppins-thin;
+    src: url("../font/Poppins-Thin.ttf");
+}
+
+/* ---------------------------------- Color --------------------------------- */
+:root {
+    --white: #FFFFFF;
+    --background:#EEEEEE;
+    --dark: #000000;
+    --primary-color: #186bdc;
+    --secondary-color: #dde51d;
+    --dark: #202020;
+    --red :#ec5b3d;
+    --green:#20b447;
+    --orange : #d8a52f;
+    --lightblue : #8fd7e0;
+    --body-background : #c3eef4;
+
+}
+
+/* ----------------------------------- bod ---------------------------------- */
+
+body{
+    height: 100vh;
+    width: 100%;
+}
+
+/* ---------------------------------- main ---------------------------------- */
+main {
+    border-radius: 10px; 
+}
+
+main .title {
+    font-family: poppins-bold;
+    font-size: 32px;
+    padding: 1rem 2rem;
+    line-height: 2;
+}
+
+
+/* ---------------------------------- list ---------------------------------- */
+.list {
+    height: auto;
+    background-color: var(--background);
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 1% 10px;
+}
+
+.list .list-head-title {
+    font-family: poppins-semibold;
+    font-size: 24px;
+    padding: 1rem 3rem;
+}
+
+.list .list-head .cta-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.list .list-head .cta-button button {
+    width: 95%;
+    font-family: poppins-regular;
+    transition: .3s ease-in;
+    border: none;
+}
+
+.list .list-head .cta-button button:hover {
+    background-color: var(--var(--dark));
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+/* --------------------------------- sidebar -------------------------------- */
+body {
+    min-height: 100vh;
+    height: 100vh;
+    background-color: var(--body-background);
+}
+
+#sidebar {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100vh;
+    max-height: 100vh;
+    position: sticky;
+    top: 0;
+}
+
+.b-example-divider {
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .1);
+    border: solid rgba(0, 0, 0, .15);
+    border-width: 1px 0;
+    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+}
+
+.bi {
+    vertical-align: -.125em;
+    pointer-events: none;
+    fill: currentColor;
+}
+
+.dropdown-toggle {
+    outline: 0;
+}
+
+.nav-flush .nav-link {
+    border-radius: 0;
+}
+
+.btn-toggle {
+    display: inline-flex;
+    align-items: center;
+    padding: .25rem .5rem;
+    font-weight: 600;
+    color: rgba(0, 0, 0, .65);
+    background-color: transparent;
+    border: 0;
+}
+
+.btn-toggle:hover,
+.btn-toggle:focus {
+    color: rgba(0, 0, 0, .85);
+    background-color: #d2f4ea;
+}
+
+.btn-toggle::before {
+    width: 1.25em;
+    line-height: 0;
+    content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%280,0,0,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
+    transition: transform .35s ease;
+    transform-origin: .5em 50%;
+}
+
+.btn-toggle[aria-expanded="true"] {
+    color: rgba(0, 0, 0, .85);
+}
+
+.btn-toggle[aria-expanded="true"]::before {
+    transform: rotate(90deg);
+}
+
+.btn-toggle-nav a {
+    display: inline-flex;
+    padding: .1875rem .5rem;
+    margin-top: .125rem;
+    margin-left: 1.25rem;
+    text-decoration: none;
+}
+
+.btn-toggle-nav a:hover,
+.btn-toggle-nav a:focus {
+    background-color: #d2f4ea;
+}
+
+.scrollarea {
+    overflow-y: auto;
+}
+
+.fw-semibold {
+    font-weight: 600;
+}
+
+.lh-tight {
+    line-height: 1.25;
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+.list-onglet{
+    position: relative;
+    height: 100%;
+}
+
+.onglet {
+    transition: .3s ease-in;
+    font-family: poppins-regular;
+    font-size: 14px;
+    line-height: normal;
+    word-spacing: 2%;
+    height: 38px;
+    text-align: left;
+    align-items: center;
+    text-decoration: none;
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 10px;
+}
+
+.onglet i{
+    font-size: 20px;
+}
+
+.onglet.active{
+    background-color: var(--primary-color);
+    font-family: poppins-bold;
+    color: var(--white);
+}
+.onglet:hover{
+    background-color: var(--lightblue);
+}
+
+.last_onglet{
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    color: var(--dark);
+}
+
+.sidebar{
+    background-color: var(--background);
+    height: 100vh;
+}
+
+.sidebar .logo{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar .logo img{
+    width: 80px;
+    height: 80px;
+}
+
+@media (max-width: 767px) {
+    #sidebar {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        height: 100vh;
+        z-index: 1000;
+        transition: all 0.3s;
+    }
+
+    #sidebar.active {
+        left: 0;
+    }
+
+    .toggle-sidebar-btn {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 1001;
+    }
+
+    main {
+        width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+/* --------------------------------- number --------------------------------- */
+.numbers {
+    padding: .5%;
+    background-color: var(--background);
+    border-radius: 10px;
+}
+
+.numbers .numbers__item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 10px 3rem;
+}
+
+.numbers .numbers__item i{
+    font-size: 40px;
+}
+
+.numbers .numbers__item .number_title {
+    font-family: poppins-regular;
+    font-size: 18px;
+}
+
+.numbers .numbers__item .item-value {
+    font-family: poppins-semibold;
+    font-size: 26px;
+}
+
+/* ---------------------------------- modal --------------------------------- */
+.insert_modal {
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 80%;
+    padding: 20px;
+    gap: 10px;
+    font-family: 'poppins-regular';
+}
+
+.insert_modal label {
+    font-family: poppins-semibold;
+    font-size: 13px;
+    line-height: 0.2;
+    padding: 2px .5rem;
+}
+
+.input-container.submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-container.submit-btn button {
+    width: 100%;
+    height: 60px;
+    font-family: poppins-bold;
+    font-size: 15px;
+    transition: .3s ease-in;
+}
+
+.input-container.submit-btn button:hover {
+    background-color: var(--dark);
+    color: var(--secondary-color);
+}
+
+.input-container {
+    height: 84px;
+}
+
+.insert_modal input,
+.insert_modal select {
+    height: 50px;
+    font-size: 14px;
+}
+
+#filter-modal .filter-title {
+    text-align: center;
+    font-family: poppins-semibold;
+    padding: 2% 1%;
+    font-size: 30px;
+}
+
+#insert-modal .insert-title {
+    text-align: center;
+    font-family: 'poppins-semibold';
+    font-size: 32px;
+    padding: 2% 1%;
+}
+
+.modal .exit-btn{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    color: var(--dark);
+    transition: .3s ease-in;
+    cursor: pointer;
+}
+
+.modal .exit-btn:hover{
+    color: var(--red);
+}

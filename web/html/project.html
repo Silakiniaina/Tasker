@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="../../assets/images/logo.png" type="image/x-icon">
+    <title>Template</title>
+    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/project.css">
+    <link rel="stylesheet" href="../../assets/icons/fontawesome/css/all.min.css">
+</head>
+
+<body class="row">
+    <button class="btn btn-primary toggle-sidebar-btn d-md-none" onclick="toggleSidebar()">☰</button>
+    <div class="container row">
+        <aside class="col-md-2 d-md-block" id="sidebar">
+            <div class="sidebar d-flex flex-column flex-shrink-0 p-3 text-white" style="width: 100%;">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+                    style="width: 100%;">
+                    <div class="logo">
+                        <img src="../../assets/images/logo.png" alt="">
+                    </div>
+                </a>
+                <hr style="color: blue;">
+                <ul class="list-onglet nav nav-pills flex-column mb-auto" style="gap:6px;">
+                    <li class="nav-item">
+                        <a href="#" class="onglet nav-link active" aria-current="page">
+                            <i class="fa fa-tachometer-alt"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="onglet nav-link">
+                            <i class="fas fa-project-diagram"></i>
+                            Project
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="onglet nav-link">
+                            <i class="fa fa-tasks"></i>
+                            Tasks
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="onglet nav-link">
+                            <i class="far fa-calendar"></i>
+                            Meetings
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="onglet nav-link">
+                            <i class="fas fa-users"></i>
+                            Collaborators
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="onglet nav-link">
+                            <i class="far fa-comment-dots"></i>
+                            Comments
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="onglet nav-link">
+                            <i class="far fa-lightbulb"></i>
+                            Reports
+                        </a>
+                    </li>
+                    <li class="nav-item last_onglet">
+                        <a href="#" class="onglet nav-link">
+                            <i class="far fa-bell"></i>
+                            Notifications
+                        </a>
+                    </li>
+                </ul>
+                <hr>
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                        id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="../../assets/images/male.png" alt="" width="32" height="32"
+                            class="rounded-circle me-2" style="border: 1px solid black;">
+                        <strong style="color: black;">Sanda</strong>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu text-small shadow" aria-labelledby="dropdownUser1">
+                        <li><a class="dropdown-item" href="#">New project...</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+        <main class="col-12 col-md-10">
+            <h1 class="title">Project</h1>
+            <div class="numbers row d-flex align-item-center g-3 justify-content-flex-start">
+                <div class="numbers__item col-md-4">
+                    <i class="fas fa-database"></i>
+                    <div class="numbers__item-content">
+                        <h3 class="number_title">Total collaborators</h3>
+                        <p class="item-value">123</p>
+                    </div>
+                </div>
+                <div class="numbers__item col-md-4">
+                    <i class="fa fa-calendar-alt"></i>
+                    <div class="numbers__item-content">
+                        <h3 class="number_title">This months</h3>
+                        <p class="item-value">23</p>
+                    </div>
+                </div>
+                <div class="numbers__item col-md-4">
+                    <i class="fas fa-calendar-check"></i>
+                    <div class="numbers__item-content">
+                        <h3 class="number_title">Today</h3>
+                        <p class="item-value">1</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row modal fade" id="insert-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true" style="background: transparent;backdrop-filter: blur(8px);">
+                <div class="col-md-2"></div>
+                <div class="modal-dialog modal-content col-md-8">
+                    <span class="exit-btn" data-bs-target="insert-modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor"
+                            class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
+                        </svg>
+                    </span>
+                    <h2 class="insert-title">Insertion form</h2>
+                    <form class="insert_modal">
+                        <div class="row">
+                            <div class="input-container col-md-6">
+                                <label for="validationDefault01" class="form-label">Project Name</label>
+                                <input type="text" name="name" class="form-control" id="validationDefault01" placeholder="Name.."required>
+                            </div>
+                            <div class="input-container col-md-6">
+                                <label for="validationDefaultUsername" class="form-label">Category</label>
+                                <div class="input-group">
+                                    <select class="form-select" name="category" aria-label="Default select example" required>
+                                        <option selected>Category 1</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-container col-md-6">
+                                <label for="validationDefault02" class="form-label">Start Date</label>
+                                <input type="datetime" name="startDate" class="form-control" id="validationDefault02" required>
+                            </div>
+                            <div class="input-container col-md-6">
+                                <label for="validationDefault02" class="form-label">End Date</label>
+                                <input type="datetime" name="deadline" class="form-control" id="validationDefault02" required>
+                            </div>    
+                        </div>
+                        <div class="input-container col-md-12">
+                            <label for="validationDefaultUsername" class="form-label">Responsable</label>
+                            <div class="input-group">
+                                <select class="form-select" name="recusandae" aria-label="Default select example" required>
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-container col-md-12">
+                            <label for="validationDefaultUsername" class="form-label">Status</label>
+                            <div class="input-group">
+                                <select class="form-select" name="status" aria-label="Default select example" required>
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-container col-12">
+                            <label for="validationDefaultUsername" class="form-label">Description</label>
+                            <textarea class="form-control" name="description" aria-label="With textarea"></textarea>
+                        </div>
+                        <div class="input-container submit-btn col-md-12">
+                            <button class="btn btn-primary" type="submit">Insert</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row modal fade" id="filter-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true" style="background: transparent;backdrop-filter: blur(8px);">
+                <div class="col-md-2"></div>
+                <div class="modal-dialog modal-content col-md-8">
+                    <span class="exit-btn" data-bs-target="insert-modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor"
+                            class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
+                        </svg>
+                    </span>
+                    <h2 class="insert-title">Insertion form</h2>
+                    <form class="insert_modal">
+                        <div class="row">
+                            <div class="input-container col-md-6">
+                                <label for="validationDefault01" class="form-label">Project Name</label>
+                                <input type="text" name="name" class="form-control" id="validationDefault01" placeholder="Name.."required>
+                            </div>
+                            <div class="input-container col-md-6">
+                                <label for="validationDefaultUsername" class="form-label">Category</label>
+                                <div class="input-group">
+                                    <select class="form-select" name="category" aria-label="Default select example" required>
+                                        <option selected>Category 1</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-container col-md-6">
+                                <label for="validationDefault02" class="form-label">Start Date Debut</label>
+                                <input type="date" name="startDateDebut" class="form-control" id="validationDefault02" required>
+                            </div>
+                            <div class="input-container col-md-6">
+                                <label for="validationDefault02" class="form-label">Start Date End</label>
+                                <input type="date" name="startDateEnd" class="form-control" id="validationDefault02" required>
+                            </div>    
+                        </div>
+                        <div class="row">
+                            <div class="input-container col-md-6">
+                                <label for="validationDefault02" class="form-label">Deadline Debut</label>
+                                <input type="date" name="deadlineDebut" class="form-control" id="validationDefault02" required>
+                            </div>
+                            <div class="input-container col-md-6">
+                                <label for="validationDefault02" class="form-label">Deadline End</label>
+                                <input type="date" name="deadlineEnd" class="form-control" id="validationDefault02" required>
+                            </div>    
+                        </div>
+                        <div class="input-container col-md-12">
+                            <label for="validationDefaultUsername" class="form-label">Responsable</label>
+                            <div class="input-group">
+                                <select class="form-select" name="idResponsable" aria-label="Default select example" required>
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-container col-md-12">
+                            <label for="validationDefaultUsername" class="form-label">Status</label>
+                            <div class="input-group">
+                                <select class="form-select" name="status" aria-label="Default select example" required>
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-container submit-btn col-md-12">
+                            <button class="btn btn-primary" type="submit">Filter</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="list row">
+                <div class="list-head row">
+                    <div class="list-head-title col-md-8">
+                        List of project(4)
+                    </div>
+                    <div class="cta-button col-md-2">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#insert-modal">
+                            Add
+                        </button>
+                    </div>
+                    <div class="cta-button col-md-2">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#filter-modal">
+                            Filter
+                        </button>
+                    </div>
+                </div>
+                <div class="list-content d-flex flex-wrap">
+                    <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex align-items-center">
+                        <div class="project-card card">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="project-title">Project 2</span>
+                                <div>
+                                    <span class="status-badge status-offtrack">Success</span>
+                                </div>
+                            </div>
+                            <p class="mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque quidem aut
+                                officiis sed recusandae itaque voluptatum eaque in id cum voluptates porro consequuntur
+                                voluptatem libero ipsam iusto molestiae, earum deserunt!</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <div class="project-date mb-2"><i class="fas fa-calendar-alt me-1"></i>
+                                        12 Avril 2024</div>
+                                    <div class="avatar-group"> R :
+                                        <img src="https://via.placeholder.com/30" alt="User 1">
+                                        huhu
+                                    </div>
+                                </div>
+                                <div>
+                                    <a href="#">
+                                        <button type="button" class="edit-btn btn btn-outline-info">
+                                            <i class="far fa-edit"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="delete-btn btn btn-outline-danger">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-2 d-flex align-items-center">
+                        <div class="project-card card">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="project-title">Project 2</span>
+                                <div>
+                                    <span class="status-badge status-offtrack">Success</span>
+                                </div>
+                            </div>
+                            <p class="mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque quidem aut
+                                officiis sed recusandae itaque voluptatum eaque in id cum voluptates porro consequuntur
+                                voluptatem libero ipsam iusto molestiae, earum deserunt!</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <div class="project-date mb-2"><i class="fas fa-calendar-alt me-1"></i>
+                                        12 Avril 2024</div>
+                                    <div class="avatar-group"> R :
+                                        <img src="https://via.placeholder.com/30" alt="User 1">
+                                        huhu
+                                    </div>
+                                </div>
+                                <div>
+                                    <a href="#">
+                                        <button type="button" class="edit-btn btn btn-outline-info">
+                                            <i class="far fa-edit"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="delete-btn btn btn-outline-danger">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-2 d-flex align-items-center">
+                        <div class="project-card card">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="project-title">Project 2</span>
+                                <div>
+                                    <span class="status-badge status-offtrack">Success</span>
+                                </div>
+                            </div>
+                            <p class="mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque quidem aut
+                                officiis sed recusandae itaque voluptatum eaque in id cum voluptates porro consequuntur
+                                voluptatem libero ipsam iusto molestiae, earum deserunt!</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <div class="project-date mb-2"><i class="fas fa-calendar-alt me-1"></i>
+                                        12 Avril 2024</div>
+                                    <div class="avatar-group"> R :
+                                        <img src="https://via.placeholder.com/30" alt="User 1">
+                                        huhu
+                                    </div>
+                                </div>
+                                <div>
+                                    <a href="#">
+                                        <button type="button" class="edit-btn btn btn-outline-info">
+                                            <i class="far fa-edit"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="delete-btn btn btn-outline-danger">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-2 d-flex align-items-center">
+                        <div class="project-card card">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="project-title">Project 2</span>
+                                <div>
+                                    <span class="status-badge status-offtrack">Success</span>
+                                </div>
+                            </div>
+                            <p class="mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque quidem aut
+                                officiis sed recusandae itaque voluptatum eaque in id cum voluptates porro consequuntur
+                                voluptatem libero ipsam iusto molestiae, earum deserunt!</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <div class="project-date mb-2"><i class="fas fa-calendar-alt me-1"></i>
+                                        12 Avril 2024</div>
+                                    <div class="avatar-group"> R :
+                                        <img src="https://via.placeholder.com/30" alt="User 1">
+                                        huhu
+                                    </div>
+                                </div>
+                                <div>
+                                    <a href="#">
+                                        <button type="button" class="edit-btn btn btn-outline-info">
+                                            <i class="far fa-edit"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="delete-btn btn btn-outline-danger">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </main>
+    </div>
+    <script src="../../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/sidebars.js"></script>
+</body>
+
+</html>

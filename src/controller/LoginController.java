@@ -17,12 +17,16 @@ public class LoginController extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         RequestDispatcher disp = null;
-        PrintWriter out = response.getWriter();
         try {
             if (email != null && password != null) {
                 Collaborator c = Collaborator.login(email, password);
                 if (c != null) {
-                    out.println("Connected " + c.getName());
+                    request.getSession().setAttribute("userActive", c);
+                    if(c.isAdmin()){
+                        response.sendRedirect("dashboard");
+                    }else{
+                        response.sendRedirect("project");
+                    }
                 } else {
                     request.setAttribute("error", "The informations provided seems to be not correct, please verify");
                     disp = request.getRequestDispatcher("/WEB-INF/views/collaborator/login.jsp");
@@ -38,6 +42,10 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String mode = req.getParameter("mode");
+        if(mode != null && mode.equals("d")){
+            req.getSession().removeAttribute("userActive");
+        }
         req.getRequestDispatcher("/WEB-INF/views/collaborator/login.jsp").forward(req, resp);
     }
 }

@@ -1,3 +1,6 @@
+/* -------------------------------------------------------------------------- */
+/*         Functions for generating an ID string for each primary key         */
+/* -------------------------------------------------------------------------- */
 CREATE OR REPLACE FUNCTION generate_id_gender()
     RETURNS TEXT AS $$
     DECLARE
@@ -202,6 +205,32 @@ CREATE OR REPLACE FUNCTION generate_id_team()
         SELECT nextval('team_seq') INTO team_seqval;
         team_id := 'TEA' || team_seqval;
         RETURN team_id;
+    END;
+    $$
+    LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION generate_id_status()
+    RETURNS TEXT AS $$
+    DECLARE
+        status_seqval TEXT;
+        status_id TEXT;
+    BEGIN
+        SELECT nextval('status_seq') INTO status_seqval;
+        status_id := 'STA' || status_seqval;
+        RETURN status_id;
+    END;
+    $$
+    LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION generate_id_priority()
+    RETURNS TEXT AS $$
+    DECLARE
+        priority_seqval TEXT;
+        priority_id TEXT;
+    BEGIN
+        SELECT nextval('priority_seq') INTO priority_seqval;
+        priority_id := 'PRI' || priority_seqval;
+        RETURN priority_id;
     END;
     $$
     LANGUAGE plpgsql;

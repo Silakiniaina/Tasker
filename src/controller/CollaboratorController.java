@@ -16,10 +16,10 @@ import model.Gender;
 import model.Role;
 
 public class CollaboratorController extends HttpServlet {
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        ProtectionController.verify(request, response);
         String mode = request.getParameter("mode");
         String type = request.getParameter("type");
         PrintWriter out = response.getWriter();
@@ -58,12 +58,10 @@ public class CollaboratorController extends HttpServlet {
             }
             ArrayList<Gender> listGender = Gender.getAll();
             ArrayList<Role> listRole = Role.getAll();
-            HashMap<String, Integer> number = Collaborator.getNumberCollaborator();
 
             request.setAttribute("listCollaborator", liste);
             request.setAttribute("listGender", listGender);
             request.setAttribute("listRole", listRole);
-            request.setAttribute("number", number);
             request.setAttribute("page", "collaborator");
             disp.forward(request, response);
         }catch (Exception e) {
@@ -79,9 +77,9 @@ public class CollaboratorController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        ProtectionController.verify(request, response);
         String mode = request.getParameter("mode");
         PrintWriter out = response.getWriter();
-        RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/views/collaborator/collaborator.jsp");
         try {
             String name = request.getParameter("name");
             String email = request.getParameter("email");

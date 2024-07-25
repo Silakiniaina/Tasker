@@ -1,0 +1,79 @@
+.meeting-item {
+    display:flex;
+    justify-content : space-between;
+    align-items:center;
+    background-color: var(--white);
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.meeting-item.finished{
+    border-left: 5px solid var(--green);
+}
+.meeting-item.progressing{
+    border-left: 5px solid var(--orange);
+}
+.meeting-item.sheduled{
+    border-left: 5px solid var(--primary-color);
+}
+.meeting-item.blocked{
+    border-left: 5px solid var(--red);
+}
+
+.meeting-category {
+    font-size: 18px;
+    font-family: 'poppins-semibold';
+}
+
+.meeting-date {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.meeting-responsable{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+.status-badge {
+    font-size: 0.8rem;
+}
+
+.timer {
+    font-size: 16px;
+    font-family: 'poppins-regular';
+}
+
+.timer.start{
+    color: var(--lightblue);
+}
+.timer.end{
+    color: var(--red);
+}
+
+.action{
+    padding: 1px 20px;
+    font-family: 'poppins-bold';
+    font-size: 20px;
+}
+
+.room {
+    font-family: 'poppins-semibold';
+    text-align: center;
+    padding: 0px 15px;
+    color: var(--dark);
+}
+
+.responsable_img{
+    width: 20px;
+    height: 20px;
+    border: 1px solid;
+    border-radius: 50px;
+}
+
+.dropend .dropdown-toggle::after {
+    display: none;
+}

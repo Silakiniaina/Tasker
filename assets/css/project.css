@@ -1,0 +1,51 @@
+.project-card {
+    width: 90%;
+    border: 1px solid var(--background);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 1px 1px 3px var(--dark);
+}
+.project-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.status-badge {
+    font-family: poppins-semibold;
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: 12px;
+    color: var(--white);
+}
+
+.status-badge.finished{
+    background-color: var(--green);
+}
+.status-badge.blocked{
+    background-color:var(--red);
+}
+.status-badge.sheduled{
+    background-color: var(--primary-color);
+}
+.status-badge.progressing{
+    background-color:var(--orange);
+}
+
+.avatar-group img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: -10px;
+    border: 2px solid white;
+}
+.project-date {
+    color: var(--red);
+    font-size: 0.9rem;
+}
+
+.avatar-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}

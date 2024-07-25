@@ -1,10 +1,16 @@
 package shared;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Database {
     /**
@@ -14,9 +20,10 @@ public class Database {
      */
     public static Connection getConnection() throws Exception{
         Connection c = null;
+        ArrayList<String> conf = Database.readDatabaseConfig("/home/sanda/IT/S4/Web Dynamique/Tasker/src/shared/db.conf");
         try{
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost/tasker", "sanda", "huhu2005!!");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost/"+conf.get(0), conf.get(1), conf.get(2));
         }catch(Exception e){
             System.out.println("Erreur");
             e.printStackTrace();
@@ -45,4 +52,40 @@ public class Database {
             throw e;
         }
     }
+
+    public static ArrayList<String> readDatabaseConfig(String filePath) {
+        Map<String, String> configMap = new HashMap<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                line = line.trim();
+                if (!line.isEmpty() && !line.startsWith("#")) {
+                    String[] parts = line.split(":", 2);
+                    if (parts.length == 2) {
+                        String key = parts[0].trim().toLowerCase();
+                        String value = parts[1].trim();
+                        configMap.put(key, value);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Erreur lors de la lecture du fichier de configuration : " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        ArrayList<String> configInfo = new ArrayList<>();
+        configInfo.add(configMap.getOrDefault("dbname", ""));
+        configInfo.add(configMap.getOrDefault("user", ""));
+        configInfo.add(configMap.getOrDefault("pwd", ""));
+
+        // Vérification que nous avons bien les 3 informations nécessaires
+        if (configInfo.stream().anyMatch(String::isEmpty)) {
+            System.err.println("Le fichier de configuration ne contient pas toutes les informations nécessaires.");
+            return new ArrayList<>(); // Retourne une liste vide en cas d'erreur
+        }
+
+        return configInfo;
+    }
+
 }
