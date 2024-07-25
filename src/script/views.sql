@@ -127,3 +127,44 @@ SELECT
     END AS status
 FROM
     task AS t;
+
+/* -------------------------------------------------------------------------- */
+/*                             project task stats                             */
+/* -------------------------------------------------------------------------- */
+CREATE
+OR REPLACE VIEW v_project_stat AS
+SELECT
+    p.id_project,
+    COUNT(
+        CASE
+            WHEN t.status = 'sheduled' THEN 1
+        END
+    ) AS sheduled,
+    COUNT(
+        CASE
+            WHEN t.status = 'finished' THEN 1
+        END
+    ) AS finished,
+    COUNT(
+        CASE
+            WHEN t.status = 'progressing' THEN 1
+        END
+    ) AS progressing,
+    COUNT(
+        CASE
+            WHEN t.status = 'blocked' THEN 1
+        END
+    ) AS blocked,
+    count(*) as total
+FROM
+    (
+        SELECT DISTINCT
+            id_project
+        FROM
+            task
+    ) p
+    LEFT JOIN v_task t ON p.id_project = t.id_project
+GROUP BY
+    p.id_project
+ORDER BY
+    p.id_project;
