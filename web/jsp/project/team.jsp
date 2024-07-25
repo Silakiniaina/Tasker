@@ -8,9 +8,10 @@
     HashMap<String,ArrayList<String>> listTeam = (HashMap<String,ArrayList<String>>)request.getAttribute("listTeam");
     ArrayList<Project> listProject  = (ArrayList<Project>)request.getAttribute("listProject");
     ArrayList<Collaborator> listCollaborator  = (ArrayList<Collaborator>)request.getAttribute("listCollaborator");
+    Team updated = null; 
 %>
 
-<%@include file="../shared/sidebar" %>
+<%@include file="../shared/sidebar.jsp" %>
 <div class="row modal fade" id="insert-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true" style="background: transparent;backdrop-filter: blur(8px);">
     <div class="col-md-2"></div>
@@ -65,10 +66,11 @@
                         <ul class="list-group" id="collaboratorList">
                             <%
                                 ArrayList<String> collaboratorIds = listTeam.get(p.getId());
-                                for(String collaboratorId : collaboratorIds){
-                                    String name = "";
-                                    for(Collaborator c : listCollaborator){
-                                        if(collaboratorId.equals(c.getId())){
+                                if(collaboratorIds.get(0) != null){
+                                    for(String collaboratorId : collaboratorIds){
+                                        String name = "";
+                                        for(Collaborator c : listCollaborator){
+                                            if(collaboratorId.equals(c.getId())){
                                             name = c.getName();
                                         }
                                     }
@@ -79,7 +81,7 @@
                                         <i class="fas fa-user-minus"></i>
                                     </button>
                                 </li>
-                            <% } %>
+                            <% }} %>
                         </ul>
                     </div>
                     <div class="card-footer">

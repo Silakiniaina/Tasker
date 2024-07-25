@@ -60,6 +60,15 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>projectinfo</servlet-name>
-        <url-pattern>/project/info</url-pattern>
+        <url-pattern>/projectinfo</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>projectteam</servlet-name>
+        <servlet-class>controller.TeamController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>projectteam</servlet-name>
+        <url-pattern>/team</url-pattern>
     </servlet-mapping>
 </web-app>

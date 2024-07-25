@@ -65,6 +65,12 @@
                             Meetings
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="team" class="onglet nav-link <%= pageActive.equals("team") ? "active" : "" %>">
+                            <i class="fas fa-user-cog"></i>
+                            Team
+                        </a>
+                    </li>
                 </ul>
                 <hr>
                 <div class="dropdown">
