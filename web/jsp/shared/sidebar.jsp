@@ -98,4 +98,4 @@
                 </div>
             </div>
         </aside>
-        <main class="col-12 col-md-10">
+        <main class="col-12 col-md-10 mt-3">

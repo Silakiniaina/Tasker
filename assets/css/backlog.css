@@ -8,7 +8,6 @@
     display: flex;
     align-items: center;
     justify-content : flex-start;
-    gap: 5%;
 }
 
 .priority{
@@ -56,6 +55,15 @@
     background-color: var(--primary-color);
 }
 
+
+.project-description {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+}
 
 .project-duration{
     display: flex;
@@ -106,4 +114,10 @@
     height: 30px;
     border-radius: 50%;
     border: 2px solid white;
+}
+
+.backlog-container {
+    background-color: var(--background);
+    padding: 20px;
+    border-radius: 20px;
 }

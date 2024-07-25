@@ -20,12 +20,14 @@ import model.Project;
 import model.ProjectCategory;
 import model.Task;
 import model.TaskCategory;
+import model.Team;
 import model.Role; 
 
 public class BacklogController extends HttpServlet{
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ProtectionController.verify(request, response);
         String id = request.getParameter("id");
         PrintWriter out  = response.getWriter();
         RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/views/project/backlog.jsp");
@@ -38,9 +40,11 @@ public class BacklogController extends HttpServlet{
             ArrayList<Role> listRole = Role.getAll();
             ArrayList<ProjectCategory> listProjectCategory = ProjectCategory.getAll();
             ArrayList<TaskCategory> listTaskCategories = TaskCategory.getAll();
+            ArrayList<Team> listTeam = Team.getAllByProjectId(id);
 
 
             request.setAttribute("listTasks", listTasks);
+            request.setAttribute("listTeam", listTeam);
             request.setAttribute("listRole", listRole);
             request.setAttribute("listProjectCategory", listProjectCategory);
             request.setAttribute("listTaskCategory", listTaskCategories);

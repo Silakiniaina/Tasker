@@ -238,8 +238,7 @@ public class Team {
 
     public static void main(String[] args) {
         try {
-            HashMap<String,ArrayList<String>> ls  = Team.getAll();
-            System.out.println(new Gson().toJson(ls));
+            System.out.println(Math.round(100.0));
         } catch (Exception e) {
             e.printStackTrace();
         }

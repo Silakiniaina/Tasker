@@ -214,7 +214,9 @@
                         <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex align-items-center">
                             <div class="project-card card">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <span class="project-title"><%= p.getName() %></span>
+                                    <a href="backlog?id=<%= p.getId() %>">
+                                        <span class="project-title"><%= p.getName() %></span>
+                                    </a>
                                     <div>
                                         <span class="<%= p.getStatus() %> status-badge"><%= p.getStatus() %></span>
                                     </div>
