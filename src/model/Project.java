@@ -133,7 +133,7 @@ public class Project {
             c = Database.getConnection();
             c.setAutoCommit(false);
             prstm = c.prepareStatement(
-                    "INSERT INTO project(name,description,start_date,end_date,id_responsable,id_project_category,id_priority) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                    "INSERT INTO project(name,description,start_date,end_date,id_responsable,id_project_category,id_priority) VALUES (?, ?, ?, ?, ?, ?, ?)");
             prstm.setString(1, this.getName());
             prstm.setString(2, this.getDescription());
             prstm.setDate(3, this.getStartDate());
@@ -356,10 +356,9 @@ public class Project {
     public static void main(String[] args) {
         try {
             Project p = Project.getById("PRO1");
-            HashMap<String, Integer> stat = p.getTaskStatistic();
-            System.out.println(new Gson().toJson(stat));
+            System.out.println(new Gson().toJson(p));
         } catch (Exception e) {
-            // TODO: handle exception
+            e.printStackTrace();
         }
     }
 }

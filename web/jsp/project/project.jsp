@@ -92,7 +92,7 @@
                                                     selected = "selected";
                                         }
                                     %>
-                                        <option value="<%= pri.getId() %>" <%= selected %>><%= pri.getName() %></option>
+                                        <option value="<%= pri.getId() %>" <%= selected %>><%= pri.getLabel() %></option>
                                     <% } %>
                                 </select>
                             </div>

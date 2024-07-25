@@ -80,27 +80,29 @@
                         <input type="number" name="duration" min="1" value="<%= updated != null ? updated.getDurationHours() : "1" %>" class="form-control" id="validationDefault02" required>
                     </div>
                 </div>
-                <div class="input-container col-md-12">
-                    <label for="validationDefaultUsername" class="form-label">Assignment</label>
-                    <div class="input-group">
-                        <select class="form-select" name="collaborator" aria-label="Default select example">
-                            <option value="">Not assigned</option>
-                            <%
-                                for (Collaborator col : listCollaborator) { 
-                                    String selected = "";
-                                    if (updated != null && updated.getIdCollaborator() != null && updated.getIdCollaborator().equals(col.getId())) {
-                                        selected = "selected";
-                                        break;
-                                    }
-                            %>
-                                <option value="<%= col.getId() %>" <%= selected %>><%= col.getName() %></option>
-                            <% } %>
-                        </select>
+                <div class="col-md-12">
+                    <div class="input-container col-md-6">
+                        <label for="validationDefaultUsername" class="form-label">Assignment</label>
+                        <div class="input-group">
+                            <select class="form-select" name="collaborator" aria-label="Default select example">
+                                <option value="">Not assigned</option>
+                                <%
+                                    for (Collaborator col : listCollaborator) { 
+                                        String selected = "";
+                                        if (updated != null && updated.getIdCollaborator() != null && updated.getIdCollaborator().equals(col.getId())) {
+                                            selected = "selected";
+                                            break;
+                                        }
+                                %>
+                                    <option value="<%= col.getId() %>" <%= selected %>><%= col.getName() %></option>
+                                <% } %>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="input-container col-md-12">
-                    <label for="validationDefaultUsername" class="form-label">Progress</label>
-                    <input type="number" name="progress" min="0" max="100" value="<%= updated != null ? updated.getProgress() : "0" %>" class="form-control" id="validationDefault02" required>
+                    <div class="input-container col-md-6">
+                        <label for="validationDefaultUsername" class="form-label">Progress</label>
+                        <input type="number" name="progress" min="0" max="100" value="<%= updated != null ? updated.getProgress() : "0" %>" class="form-control" id="validationDefault02" required>
+                    </div>
                 </div>
                 <div class="input-container col-12 mb-3">
                     <label for="validationDefaultUsername" class="form-label">Description</label>
