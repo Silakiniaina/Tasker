@@ -22,6 +22,7 @@ public class Project {
     String idProjectCategory;
     String idPriority;
     double progress;
+    String status;
 
     /* -------------------------------------------------------------------------- */
     /* Constructors */
@@ -57,7 +58,7 @@ public class Project {
         ResultSet rs = null;
         try {
             c = Database.getConnection();
-            prstm = c.prepareStatement("SELECT * FROM v_project");
+            prstm = c.prepareStatement("SELECT * FROM v_project_with_status");
             rs = prstm.executeQuery();
             while (rs.next()) {
                 Project pr = new Project(
@@ -70,6 +71,7 @@ public class Project {
                         rs.getDouble("progress"));
                 pr.setId(rs.getString("id_project"));
                 pr.setIdPriority(rs.getString("id_priority"));
+                pr.setStatus(rs.getString("status"));
                 result.add(pr);
             }
         } catch (Exception e) {
@@ -95,7 +97,7 @@ public class Project {
         ResultSet rs = null;
         try {
             c = Database.getConnection();
-            prstm = c.prepareStatement("SELECT * FROM v_project WHERE id_project = ?");
+            prstm = c.prepareStatement("SELECT * FROM v_project_with_status WHERE id_project = ?");
             prstm.setString(1, id);
             rs = prstm.executeQuery();
             if (rs.next()) {
@@ -109,6 +111,7 @@ public class Project {
                     rs.getDouble("progress"));
                 result.setId(rs.getString("id_project"));
                 result.setIdPriority(rs.getString("id_priority"));
+                result.setStatus(rs.getString("status"));
             }
         } catch (Exception e) {
             throw e;
@@ -314,6 +317,10 @@ public class Project {
         return this.idPriority;
     }
 
+    public String getStatus(){
+        return this.status;
+    }
+
     /* -------------------------------------------------------------------------- */
     /* Setters */
     /* -------------------------------------------------------------------------- */
@@ -351,6 +358,10 @@ public class Project {
 
     public void setIdPriority(String str){
         this.idPriority = str;
+    }
+
+    public void setStatus(String str){
+        this.status = str;
     }
 
     public static void main(String[] args) {
