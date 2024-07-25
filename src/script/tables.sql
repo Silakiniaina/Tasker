@@ -179,3 +179,8 @@ CREATE TABLE
         FOREIGN KEY (id_project) REFERENCES Project (id_project)  ON DELETE CASCADE,
         FOREIGN KEY (id_collaborator) REFERENCES Collaborator (id_collaborator)  ON DELETE CASCADE
     );
+
+/* ------------------------------ Modification ------------------------------ */
+ALTER TABLE task DROP COLUMN id_status;
+ALTER TABLE task ADD COLUMN progress DECIMAL(5,2) DEFAULT 0;
+ALTER TABLE task ADD CONSTRAINT chk_progress CHECK(progress <= 100 AND progress >=0);
