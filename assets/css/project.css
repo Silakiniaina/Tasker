@@ -11,10 +11,26 @@
     font-weight: bold;
 }
 .status-badge {
-    font-size: 0.8rem;
+    font-family: poppins-semibold;
+    font-size: 0.7rem;
     padding: 3px 8px;
     border-radius: 12px;
+    color: var(--white);
 }
+
+.status-badge.finished{
+    background-color: var(--green);
+}
+.status-badge.blocked{
+    background-color:var(--red);
+}
+.status-badge.sheduled{
+    background-color: var(--primary-color);
+}
+.status-badge.progressing{
+    background-color:var(--orange);
+}
+
 .avatar-group img {
     width: 30px;
     height: 30px;
