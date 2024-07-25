@@ -8,6 +8,8 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.google.gson.Gson;
+
 import shared.Database;
 
 public class Project {
@@ -240,6 +242,34 @@ public class Project {
     }
 
     /* -------------------------------------------------------------------------- */
+    /*                                  Task stat                                 */
+    /* -------------------------------------------------------------------------- */
+    public HashMap<String,Integer> getTaskStatistic() throws Exception{
+        HashMap<String, Integer> result = new HashMap<>();
+        Connection c = null; 
+        PreparedStatement prstm = null; 
+        ResultSet rs = null;
+        try {
+            c = Database.getConnection();
+            prstm = c.prepareStatement("SELECT sheduled,finished,progressing,blocked FROM v_project_task_stat WHERE id_project = ?");
+            prstm.setString(1, this.getId());
+            rs = prstm.executeQuery();
+            ResultSetMetaData meta = rs.getMetaData();
+            if (rs.next()) {
+                for (int i = 0; i < meta.getColumnCount(); i++)
+                    result.put(meta.getColumnLabel(i + 1), Integer.valueOf(rs.getString(i + 1)));
+            }
+        } catch (Exception e) {
+            throw e;
+        }finally{
+            if(rs != null) rs.close();
+            if(prstm != null) prstm.close();
+            if(c != null) c.close();
+        }
+        return result;
+    }
+
+    /* -------------------------------------------------------------------------- */
     /* Getters */
     /* -------------------------------------------------------------------------- */
     public String getId() {
@@ -307,5 +337,15 @@ public class Project {
 
     public void setProgress(double d){
         this.progress = d;
+    }
+
+    public static void main(String[] args) {
+        try {
+            Project p = Project.getById("PRO1");
+            HashMap<String, Integer> stat = p.getTaskStatistic();
+            System.out.println(new Gson().toJson(stat));
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
     }
 }

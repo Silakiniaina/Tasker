@@ -132,7 +132,7 @@ FROM
 /*                             project task stats                             */
 /* -------------------------------------------------------------------------- */
 CREATE
-OR REPLACE VIEW v_project_stat AS
+OR REPLACE VIEW v_project_task_stat AS
 SELECT
     p.id_project,
     COUNT(
