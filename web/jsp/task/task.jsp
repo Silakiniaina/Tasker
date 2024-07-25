@@ -102,10 +102,7 @@
                 </div>
                 <div class="input-container col-md-12">
                     <label for="validationDefaultUsername" class="form-label">Progress</label>
-                    <div class="input-group">
-                        <label for="validationDefault02" class="form-label">Duration in h</label>
-                        <input type="number" name="progress" min="0" max="100" value="<%= updated != null ? updated.getProgress() : "0" %>" class="form-control" id="validationDefault02" required>
-                    </div>
+                    <input type="number" name="progress" min="0" max="100" value="<%= updated != null ? updated.getProgress() : "0" %>" class="form-control" id="validationDefault02" required>
                 </div>
                 <div class="input-container col-12 mb-3">
                     <label for="validationDefaultUsername" class="form-label">Description</label>
@@ -143,7 +140,7 @@
                 <span class="d-flex row task-card" style="background-color: #FFFFFF;">
                     <div class="task-content col-md-7 d-flex">
                         <div class="col-md-12 task-content-head d-flex">
-                            <div class="task-status">
+                            <div class="<%= t.getStatus() %> task-status">
                                 <i class="fa fa-lightbulb" style="font-size: 20px;"></i>
                             </div>
                             <div class="task">
