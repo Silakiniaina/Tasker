@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
@@ -21,6 +20,7 @@ public class Task {
     private String idCollaborator;
     private String idProject;
     private double progress;
+    private String status;
 
     // Constructeur
     public Task(String name, String description, Timestamp st, Timestamp en, String categ, String col, String pr,double progress) {
@@ -45,13 +45,14 @@ public class Task {
         ResultSet rs = null;
         try {
             c = Database.getConnection();
-            prstm = c.prepareStatement("SELECT * FROM task");
+            prstm = c.prepareStatement("SELECT * FROM v_task");
             rs = prstm.executeQuery();
             while (rs.next()) {
                 Task t = new Task(rs.getString("name"), rs.getString("description"), rs.getTimestamp("start_date"),
                         rs.getTimestamp("end_date"), rs.getString("id_task_category"), rs.getString("id_collaborator"),
                         rs.getString("id_project"),rs.getDouble("progress"));
                 t.setId(rs.getString("id_task"));
+                t.setStatus(rs.getString("status"));
                 tasks.add(t);
             }
         } catch (Exception e) {
@@ -107,7 +108,7 @@ public class Task {
         ResultSet rs = null;
         try {
             c = Database.getConnection();
-            prstm = c.prepareStatement("SELECT * FROM task WHERE id_task = ?");
+            prstm = c.prepareStatement("SELECT * FROM v_task WHERE id_task = ?");
             prstm.setString(1, id);
             rs = prstm.executeQuery();
             if(rs.next()){
@@ -115,6 +116,7 @@ public class Task {
                         rs.getTimestamp("end_date"), rs.getString("id_task_category"), rs.getString("id_collaborator"),
                         rs.getString("id_project"), rs.getDouble("progress"));
                 result.setId(rs.getString("id_task"));
+                result.setStatus(rs.getString("status"));
             }
         } catch (Exception e) {
             throw e;
@@ -278,12 +280,19 @@ public class Task {
     public double getProgress(){
         return this.progress;
     }
+
+    public String getStatus(){
+        return this.status;
+    }
     
+    public void setStatus(String str){
+        this.status = str;
+    }
 
     public static void main(String[] args) {
         try {
             Task t = Task.getById("TAS8");
-            System.out.println(new Gson().toJson(t));
+            System.out.println(t.getStatus());
         } catch (Exception e) {
             e.printStackTrace();
         }
