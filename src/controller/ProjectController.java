@@ -72,14 +72,12 @@ public class ProjectController extends HttpServlet{
             ArrayList<Gender> listGender = Gender.getAll();
             ArrayList<ProjectCategory> listProjectCategory = ProjectCategory.getAll();
             ArrayList<Collaborator> listeCollaborator = Collaborator.getAll();
-            // HashMap<String, Integer> number = Collaborator.getNumberCollaborator();
 
             request.setAttribute("listProject", liste);
             request.setAttribute("listStatus", listStatus);
             request.setAttribute("listGender", listGender);
             request.setAttribute("listProjectCategory", listProjectCategory);
             request.setAttribute("listCollaborator", listeCollaborator);
-            // request.setAttribute("number", number);
             request.setAttribute("page", "project");
             disp.forward(request, response);
         }catch (Exception e) {

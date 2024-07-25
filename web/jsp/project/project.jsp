@@ -79,22 +79,6 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="input-container col-md-12">
-                            <label for="validationDefaultUsername" class="form-label">Status</label>
-                            <div class="input-group">
-                                <select class="form-select" name="status" aria-label="Default select example" required>
-                                    <% 
-                                        for (Status status : listStatus) { 
-                                            String selected = "";
-                                                if (updated != null && updated.getIdStatus().equals(status.getId())) {
-                                                    selected = "selected";
-                                        }
-                                    %>
-                                        <option value="<%= status.getId() %>" <%= selected %>><%= status.getLabel() %></option>
-                                    <% } %>
-                                </select>
-                            </div>
-                        </div>
                         <div class="input-container col-12">
                             <label for="validationDefaultUsername" class="form-label">Description</label>
                             <textarea class="form-control" name="description" aria-label="With textarea"><%= updated != null ? updated.getDescription() : "" %></textarea>
