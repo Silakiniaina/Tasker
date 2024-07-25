@@ -149,7 +149,7 @@
                             <div class="task">
                                 <b>#</b><%= t.getId() %>
                             </div>
-                            <div class="progress">
+                            <div class="task-progress">
                                 <b><%= t.getProgress() %>%</b>
                             </div>
                             <% 
