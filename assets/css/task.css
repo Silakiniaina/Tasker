@@ -8,6 +8,14 @@
     max-height: 120px;
 }
 
+.progress{
+    font-size: 16px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .task-content{
     display: flex;
     flex-direction: column;
