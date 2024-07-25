@@ -88,6 +88,36 @@ public class Team {
     }
 
     /* -------------------------------------------------------------------------- */
+    /*                    List of collaborator not in the team                    */
+    /* -------------------------------------------------------------------------- */
+    public static ArrayList<String> getIdCollaboratorNotInTeam(String idProject) throws Exception {
+        ArrayList<String> result = new ArrayList<>();
+        Connection c = null;
+        PreparedStatement prstm = null;
+        ResultSet rs = null;
+        try {
+            c = Database.getConnection();
+            prstm = c.prepareStatement(
+                "SELECT id_collaborator FROM collaborator WHERE id_collaborator NOT IN (SELECT COALESCE(id_collaborator,'NEANT') AS id_collaborator  FROM v_all_team WHERE id_project = ?) ");
+            prstm.setString(1, idProject);
+            rs = prstm.executeQuery();
+            while (rs.next()) {
+                result.add(rs.getString("id_collaborator"));
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (rs != null)
+                rs.close();
+            if (prstm != null)
+                prstm.close();
+            if (c != null)
+                c.close();
+        }
+        return result;
+    }
+
+    /* -------------------------------------------------------------------------- */
     /*                         Insert a collaborator team                         */
     /* -------------------------------------------------------------------------- */
     public void insert() throws Exception{

@@ -8,7 +8,9 @@
     HashMap<String,ArrayList<String>> listTeam = (HashMap<String,ArrayList<String>>)request.getAttribute("listTeam");
     ArrayList<Project> listProject  = (ArrayList<Project>)request.getAttribute("listProject");
     ArrayList<Collaborator> listCollaborator  = (ArrayList<Collaborator>)request.getAttribute("listCollaborator");
-    Team updated = null; 
+    String updated = (String)request.getAttribute("updated"); 
+    ArrayList<String> listCollabo = (ArrayList<String>)request.getAttribute("listCollabo");
+    
 %>
 
 <%@include file="../shared/sidebar.jsp" %>
@@ -21,26 +23,27 @@
                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
             </svg>
         </span>
-        <form class="insert-collaborator">
+        <form class="insert-collaborator" method="POST" action="team">
             <legend>Select Collaborators:</legend>
             <fieldset class="collaborator-list">
+                <%
+                    if(listCollabo != null){
+                        for(String collaboId : listCollabo){
+                            String name = "";
+                            String id = "";
+                            for(Collaborator c : listCollaborator){
+                                if(collaboId.equals(c.getId())){
+                                name = c.getName();
+                                }
+                            }
+                %>
                 <label class="col-md-6">
-                    <input type="checkbox" name="collaborators" value="1">
-                        Sanda Silakiniaina
+                    <input type="checkbox" name="collaborators" value="<%= collaboId %>">
+                        <%= name %>
                 </label><br>
-                <label class="col-md-6">
-                    <input type="checkbox" name="collaborators" value="1">
-                        Sanda Silakiniaina
-                </label><br>
-                <label class="col-md-6">
-                    <input type="checkbox" name="collaborators" value="1">
-                        Sanda Silakiniaina
-                </label><br>
-                <label class="col-md-6">
-                    <input type="checkbox" name="collaborators" value="1">
-                        Sanda Silakiniaina
-                </label><br>
+                <% }} %>
             </fieldset>
+            <input type="hidden" name="project" value="<%= updated %>" >
             <div class="input-container submit-btn col-md-12">
                 <button class="btn btn-primary" type="submit">Add</button>
             </div>
@@ -77,17 +80,21 @@
                             %>
                                 <li class="list-group-item">
                                     <%= name %>
-                                    <button class="btn btn-danger btn-sm">
-                                        <i class="fas fa-user-minus"></i>
-                                    </button>
+                                    <a href="team?mode=d&idProject=<%= p.getId() %>&idCollaborator=<%= collaboratorId %>">
+                                        <button class="btn btn-danger btn-sm">
+                                            <i class="fas fa-user-minus"></i>
+                                        </button>
+                                    </a>
                                 </li>
                             <% }} %>
                         </ul>
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#insert-modal">
-                            <i class="fas fa-user-plus"></i> Add Collaborator
-                        </button>
+                        <a href="team?mode=a&idProject=<%= p.getId() %>">
+                            <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#insert-modal">
+                                <i class="fas fa-user-plus"></i> Add Collaborator
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>
