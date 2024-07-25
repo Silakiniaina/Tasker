@@ -62,6 +62,19 @@
     align-items: center;
     justify-content: flex-start;
 }
+
+.project-responsable{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.project-responsable img{
+    width: 25px;
+    height: 25px;
+    border-radius: 50px;
+}
 .card {
     border: none;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
