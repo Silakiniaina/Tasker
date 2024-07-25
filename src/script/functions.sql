@@ -221,3 +221,16 @@ CREATE OR REPLACE FUNCTION generate_id_status()
     END;
     $$
     LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION generate_id_priority()
+    RETURNS TEXT AS $$
+    DECLARE
+        priority_seqval TEXT;
+        priority_id TEXT;
+    BEGIN
+        SELECT nextval('priority_seq') INTO priority_seqval;
+        priority_id := 'PRI' || priority_seqval;
+        RETURN priority_id;
+    END;
+    $$
+    LANGUAGE plpgsql;

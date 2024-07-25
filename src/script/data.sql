@@ -39,3 +39,10 @@ INSERT INTO room(label) VALUES
     ('Room 3'),
     ('Room 4')
 ;
+
+INSERT INTO priority(label) VALUES 
+    ('highest'),
+    ('high'),
+    ('normal'),
+    ('low'),
+    ('lowest');

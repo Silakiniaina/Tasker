@@ -180,7 +180,17 @@ CREATE TABLE
         FOREIGN KEY (id_collaborator) REFERENCES Collaborator (id_collaborator)  ON DELETE CASCADE
     );
 
+CREATE TABLE priority(
+    id_priority TEXT DEFAULT generate_id_priority(),
+    label VARCHAR(150) NOT NULL,
+    PRIMARY KEY(id_priority),
+    UNIQUE(label)
+);
+
 /* ------------------------------ Modification ------------------------------ */
 ALTER TABLE task DROP COLUMN id_status;
 ALTER TABLE task ADD COLUMN progress DECIMAL(5,2) DEFAULT 0;
 ALTER TABLE task ADD CONSTRAINT chk_progress CHECK(progress <= 100 AND progress >=0);
+
+ALTER TABLE project ADD COLUMN id_priority TEXT NOT NULL;
+ALTER TABLE project ADD CONSTRAINT fk_priority FOREIGN KEY(id_priority) REFERENCES priority(id_priority);

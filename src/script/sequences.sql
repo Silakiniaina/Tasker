@@ -15,3 +15,4 @@ CREATE SEQUENCE comment_seq;
 CREATE SEQUENCE report_seq;
 CREATE SEQUENCE team_seq;
 CREATE SEQUENCE status_seq;
+CREATE SEQUENCE priority_seq;
