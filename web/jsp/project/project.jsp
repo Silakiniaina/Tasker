@@ -4,6 +4,7 @@
 <%@page import="model.Project" %>
 <%@page import="model.ProjectCategory" %>
 <%@page import="model.Status" %>
+<%@page import="model.Priority" %>
 <%@page import="model.Gender" %>
 <%@page import="com.google.gson.Gson" %>
 <%@page import="model.Collaborator" %>
@@ -11,6 +12,7 @@
 <%
     ArrayList<Collaborator> listCollaborator = (ArrayList<Collaborator>)request.getAttribute("listCollaborator");
     ArrayList<Status> listStatus = (ArrayList<Status>)request.getAttribute("listStatus");
+    ArrayList<Priority> listPriority = (ArrayList<Priority>)request.getAttribute("listPriority");
     ArrayList<ProjectCategory> listProjectCategory = (ArrayList<ProjectCategory>)request.getAttribute("listProjectCategory");
     ArrayList<Project> listProject = (ArrayList<Project>)request.getAttribute("listProject");
     String user = (String)request.getAttribute("userType");
@@ -75,6 +77,22 @@
                                         }
                                     %>
                                         <option value="<%= responsable.getId() %>" <%= selected %>><%= responsable.getName() %></option>
+                                    <% } %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-container col-md-12">
+                            <label for="validationDefaultUsername" class="form-label">Priority</label>
+                            <div class="input-group">
+                                <select class="form-select" name="priority" aria-label="Default select example" required>
+                                    <% 
+                                        for (Priority pri : listPriority) { 
+                                            String selected = "";
+                                                if (updated != null && updated.getIdPriority().equals(pri.getId())) {
+                                                    selected = "selected";
+                                        }
+                                    %>
+                                        <option value="<%= pri.getId() %>" <%= selected %>><%= pri.getName() %></option>
                                     <% } %>
                                 </select>
                             </div>
@@ -197,18 +215,9 @@
                             <div class="project-card card">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <span class="project-title"><%= p.getName() %></span>
-                                        <% 
-                                            String label = "";
-                                            for (Status status : listStatus) { 
-                                                if ( p.getIdStatus().equals(status.getId())) {
-                                                    label = status.getLabel();
-                                                    break;
-                                            }
-                                        %>
-                                        <% } %>
-                                        <div>
-                                            <span class="status-badge"><%= label %></span>
-                                        </div>
+                                    <div>
+                                        <span class="status-badge">Sheduled</span>
+                                    </div>
                                 </div>
                                 <p class="mb-3"><%= p.getDescription() %></p>
                                 <div class="d-flex justify-content-between align-items-center">
