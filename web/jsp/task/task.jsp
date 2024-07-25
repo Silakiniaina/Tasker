@@ -143,19 +143,14 @@
                 <span class="d-flex row task-card" style="background-color: #FFFFFF;">
                     <div class="task-content col-md-7 d-flex">
                         <div class="col-md-12 task-content-head d-flex">
-                            <% 
-                                String status = "" ;
-                                for(Status stat : listStatus){
-                                    if(t.getIdStatus().equals(stat.getId())){
-                                        status = stat.getLabel();
-                                    }
-                                }
-                            %>
-                            <div class="<%= status.toLowerCase() %> task-status">
+                            <div class="task-status">
                                 <i class="fa fa-lightbulb" style="font-size: 20px;"></i>
                             </div>
                             <div class="task">
                                 <b>#</b><%= t.getId() %>
+                            </div>
+                            <div class="progress">
+                                <b><%= t.getProgress() %>%</b>
                             </div>
                             <% 
                                 String taskCategoryLabel = "";
