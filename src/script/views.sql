@@ -196,7 +196,8 @@ ORDER BY
 /* -------------------------------------------------------------------------- */
 /*                        Percentage of assigned tasks                        */
 /* -------------------------------------------------------------------------- */
-CREATE OR REPLACE VIEW v_percentage_assigned_tasks AS 
+CREATE
+OR REPLACE VIEW v_percentage_assigned_tasks AS
 SELECT
     t.id_project,
     t.id_collaborator,
@@ -217,3 +218,18 @@ GROUP BY
     t.id_project,
     t.id_collaborator,
     total.total_tasks;
+
+/* -------------------------------------------------------------------------- */
+/*                            The task of the team                            */
+/* -------------------------------------------------------------------------- */
+CREATE
+OR REPLACE VIEW v_team AS
+SELECT
+    t.id_project,
+    t.id_collaborator,
+    COALESCE(pat.assigned_tasks, 0) AS assigned,
+    COALESCE(pat.percentage, 0) AS percentage
+FROM
+    team AS t
+    LEFT JOIN v_percentage_assigned_tasks AS pat ON t.id_project = pat.id_project
+    AND t.id_collaborator = pat.id_collaborator;

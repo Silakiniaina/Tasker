@@ -46,3 +46,9 @@ INSERT INTO priority(label) VALUES
     ('normal'),
     ('low'),
     ('lowest');
+
+INSERT INTO team(id_project,id_collaborator) VALUES
+    ('PRO1','COL4'),
+    ('PRO1','COL2'),
+    ('PRO1','COL3'),
+    ('PRO3','COL4');
