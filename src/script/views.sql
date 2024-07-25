@@ -78,3 +78,14 @@ FROM
         WHERE
             DATE(insert_date) = CURRENT_DATE
     ) AS j;
+
+/* -------------------------------------------------------------------------- */
+/*                          Progress of each project                          */
+/* -------------------------------------------------------------------------- */
+CREATE OR REPLACE VIEW v_project_progress AS
+SELECT 
+    id_project,
+    AVG(progress) AS progress 
+FROM task 
+GROUP BY id_project
+;
