@@ -103,3 +103,27 @@ SELECT
 FROM
     project AS p
     LEFT JOIN v_project_progress AS vp ON p.id_project = vp.id_project;
+
+/* -------------------------------------------------------------------------- */
+/*                 task with status according to its progress                 */
+/* -------------------------------------------------------------------------- */
+CREATE
+OR REPLACE VIEW v_task AS
+SELECT
+    t.*,
+    CASE
+        WHEN progress >= 0
+        AND progress < 100
+        AND end_date < NOW () THEN 'blocked'
+        WHEN progress >= 0
+        AND progress < 100
+        AND (
+            start_date <= now ()
+            AND end_date >= now ()
+        ) THEN 'progressing'
+        WHEN progress = 0
+        AND start_date > NOW () THEN 'sheduled'
+        WHEN progress = 100 THEN 'finished'
+    END AS status
+FROM
+    task AS t;
