@@ -200,6 +200,42 @@ public class Task {
         return Math.round(time/3600000);
     }
 
+    /* -------------------------------------------------------------------------- */
+    /*                               Task by id project and status                               */
+    /* -------------------------------------------------------------------------- */
+    public static ArrayList<Task> getListTaskByIdProject(String id_project,String status) throws Exception{
+        ArrayList<Task> tasks = new ArrayList<>();
+        Connection c = null;
+        PreparedStatement prstm = null;
+        ResultSet rs = null;
+        try {
+            c = Database.getConnection();
+            prstm = c.prepareStatement("SELECT * FROM v_task WHERE id_project = ? AND status = ?");
+            prstm.setString(1, id_project);
+            prstm.setString(2, status);
+            rs = prstm.executeQuery();
+            while (rs.next()) {
+                Task t = new Task(rs.getString("name"), rs.getString("description"), rs.getTimestamp("start_date"),
+                        rs.getTimestamp("end_date"), rs.getString("id_task_category"), rs.getString("id_collaborator"),
+                        rs.getString("id_project"),rs.getDouble("progress"));
+                t.setId(rs.getString("id_task"));
+                t.setStatus(rs.getString("status"));
+                tasks.add(t);
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (c != null)
+                c.close();
+            if (prstm != null)
+                prstm.close();
+            if (rs != null) {
+                rs.close();
+            }
+        }
+        return tasks;
+    }
+
     // Getters et setters
     public String getId() {
         return idTask;
@@ -291,8 +327,8 @@ public class Task {
 
     public static void main(String[] args) {
         try {
-            Task t = Task.getById("TAS8");
-            System.out.println(t.getStatus());
+            ArrayList<Task> ls = Task.getListTaskByIdProject("PRO1", "finished");
+            System.out.println(new Gson().toJson(ls));
         } catch (Exception e) {
             e.printStackTrace();
         }
