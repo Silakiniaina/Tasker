@@ -11,129 +11,129 @@ import java.util.HashMap;
 import shared.Database;
 
 public class Project {
-    String id; 
+    String id;
     String name;
-    String description; 
+    String description;
     Date startDate;
     Date endDate;
     String idResponsable;
     String idProjectCategory;
-    String idStatus;
+    double progress;
 
     /* -------------------------------------------------------------------------- */
-    /*                                Constructors                                */
+    /* Constructors */
     /* -------------------------------------------------------------------------- */
-    public Project(String name, String desc, Date start, Date end, String responsable, String category,String status){
+    public Project(String name, String desc, Date start, Date end, String responsable, String category,
+            double progress) {
         this.setName(name);
         this.setDescription(desc);
         this.setStartDate(start);
         this.setEndDate(end);
         this.setIdResponsable(responsable);
         this.setIdProjectCategory(category);
-        this.setIdStatus(status);
+        this.setProgress(progress);
+    }
+
+    public Project(String name, String desc, Date start, Date end, String responsable, String category) {
+        this.setName(name);
+        this.setDescription(desc);
+        this.setStartDate(start);
+        this.setEndDate(end);
+        this.setIdResponsable(responsable);
+        this.setIdProjectCategory(category);
     }
 
     /* -------------------------------------------------------------------------- */
-    /*               Function to get all the project in the database              */
+    /* Function to get all the project in the database */
     /* -------------------------------------------------------------------------- */
-    public static ArrayList<Project> getAll()throws Exception{
+    public static ArrayList<Project> getAll() throws Exception {
         ArrayList<Project> result = new ArrayList<>();
         Connection c = null;
         PreparedStatement prstm = null;
         ResultSet rs = null;
         try {
             c = Database.getConnection();
-            prstm = c.prepareStatement("SELECT * FROM project");
+            prstm = c.prepareStatement("SELECT * FROM v_project");
             rs = prstm.executeQuery();
-            while(rs.next()){
-                Project pr = new Project(rs.getString(2), rs.getString(3), rs.getDate(4), rs.getDate(5), rs.getString(7), rs.getString(8),rs.getString(9));
-                pr.setId(rs.getString(1));
+            while (rs.next()) {
+                Project pr = new Project(
+                        rs.getString("name"), 
+                        rs.getString("description"), 
+                        rs.getDate("start_date"),
+                        rs.getDate("end_date"), 
+                        rs.getString("id_responsable"), 
+                        rs.getString("id_project_category"),
+                        rs.getDouble("progress"));
+                pr.setId(rs.getString("id_project"));
                 result.add(pr);
             }
         } catch (Exception e) {
             throw e;
-        }finally{
-            if(rs != null)rs.close();
-            if(prstm != null)prstm.close();
-            if(c != null) c.close();
+        } finally {
+            if (rs != null)
+                rs.close();
+            if (prstm != null)
+                prstm.close();
+            if (c != null)
+                c.close();
         }
         return result;
     }
 
     /* -------------------------------------------------------------------------- */
-    /*                     Function to get a project by his id                    */
+    /* Function to get a project by his id */
     /* -------------------------------------------------------------------------- */
-    public static Project getById(String id)throws Exception{
+    public static Project getById(String id) throws Exception {
         Project result = null;
         Connection c = null;
         PreparedStatement prstm = null;
         ResultSet rs = null;
         try {
             c = Database.getConnection();
-            prstm = c.prepareStatement("SELECT * FROM project WHERE id_project = ?");
+            prstm = c.prepareStatement("SELECT * FROM v_project WHERE id_project = ?");
             prstm.setString(1, id);
             rs = prstm.executeQuery();
-            if(rs.next()){
-                result = new Project(rs.getString(2), rs.getString(3), rs.getDate(4), rs.getDate(5), rs.getString(7), rs.getString(8),rs.getString(9));
-                result.setId(rs.getString(1));
+            if (rs.next()) {
+                result = new Project(
+                    rs.getString("name"), 
+                    rs.getString("description"), 
+                    rs.getDate("start_date"),
+                    rs.getDate("end_date"), 
+                    rs.getString("id_responsable"), 
+                    rs.getString("id_project_category"),
+                    rs.getDouble("progress"));
+                result.setId(rs.getString("id_project"));
             }
         } catch (Exception e) {
             throw e;
-        }finally{
-            if(rs != null)rs.close();
-            if(prstm != null)prstm.close();
-            if(c != null) c.close();
+        } finally {
+            if (rs != null)
+                rs.close();
+            if (prstm != null)
+                prstm.close();
+            if (c != null)
+                c.close();
         }
         return result;
     }
 
     /* -------------------------------------------------------------------------- */
-    /*                        Function to insert a Project                        */
+    /* Function to insert a Project */
     /* -------------------------------------------------------------------------- */
-    public void insert() throws Exception{
-        Connection c = null; 
-        PreparedStatement prstm  = null; 
-        try {
-            c = Database.getConnection();
-            c.setAutoCommit(false);
-            prstm = c.prepareStatement("INSERT INTO project(name,description,start_date,end_date,id_responsable,id_project_category,id_status) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            prstm.setString(1,this.getName());
-            prstm.setString(2, this.getDescription());
-            prstm.setDate(3, this.getStartDate());
-            prstm.setDate(4, this.getEndDate());
-            prstm.setString(5, this.getIdResponsable());
-            prstm.setString(6, this.getIdProjectCategory());
-            prstm.setString(7, this.getIdStatus());
-            prstm.executeUpdate();
-            c.commit();
-        } catch (Exception e) {
-            c.rollback();
-            throw e;
-        }finally{
-            if(prstm != null) prstm.close();
-            if(c != null) c.close();
-        }
-    }
-
-    /* -------------------------------------------------------------------------- */
-    /*                        Function to update a project                        */
-    /* -------------------------------------------------------------------------- */
-    public void update(Project p) throws Exception {
+    public void insert() throws Exception {
         Connection c = null;
         PreparedStatement prstm = null;
         try {
             c = Database.getConnection();
             c.setAutoCommit(false);
             prstm = c.prepareStatement(
-                "UPDATE project SET name = ? , description = ?, start_date = ? , end_date = ? , id_responsable = ? , id_project_category = ?, id_status = ? WHERE id_project = ?");
-            prstm.setString(1,p.getName());
-            prstm.setString(2, p.getDescription());
-            prstm.setDate(3, p.getStartDate());
-            prstm.setDate(4, p.getEndDate());
-            prstm.setString(5, p.getIdResponsable());
-            prstm.setString(6, p.getIdProjectCategory());
-            prstm.setString(7, p.getIdStatus());
-            prstm.setString(8, this.getId());
+                    "INSERT INTO project(name,description,start_date,end_date,id_responsable,id_project_category) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            prstm.setString(1, this.getName());
+            prstm.setString(2, this.getDescription());
+            prstm.setDate(3, this.getStartDate());
+            prstm.setDate(4, this.getEndDate());
+            prstm.setString(5, this.getIdResponsable());
+            prstm.setString(6, this.getIdProjectCategory());
             prstm.executeUpdate();
             c.commit();
         } catch (Exception e) {
@@ -148,7 +148,38 @@ public class Project {
     }
 
     /* -------------------------------------------------------------------------- */
-    /*                         Function to delete project                         */
+    /* Function to update a project */
+    /* -------------------------------------------------------------------------- */
+    public void update(Project p) throws Exception {
+        Connection c = null;
+        PreparedStatement prstm = null;
+        try {
+            c = Database.getConnection();
+            c.setAutoCommit(false);
+            prstm = c.prepareStatement(
+                    "UPDATE project SET name = ? , description = ?, start_date = ? , end_date = ? , id_responsable = ? , id_project_category = ? WHERE id_project = ?");
+            prstm.setString(1, p.getName());
+            prstm.setString(2, p.getDescription());
+            prstm.setDate(3, p.getStartDate());
+            prstm.setDate(4, p.getEndDate());
+            prstm.setString(5, p.getIdResponsable());
+            prstm.setString(6, p.getIdProjectCategory());
+            prstm.setString(7, this.getId());
+            prstm.executeUpdate();
+            c.commit();
+        } catch (Exception e) {
+            c.rollback();
+            throw e;
+        } finally {
+            if (prstm != null)
+                prstm.close();
+            if (c != null)
+                c.close();
+        }
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /* Function to delete project */
     /* -------------------------------------------------------------------------- */
     public void delete() throws Exception {
         Connection c = null;
@@ -172,14 +203,14 @@ public class Project {
     }
 
     /* -------------------------------------------------------------------------- */
-    /*                             Function to search                             */
+    /* Function to search */
     /* -------------------------------------------------------------------------- */
-    public static ArrayList<Project> search()throws Exception{
+    public static ArrayList<Project> search() throws Exception {
         return Project.getAll();
     }
-    
+
     /* -------------------------------------------------------------------------- */
-    /*                               Project number                               */
+    /* Project number */
     /* -------------------------------------------------------------------------- */
     public static HashMap<String, Integer> getNumberProject() throws Exception {
         HashMap<String, Integer> result = new HashMap<>();
@@ -207,59 +238,74 @@ public class Project {
         }
         return result;
     }
+
     /* -------------------------------------------------------------------------- */
-    /*                                   Getters                                  */
+    /* Getters */
     /* -------------------------------------------------------------------------- */
     public String getId() {
         return id;
     }
+
     public String getName() {
         return name;
     }
+
     public String getDescription() {
         return description;
     }
+
     public Date getStartDate() {
         return startDate;
     }
+
     public Date getEndDate() {
         return endDate;
     }
+
     public String getIdResponsable() {
         return idResponsable;
     }
+
     public String getIdProjectCategory() {
         return idProjectCategory;
     }
-    public String getIdStatus(){
-        return idStatus;
+
+    public double getProgress(){
+        return this.progress;
     }
-    
+
     /* -------------------------------------------------------------------------- */
-    /*                                   Setters                                  */
+    /* Setters */
     /* -------------------------------------------------------------------------- */
     public void setId(String id) {
         this.id = id;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public void setDescription(String description) {
         this.description = description;
     }
+
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
+
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
+
     public void setIdResponsable(String idResponsable) {
         this.idResponsable = idResponsable;
     }
+
     public void setIdProjectCategory(String idProjectCategory) {
         this.idProjectCategory = idProjectCategory;
     }
-    public void setIdStatus(String status){
-        this.idStatus = status;
+
+    public void setProgress(double d){
+        this.progress = d;
     }
 }

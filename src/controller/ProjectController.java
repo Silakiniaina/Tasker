@@ -98,19 +98,18 @@ public class ProjectController extends HttpServlet{
         ProtectionController.verify(request, response);
         String mode = request.getParameter("mode");
         PrintWriter out = response.getWriter();
+        String name = request.getParameter("name");
+        String category = request.getParameter("category");
+        String responsable = request.getParameter("responsable");
+        String description = request.getParameter("description");
         try {
-            String name = request.getParameter("name");
-            String category = request.getParameter("category");
             Date startDate = request.getParameter("startDate") != null && !request.getParameter("startDate").trim().equals("")
                 ? Date.valueOf(request.getParameter("startDate"))
                 : null;
             Date deadline = request.getParameter("deadline") != null && !request.getParameter("deadline").trim().equals("")
                 ? Date.valueOf(request.getParameter("deadline"))
                 : null;
-            String responsable = request.getParameter("responsable");
-            String status = request.getParameter("status");
-            String description = request.getParameter("description");
-            Project p = new Project(name, description, startDate, deadline, responsable, category, status);
+            Project p = new Project(name, description, startDate, deadline, responsable, category);
             if (mode.equals("i")) {
                 p.insert();
             } else if (mode.equals("u")) {
