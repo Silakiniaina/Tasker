@@ -125,6 +125,7 @@ public class TaskController extends HttpServlet {
             collaborator = collaborator != null && !collaborator.trim().equals("") 
                     ? collaborator 
                     : null;
+            /* ------------------------------ task progress ----------------------------- */
             double progress = progress_str != null
                     ? Double.parseDouble(progress_str)
                     : null;
