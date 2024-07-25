@@ -2,7 +2,7 @@
 /*    Number of collaborator signed total, this year , this month and today   */
 /* -------------------------------------------------------------------------- */
 CREATE
-    OR REPLACE VIEW v_number_collaborator AS
+OR REPLACE VIEW v_number_collaborator AS
 SELECT
     t.total AS total,
     a.annee AS year,
@@ -37,11 +37,11 @@ FROM
         FROM
             collaborator
         WHERE
-            DATE(insert_date) = CURRENT_DATE
+            DATE (insert_date) = CURRENT_DATE
     ) AS j;
 
 CREATE
-    OR REPLACE VIEW v_number_project AS
+OR REPLACE VIEW v_number_project AS
 SELECT
     t.total AS total,
     a.annee AS year,
@@ -76,16 +76,30 @@ FROM
         FROM
             project
         WHERE
-            DATE(insert_date) = CURRENT_DATE
+            DATE (insert_date) = CURRENT_DATE
     ) AS j;
 
 /* -------------------------------------------------------------------------- */
 /*                          Progress of each project                          */
 /* -------------------------------------------------------------------------- */
-CREATE OR REPLACE VIEW v_project_progress AS
-SELECT 
+CREATE
+OR REPLACE VIEW v_project_progress AS
+SELECT
     id_project,
-    AVG(progress) AS progress 
-FROM task 
-GROUP BY id_project
-;
+    AVG(progress) AS progress
+FROM
+    task
+GROUP BY
+    id_project;
+
+/* -------------------------------------------------------------------------- */
+/*                        The project with its progress                       */
+/* -------------------------------------------------------------------------- */
+CREATE
+OR REPLACE VIEW v_project AS
+SELECT
+    p.*,
+    COALESCE(vp.progress, 0) as progress
+FROM
+    project AS p
+    LEFT JOIN v_project_progress AS vp ON p.id_project = vp.id_project;
