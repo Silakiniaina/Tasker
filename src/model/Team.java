@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.google.gson.Gson;
-
 import shared.Database;
 
 public class Team {
@@ -234,13 +232,5 @@ public class Team {
 
     public void setPercentage(double percentage) {
         this.percentage = percentage;
-    }
-
-    public static void main(String[] args) {
-        try {
-            System.out.println(Math.round(100.0));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }

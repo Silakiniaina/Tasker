@@ -14,7 +14,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.Collaborator;
 import model.Gender;
 import model.Project;
-import model.Status;
 import model.Task;
 import model.TaskCategory;
 import shared.Utils;

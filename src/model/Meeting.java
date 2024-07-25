@@ -6,11 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Time;
 import java.time.Duration;
-import java.time.Instant;
-import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
-
-import com.google.gson.Gson;
 
 import shared.Database;
 
@@ -252,14 +248,5 @@ public class Meeting {
     }
     public void setDateMeeting(Date dt){
         this.dateMeeting = dt;
-    }
-
-    public static void main(String[] args) {
-        try {
-            Meeting m = Meeting.getById("MEE1");
-            System.out.println(m.getDuration().toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }
