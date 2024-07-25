@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.google.gson.Gson;
 
@@ -44,7 +45,6 @@ public class Team {
                 t.setPercentage(rs.getDouble("percentage"));
                 result.add(t);
             }
-
         } catch (Exception e) {
             throw e;
         } finally {
@@ -111,6 +111,23 @@ public class Team {
             if (c != null)
                 c.close();
         }
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /*                              list of all team                              */
+    /* -------------------------------------------------------------------------- */
+    public static HashMap<String,ArrayList<Team>> getAll() throws Exception{
+        HashMap<String,ArrayList<Team>> result = new HashMap<>();
+        Connection c = null; 
+        PreparedStatement prstm = null; 
+        ResultSet rs = null; 
+        try {
+            c = Database.getConnection();
+            prstm = c.prepareStatement("SELECT * FROM ");
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        return result;
     }
 
     /* -------------------------------------------------------------------------- */

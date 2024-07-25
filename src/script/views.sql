@@ -233,3 +233,15 @@ FROM
     team AS t
     LEFT JOIN v_percentage_assigned_tasks AS pat ON t.id_project = pat.id_project
     AND t.id_collaborator = pat.id_collaborator;
+
+/* -------------------------------------------------------------------------- */
+/*                              list of all team                              */
+/* -------------------------------------------------------------------------- */
+CREATE
+OR REPLACE VIEW v_all_team AS
+SELECT
+    p.id_project,
+    t.id_collaborator
+FROM
+    project AS p
+    LEFT JOIN team AS t ON p.id_project = t.id_project;
