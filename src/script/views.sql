@@ -99,10 +99,35 @@ CREATE
 OR REPLACE VIEW v_project AS
 SELECT
     p.*,
-    COALESCE(vp.progress, 0) as progress
+    COALESCE(vp.progress, 0) as progress,
 FROM
     project AS p
     LEFT JOIN v_project_progress AS vp ON p.id_project = vp.id_project;
+
+
+/* -------------------------------------------------------------------------- */
+/*                             Project with status                            */
+/* -------------------------------------------------------------------------- */
+CREATE
+OR REPLACE VIEW v_project_with_status AS
+SELECT
+    *,
+    CASE
+        WHEN progress >= 0
+        AND progress < 100
+        AND end_date < NOW () THEN 'blocked'
+        WHEN progress >= 0
+        AND progress < 100
+        AND (
+            start_date <= now ()
+            AND end_date >= now ()
+        ) THEN 'progressing'
+        WHEN progress = 0
+        AND start_date > NOW () THEN 'sheduled'
+        WHEN progress = 100 THEN 'finished'
+    END AS status 
+FROM v_project ;
+
 
 /* -------------------------------------------------------------------------- */
 /*                 task with status according to its progress                 */
