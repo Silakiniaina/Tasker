@@ -55,12 +55,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>projectinfo</servlet-name>
-        <servlet-class>controller.ProjectInformationController</servlet-class>
+        <servlet-name>backlog</servlet-name>
+        <servlet-class>controller.BacklogController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>projectinfo</servlet-name>
-        <url-pattern>/projectinfo</url-pattern>
+        <servlet-name>backlog</servlet-name>
+        <url-pattern>/backlog</url-pattern>
     </servlet-mapping>
 
     <servlet>
