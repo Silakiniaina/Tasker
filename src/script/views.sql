@@ -104,7 +104,6 @@ FROM
     project AS p
     LEFT JOIN v_project_progress AS vp ON p.id_project = vp.id_project;
 
-
 /* -------------------------------------------------------------------------- */
 /*                             Project with status                            */
 /* -------------------------------------------------------------------------- */
@@ -125,9 +124,9 @@ SELECT
         WHEN progress = 0
         AND start_date > NOW () THEN 'sheduled'
         WHEN progress = 100 THEN 'finished'
-    END AS status 
-FROM v_project ;
-
+    END AS status
+FROM
+    v_project;
 
 /* -------------------------------------------------------------------------- */
 /*                 task with status according to its progress                 */
@@ -193,3 +192,28 @@ GROUP BY
     p.id_project
 ORDER BY
     p.id_project;
+
+/* -------------------------------------------------------------------------- */
+/*                        Percentage of assigned tasks                        */
+/* -------------------------------------------------------------------------- */
+CREATE OR REPLACE VIEW v_percentage_assigned_tasks AS 
+SELECT
+    t.id_project,
+    t.id_collaborator,
+    COUNT(*) as assigned_tasks,
+    ((COUNT(*) * 100) / total.total_tasks) AS percentage
+FROM
+    task AS t
+    JOIN (
+        SELECT
+            id_project,
+            COUNT(*) as total_tasks
+        FROM
+            task
+        GROUP BY
+            id_project
+    ) AS total ON t.id_project = total.id_project
+GROUP BY
+    t.id_project,
+    t.id_collaborator,
+    total.total_tasks;
