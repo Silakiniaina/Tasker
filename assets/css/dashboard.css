@@ -1,0 +1,27 @@
+.card {
+    height: 100%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+canvas {
+    max-height: 250px;
+    margin-top: 1rem;
+}
+.info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+.info-item i {
+    margin-right: 0.5rem;
+    width: 20px;
+}
+.chart-container {
+    position: relative;
+    margin: auto;
+    height: 250px;
+    width: 100%;
+}
