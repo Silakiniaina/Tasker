@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Gestion de Projet</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .card {
+            height: 100%;
+        }
+        .card-body {
+            display: flex;
+            flex-direction: column;
+        }
+        canvas {
+            max-height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Dashboard de Gestion de Projet</h1>
+        <div class="row">
+            <!-- Vue d'ensemble des projets -->
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Vue d'ensemble des projets</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>Nombre total de projets : <span id="totalProjects"></span></p>
+                        <canvas id="projectCategoriesChart"></canvas>
+                        <canvas id="projectPrioritiesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tâches -->
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Tâches</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>Nombre total de tâches : <span id="totalTasks"></span></p>
+                        <canvas id="taskProgressChart"></canvas>
+                        <h6 class="mt-3">Tâches en retard :</h6>
+                        <ul id="lateTasks"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Collaborateurs -->
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Collaborateurs</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>Nombre total de collaborateurs : <span id="totalCollaborators"></span></p>
+                        <canvas id="topCollaboratorsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Réunions -->
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Réunions</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="meetingCategoriesChart"></canvas>
+                        <h6 class="mt-3">Prochaines réunions :</h6>
+                        <ul id="upcomingMeetings"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/dashboard.js"></script>
+</body>
+</html>
