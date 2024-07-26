@@ -221,36 +221,6 @@ public class Project {
     }
 
     /* -------------------------------------------------------------------------- */
-    /* Project number */
-    /* -------------------------------------------------------------------------- */
-    public static HashMap<String, Integer> getNumberProject() throws Exception {
-        HashMap<String, Integer> result = new HashMap<>();
-        Connection c = null;
-        PreparedStatement prstm = null;
-        ResultSet rs = null;
-        try {
-            c = Database.getConnection();
-            prstm = c.prepareStatement("SELECT * FROM v_number_project");
-            rs = prstm.executeQuery();
-            ResultSetMetaData meta = rs.getMetaData();
-            if (rs.next()) {
-                for (int i = 0; i < meta.getColumnCount(); i++)
-                    result.put(meta.getColumnLabel(i + 1), Integer.valueOf(rs.getString(i + 1)));
-            }
-        } catch (Exception e) {
-            throw e;
-        } finally {
-            if (rs != null)
-                rs.close();
-            if (prstm != null)
-                prstm.close();
-            if (c != null)
-                c.close();
-        }
-        return result;
-    }
-
-    /* -------------------------------------------------------------------------- */
     /*                                  Task stat                                 */
     /* -------------------------------------------------------------------------- */
     public HashMap<String,Integer> getTaskStatistic() throws Exception{

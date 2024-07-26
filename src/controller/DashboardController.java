@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Collaborator;
+import model.Dashboard;
 import model.Gender;
 import model.Project;
 
@@ -18,16 +19,15 @@ public class DashboardController extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProtectionController.verify(request, response);
-        RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/views/dashboard/dashboard.jsp");
+        RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/views/dashboard/dash.jsp");
         try {
-            HashMap<String, Integer> number = Collaborator.getNumberCollaborator();
-            HashMap<String, Integer> project = Project.getNumberProject();
+            HashMap<String, Integer> number = Dashboard.getNumber();
             ArrayList<Gender> listGender = Gender.getAll();
 
-            request.setAttribute("numberCollaborator", number);
-            request.setAttribute("numberProject", project);
+            request.setAttribute("number", number);
             request.setAttribute("listGender", listGender);
             request.setAttribute("page", "dashboard");
+            request.setAttribute("updated", null);
 
             disp.forward(request,response);
         } catch (Exception e) {

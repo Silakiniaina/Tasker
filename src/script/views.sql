@@ -1,83 +1,33 @@
 /* -------------------------------------------------------------------------- */
-/*    Number of collaborator signed total, this year , this month and today   */
+/*             Number of project, task, meeting, and collaborator             */
 /* -------------------------------------------------------------------------- */
 CREATE
-OR REPLACE VIEW v_number_collaborator AS
+OR REPLACE VIEW v_number_dashboard AS
 SELECT
-    t.total AS total,
-    a.annee AS year,
-    m.mois AS month,
-    j.jour AS today
-FROM
     (
         SELECT
-            COUNT(*) as mois
-        FROM
-            collaborator
-        WHERE
-            DATE_TRUNC ('month', insert_date) = DATE_TRUNC ('month', CURRENT_DATE)
-    ) AS m,
-    (
-        SELECT
-            COUNT(*) as annee
-        FROM
-            collaborator
-        WHERE
-            DATE_PART ('year', insert_date) = DATE_PART ('year', CURRENT_DATE)
-    ) AS a,
-    (
-        SELECT
-            COUNT(*) as total
-        FROM
-            collaborator
-    ) AS t,
-    (
-        SELECT
-            COUNT(*) as jour
-        FROM
-            collaborator
-        WHERE
-            DATE (insert_date) = CURRENT_DATE
-    ) AS j;
-
-CREATE
-OR REPLACE VIEW v_number_project AS
-SELECT
-    t.total AS total,
-    a.annee AS year,
-    m.mois AS month,
-    j.jour AS today
-FROM
-    (
-        SELECT
-            COUNT(*) as mois
+            COUNT(*)
         FROM
             project
-        WHERE
-            DATE_TRUNC ('month', insert_date) = DATE_TRUNC ('month', CURRENT_DATE)
-    ) AS m,
+    ) AS project,
     (
         SELECT
-            COUNT(*) as annee
+            COUNT(*)
         FROM
-            project
-        WHERE
-            DATE_PART ('year', insert_date) = DATE_PART ('year', CURRENT_DATE)
-    ) AS a,
+            task
+    ) AS task,
     (
         SELECT
-            COUNT(*) as total
+            COUNT(*)
         FROM
-            project
-    ) AS t,
+            meeting
+    ) AS meeting,
     (
         SELECT
-            COUNT(*) as jour
+            COUNT(*)
         FROM
-            project
-        WHERE
-            DATE (insert_date) = CURRENT_DATE
-    ) AS j;
+            collaborator
+    ) AS collaborator;
 
 /* -------------------------------------------------------------------------- */
 /*                          Progress of each project                          */
