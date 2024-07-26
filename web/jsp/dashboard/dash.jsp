@@ -1,4 +1,5 @@
     <%@page import="java.util.ArrayList" %>
+    <%@page import="com.google.gson.Gson" %>
     <%@page import="java.util.HashMap" %>
     <%@page import="java.time.LocalDate" %>
     <%@page import="model.Collaborator" %>
@@ -6,6 +7,7 @@
     <%@page import="model.Project" %>
     <%
         HashMap<String, Integer> number = (HashMap<String, Integer>)request.getAttribute("number");
+        HashMap<String, Integer> numberProjectByCategory = (HashMap<String, Integer>)request.getAttribute("numberProjectByCategory");
         String updated = (String)request.getAttribute("updated");
     %>
     <%@include file ="../shared/sidebar.jsp" %>
@@ -89,13 +91,13 @@
         </div>
     </div>
 <script>
+const projectCategories = <%= new Gson().toJson(numberProjectByCategory) %>
 const dashboardData = {
     totalProjects: <%= number.get("project") %>,
-    projectCategories: [
-        {label: 'Développement', count: 10},
-        {label: 'Marketing', count: 8},
-        {label: 'Design', count: 7}
-    ],
+    projectPriorities : Object.keys(projectCategories).map(key => ({
+        label: key,
+        count: projectCategories[key]
+    }),
     projectPriorities: [
         {label: 'Haute', count: 12},
         {label: 'Moyenne', count: 8},

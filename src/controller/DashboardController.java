@@ -22,9 +22,11 @@ public class DashboardController extends HttpServlet{
         RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/views/dashboard/dash.jsp");
         try {
             HashMap<String, Integer> number = Dashboard.getNumber();
+            HashMap<String, Integer> numberProjectByCategory = Project.getNumberByCategory();
             ArrayList<Gender> listGender = Gender.getAll();
 
             request.setAttribute("number", number);
+            request.setAttribute("numberProjectByCategory", numberProjectByCategory);
             request.setAttribute("listGender", listGender);
             request.setAttribute("page", "dashboard");
             request.setAttribute("updated", null);

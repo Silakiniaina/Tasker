@@ -195,3 +195,18 @@ SELECT
 FROM
     project AS p
     LEFT JOIN team AS t ON p.id_project = t.id_project;
+
+/* -------------------------------------------------------------------------- */
+/*                        Number of project by category                       */
+/* -------------------------------------------------------------------------- */
+CREATE
+OR REPLACE VIEW v_number_project_by_category AS
+SELECT
+    pr.label,
+    COUNT(p.id_project)
+FROM
+    projectcategory AS pr
+    LEFT JOIN project AS p ON pr.id_project_category = p.id_project_category
+GROUP BY
+    pr.id_project_category
+;

@@ -249,6 +249,31 @@ public class Project {
     }
 
     /* -------------------------------------------------------------------------- */
+    /*                        Number of project by category                       */
+    /* -------------------------------------------------------------------------- */
+    public static HashMap<String,Integer> getNumberByCategory() throws Exception{
+        HashMap<String, Integer> result = new HashMap<>();
+        Connection c = null; 
+        PreparedStatement prstm = null; 
+        ResultSet rs = null;
+        try {
+            c = Database.getConnection();
+            prstm = c.prepareStatement("SELECT * FROM v_number_project_by_category");
+            rs = prstm.executeQuery();
+            while (rs.next()) {
+                    result.put(rs.getString(1), Integer.valueOf(rs.getString(2)));
+            }
+        } catch (Exception e) {
+            throw e;
+        }finally{
+            if(rs != null) rs.close();
+            if(prstm != null) prstm.close();
+            if(c != null) c.close();
+        }
+        return result;
+    }
+
+    /* -------------------------------------------------------------------------- */
     /* Getters */
     /* -------------------------------------------------------------------------- */
     public String getId() {
@@ -336,8 +361,8 @@ public class Project {
 
     public static void main(String[] args) {
         try {
-            Project p = Project.getById("PRO1");
-            System.out.println(new Gson().toJson(p));
+            HashMap<String,Integer> ls = Project.getNumberByCategory();
+            System.out.println(new Gson().toJson(ls));
         } catch (Exception e) {
             e.printStackTrace();
         }
